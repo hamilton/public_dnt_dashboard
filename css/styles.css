@@ -322,3 +322,10 @@ img.label {
 	background-color:#ffffff;
 	border:4px solid #cccccc;
 }
+
+#full_date {
+	float:right;
+	margin-right:8px;
+	margin-top:3px;
+	color:#3b3b3b;
+}

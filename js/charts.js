@@ -3,7 +3,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 		h = 300,
 		xPadding = 22,
 		yPadding = 30,
-		x_axis_format = "%b %e";
+		x_axis_format = "%b %e, %Y";
 	
 	//we always use the div within the container for placing the svg
 	container += " div";
@@ -43,7 +43,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         .scale(xScale)
         .orient("bottom")
         .tickFormat(d3.time.format(x_axis_format))
-        .ticks(20);
+        .ticks(9);
         
 	$(".x g text").attr("text-anchor", "left");
    
@@ -96,7 +96,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
     
     //extended ticks (vertical)
     ticks = svg.selectAll('.tickx')
-    	.data(xScale.ticks(20))
+    	.data(xScale.ticks(9))
     	.enter()
     		.append('svg:g')
     			.attr('transform', function(d, i) {
@@ -247,6 +247,8 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							d3.select(which_metric + " svg")
 								.append("text")
 									.text(function() {
+										var ze_date = new Date(d.date).getFullYear() + "-" + (new Date(d.date).getMonth()+1) + "-" + (new Date(d.date).getDate());
+										$("#full_date").html(ze_date);
 										return (d.perc*100).toFixed(2) + "%";
 									})					
 									.attr("x", function() { return xScale(d.date); })
