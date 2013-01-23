@@ -216,7 +216,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 					//a transparent copy of each rect to make it easier to hover over rects
 					svg.append('rect')
 		    			.attr('shape-rendering', 'crispEdges')
-		    			.style('opacity', 0.5)
+		    			.style('opacity', 0)
 			    		.attr('x', function() {
 			    			//TODO
 			    			//subtract from width/2 to shift rect to middle of point rather than from left edge of point
@@ -227,7 +227,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    				.attr('width', function() {
 	    					return (w-xPadding)/data.length;
 			    		})
-				    	.attr('height', h) //height of transparent bar
+				    	.attr('height', h-yPadding+2) //height of transparent bar
 				    	.on('mouseover.tooltip', function(d_local) {
 				    		d3.select(".tooltip_box").remove();
 				    		$(".trans_rect").css("opacity", 0);
