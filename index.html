@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Metrics Team, Mozilla, January 2013 -->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<title>Do Not Track</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
 		
-   		<script type="text/javascript" src="js/d3.min.js"></script>
+   		<script type="text/javascript" src="js/d3.v2.min.js"></script>
    		<script type="text/javascript" src="js/date.js"></script>
    		<script type="text/javascript" src="js/global.js"></script>
    		<script type="text/javascript" src="js/charts.js"></script>
+   		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
 
    		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />   		
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
@@ -17,10 +19,11 @@
 	</head>
 	<body>
 		<div id="page">
-			<div id="title">Do Not Track</div>
-			<div id="subtitle">Firefox for Desktop</div>
-			<div id="version_and_date">Version <span id="fx_version"></span><br /><span id="release_date">November 20, 2012</span></div>
-
+			<h1>The state of do-not-track in Firefox</h1>
+			
+			<div id="trend">
+				<div></div>
+			</div>
 		</div>
 	
 	<script type="text/javascript" src="js/x_over_x.js"></script>
