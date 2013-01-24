@@ -196,7 +196,9 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
    			})
    			.attr("r", 4)
    			.each(function(d, i) {
-   					var ze_date = new Date(d.date).getFullYear() + "-" + (new Date(d.date).getMonth()+1) + "-" + (new Date(d.date).getDate()+1);
+   					var ze_date = new Date(d.date).getFullYear() 
+							+ "-" + ('0' + (new Date(d.date).getMonth()+1)).slice(-2)
+							+ "-" + ('0' + new Date(d.date).getDate()).slice(-2);
 
    					if("undefined" != typeof annotations[ze_date]) {
 						//add a vertical line at that point
@@ -253,7 +255,10 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							d3.select(which_metric + " svg")
 								.append("text")
 									.text(function() {
-										var ze_date = new Date(d.date).getFullYear() + "-" + (new Date(d.date).getMonth()+1) + "-" + (new Date(d.date).getDate());
+										var ze_date = new Date(d.date).getFullYear() 
+												+ "-" + ('0' + (new Date(d.date).getMonth()+1)).slice(-2)
+												+ "-" + ('0' + new Date(d.date).getDate()).slice(-2);
+										
 										$("#full_date").html(ze_date);
 										return (d.perc*100).toFixed(2) + "%";
 									})					
