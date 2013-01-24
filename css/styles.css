@@ -351,3 +351,10 @@ img.label {
 	font-style:italic;
 	line-height:30px;
 }
+
+#metrics {
+	clear:both;
+	position:absolute;
+	bottom:-590px;
+	right:20px;
+}
