@@ -31,8 +31,8 @@ var country = new Object();
 	country['BJ'] = "Benin";
 	country['BM'] = "Bermuda";
 	country['BT'] = "Bhutan";
-	country['BO'] = "Bolivia; Plurinational State of";
-	country['BQ'] = "Bonaire; Sint Eustatius and Saba";
+	country['BO'] = "Bolivia";
+	country['BQ'] = "Bonaire";
 	country['BA'] = "Bosnia and Herzegovina";
 	country['BW'] = "Botswana";
 	country['BV'] = "Bouvet Island";
@@ -56,7 +56,7 @@ var country = new Object();
 	country['CO'] = "Colombia";
 	country['KM'] = "Comoros";
 	country['CG'] = "Congo";
-	country['CD'] = "Congo; the Democratic Republic of the";
+	country['CD'] = "Congo";
 	country['CK'] = "Cook Islands";
 	country['CR'] = "Costa Rica";
 	country['CI'] = "Côte d'Ivoire";
@@ -102,14 +102,14 @@ var country = new Object();
 	country['GY'] = "Guyana";
 	country['HT'] = "Haiti";
 	country['HM'] = "Heard Island and McDonald Islands";
-	country['VA'] = "Holy See (Vatican City State)";
+	country['VA'] = "Holy See";
 	country['HN'] = "Honduras";
 	country['HK'] = "Hong Kong";
 	country['HU'] = "Hungary";
 	country['IS'] = "Iceland";
 	country['IN'] = "India";
 	country['ID'] = "Indonesia";
-	country['IR'] = "Iran; Islamic Republic of";
+	country['IR'] = "Iran";
 	country['IQ'] = "Iraq";
 	country['IE'] = "Ireland";
 	country['IM'] = "Isle of Man";
@@ -122,7 +122,7 @@ var country = new Object();
 	country['KZ'] = "Kazakhstan";
 	country['KE'] = "Kenya";
 	country['KI'] = "Kiribati";
-	country['KP'] = "Korea; Democratic People's Republic of";
+	country['KP'] = "Korea";
 	country['KR'] = "Korea; Republic of";
 	country['KW'] = "Kuwait";
 	country['KG'] = "Kyrgyzstan";
@@ -136,7 +136,7 @@ var country = new Object();
 	country['LT'] = "Lithuania";
 	country['LU'] = "Luxembourg";
 	country['MO'] = "Macao";
-	country['MK'] = "Macedonia; the former Yugoslav Republic of";
+	country['MK'] = "Macedonia";
 	country['MG'] = "Madagascar";
 	country['MW'] = "Malawi";
 	country['MY'] = "Malaysia";
@@ -149,7 +149,7 @@ var country = new Object();
 	country['MU'] = "Mauritius";
 	country['YT'] = "Mayotte";
 	country['MX'] = "Mexico";
-	country['FM'] = "Micronesia; Federated States of";
+	country['FM'] = "Micronesia";
 	country['MD'] = "Moldova; Republic of";
 	country['MC'] = "Monaco";
 	country['MN'] = "Mongolia";
@@ -174,7 +174,7 @@ var country = new Object();
 	country['OM'] = "Oman";
 	country['PK'] = "Pakistan";
 	country['PW'] = "Palau";
-	country['PS'] = "Palestinian Territory; Occupied";
+	country['PS'] = "Palestinian Territory";
 	country['PA'] = "Panama";
 	country['PG'] = "Papua New Guinea";
 	country['PY'] = "Paraguay";
@@ -190,7 +190,7 @@ var country = new Object();
 	country['RU'] = "Russian Federation";
 	country['RW'] = "Rwanda";
 	country['BL'] = "Saint Barthélemy";
-	country['SH'] = "Saint Helena; Ascension and Tristan da Cunha";
+	country['SH'] = "Saint Helena";
 	country['KN'] = "Saint Kitts and Nevis";
 	country['LC'] = "Saint Lucia";
 	country['MF'] = "Saint Martin (French part)";
@@ -222,9 +222,9 @@ var country = new Object();
 	country['SE'] = "Sweden";
 	country['CH'] = "Switzerland";
 	country['SY'] = "Syrian Arab Republic";
-	country['TW'] = "Taiwan; Province of China";
+	country['TW'] = "Taiwan";
 	country['TJ'] = "Tajikistan";
-	country['TZ'] = "Tanzania; United Republic of";
+	country['TZ'] = "Tanzania";
 	country['TH'] = "Thailand";
 	country['TL'] = "Timor-Leste";
 	country['TG'] = "Togo";
@@ -245,7 +245,7 @@ var country = new Object();
 	country['UY'] = "Uruguay";
 	country['UZ'] = "Uzbekistan";
 	country['VU'] = "Vanuatu";
-	country['VE'] = "Venezuela; Bolivarian Republic of";
+	country['VE'] = "Venezuela";
 	country['VN'] = "Viet Nam";
 	country['VG'] = "Virgin Islands; British";
 	country['VI'] = "Virgin Islands; U.S.";
@@ -281,17 +281,17 @@ function populateCountriesTable() {
 				
 			var last_monthly = data_country[data_country.length-1],
 				last_weekly = data_weekly[i][data_weekly[i].length-1];
-								
+								console.log(i);
 			tbody += "<tr><td>" + country[i] + "</td><td>" 
-					+ yoy_growth(data_country, last_monthly).toFixed(2) 
-					+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) 
+					+ yoy_growth(data_country, last_monthly).toFixed(2) + "%"
+					+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
 					+ "</td><td style='width:150px'></td></tr>";
 					
-			if(n == 15)  return (n != 15); // will stop running after "three"
+			//return (n != 15); // will stop running after "three"
 		});
 	
 		$("#ranked_table tbody").html(tbody);
-		$("#ranked_table").tablesorter();
+		$("#ranked_table").tablesorter({sortList: [[1,1], [0,1]]});
 	});
 	});
 }

@@ -327,10 +327,11 @@ img.label {
 #ranked_table_and_map {
 	margin-top:50px;
 	border-radius:5px;
-	height:500px;
+	height:501px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
+	overflow:hidden;
 }
 
 #full_date {
