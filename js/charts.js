@@ -24,7 +24,9 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    //yMin = d3.min(d3.values(data), function(d) { return d.perc; }),
 	    yMin = 0,
 	    yMax = d3.max(d3.values(data), function(d) { return d.perc; });
-	    	
+	
+	yMax += 0.01;
+	
 	var mean = d3.mean(d3.values(data), function(d) { return d.perc; });
 	
    	/*var xScale = d3.scale.ordinal()
@@ -239,7 +241,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							d3.select(which_metric + " svg")
 								.append("svg:rect")
 									.attr("width", 44)
-									.attr("height", 15)
+									.attr("height", 16)
 									.attr("x", xScale(d.date)-22)
 									.attr("y", function() {
 										return yScale(d.perc)-24;
