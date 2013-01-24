@@ -424,3 +424,16 @@ img.label {
 svg {
 	margin-left:15px;
 }
+
+th {
+	cursor:pointer;
+	text-align:left;
+}
+
+td {
+	text-align:left;
+}
+
+#ranked_table {
+	width:100%;
+}
