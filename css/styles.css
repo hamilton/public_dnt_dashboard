@@ -328,7 +328,7 @@ img.label {
 	margin-top:30px;
 	margin-bottom:15px;
 	border-radius:5px;
-	height:500px;
+	height:900px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
@@ -447,6 +447,7 @@ td {
 	font-size:90%;
 }
 
-#ranked_table {
+#ranked_table_countries,
+#ranked_table_states {
 	width:100%;
 }

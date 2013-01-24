@@ -4,6 +4,59 @@ var LANG,
 	desktop_or_mobile = "ff",
 	date_granularity = "weekly";
 	
+var state = new Object();
+	state['AL'] = "Alabama";
+	state['AK'] = "Alaska";
+	state['AZ'] = "Arizona";
+	state['AR'] = "Arkansas";
+	state['CA'] = "California";
+	state['CO'] = "Colorado";
+	state['CT'] = "Connecticut";
+	state['DE'] = "Delaware";
+	state['DC'] = "District Of Columbia";
+	state['FL'] = "Florida";
+	state['GA'] = "Georgia";
+	state['HI'] = "Hawaii";
+	state['ID'] = "Idaho";
+	state['IL'] = "Illinois";
+	state['IN'] = "Indiana";
+	state['IA'] = "Iowa";
+	state['KS'] = "Kansas";
+	state['KY'] = "Kentucky";
+	state['LA'] = "Louisiana";
+	state['ME'] = "Maine";
+	state['MD'] = "Maryland";
+	state['MA'] = "Massachusetts";
+	state['MI'] = "Michigan";
+	state['MN'] = "Minnesota";
+	state['MS'] = "Mississippi";
+	state['MO'] = "Missouri";
+	state['MT'] = "Montana";
+	state['NE'] = "Nebraska";
+	state['NV'] = "Nevada";
+	state['NH'] = "New Hampshire";
+	state['NJ'] = "New Jersey";
+	state['NM'] = "New Mexico";
+	state['NY'] = "New York";
+	state['NC'] = "North Carolina";
+	state['ND'] = "North Dakota";
+	state['OH'] = "Ohio";
+	state['OK'] = "Oklahoma";
+	state['OR'] = "Oregon";
+	state['PA'] = "Pennsylvania";
+	state['RI'] = "Rhode Island";
+	state['SC'] = "South Carolina";
+	state['SD'] = "South Dakota";
+	state['TN'] = "Tennessee";
+	state['TX'] = "Texas";
+	state['UT'] = "Utah";
+	state['VT'] = "Vermont";
+	state['VA'] = "Virginia";
+	state['WA'] = "Washington";
+	state['WV'] = "West Virginia";
+	state['WI'] = "Wisconsin";
+	state['WY'] = "Wyoming";
+	
 var country = new Object();
 	country['AF'] = "Afghanistan";
 	country['AX'] = "Åland Islands";
@@ -267,6 +320,7 @@ $(document).ready(function () {
 		assignEventListeners();
 		drawCharts("ff_dnt_perc_weekly.json");
 		populateCountriesTable();
+		populateStatesTable();
 	});
 });
 
@@ -281,8 +335,8 @@ function populateCountriesTable() {
 				
 			var last_monthly = data_country[data_country.length-1],
 				last_weekly = data_weekly[i][data_weekly[i].length-1];
-								console.log(i);
-			tbody += "<tr><td>" + country[i] + "</td><td>" 
+
+			tbody += "<tr><td style='width:400px'>" + country[i] + "</td><td>" 
 					+ yoy_growth(data_country, last_monthly).toFixed(2) + "%"
 					+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
 					+ "</td><td style='width:150px'></td></tr>";
@@ -290,8 +344,44 @@ function populateCountriesTable() {
 			//return (n != 15); // will stop running after "three"
 		});
 	
-		$("#ranked_table tbody").html(tbody);
-		$("#ranked_table").tablesorter({sortList: [[1,1], [0,1]]});
+		$("#ranked_table_countries tbody").html(tbody);
+		$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
+		
+		//todo: remove all countries beyond first 20
+		for(var i=20;i<$("#ranked_table_countries tbody tr").length;i++) {
+			$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
+		}
+		
+	});
+	});
+}
+
+function populateStatesTable() {
+	d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_monthly) {
+	d3.json("data/ff_dnt_perc_weekly_by_state.json", function(data_weekly) {
+		var tbody,
+		n=0;
+	
+		$.each(data_monthly, function(i, data_state) {
+			n++;
+				
+			var last_monthly = data_state[data_state.length-1],
+				last_weekly = data_weekly[i][data_weekly[i].length-1];
+
+			tbody += "<tr><td style='width:400px'>" + state[i] + "</td><td>" 
+					+ yoy_growth(data_state, last_monthly).toFixed(2) + "%"
+					+ "</td><td>" + yoy_growth(data_state, last_weekly).toFixed(2) + "%"
+					+ "</td><td style='width:150px'></td></tr>";
+		});
+	
+		$("#ranked_table_states tbody").html(tbody);
+		$("#ranked_table_states").tablesorter({sortList: [[1,1], [0,1]]});
+		
+		//todo: remove all countries beyond first 20
+		for(var i=20;i<$("#ranked_table_states tbody tr").length;i++) {
+			$("#ranked_table_states tbody tr:nth-child(" + i + ")").hide()
+		}
+		
 	});
 	});
 }
