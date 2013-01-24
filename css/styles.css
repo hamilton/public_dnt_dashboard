@@ -320,7 +320,7 @@ img.label {
 	height:300px;
 	padding:10px;
 	background-color:#ffffff;
-	border:8px solid #E33258;
+	border:8px solid #e33258;
 }
 
 #full_date {
@@ -338,4 +338,11 @@ img.label {
 	z-index:-1;
 	margin-left:-100px;
 	left:50%;
+}
+
+#wide_pane {
+	background-color:#e33258;
+	width:100%;
+	height:600px;
+	margin-top:80px;
 }
