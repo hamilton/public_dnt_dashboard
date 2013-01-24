@@ -325,9 +325,20 @@ img.label {
 }
 
 #ranked_table_and_map {
-	margin-top:50px;
+	margin-top:30px;
+	margin-bottom:15px;
 	border-radius:5px;
-	height:501px;
+	height:500px;
+	padding:10px;
+	background-color:#ffffff;
+	border:1px solid #cccccc;
+	overflow:hidden;
+}
+
+#map {
+	margin-top:30px;
+	border-radius:5px;
+	height:500px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
@@ -433,6 +444,7 @@ th {
 
 td {
 	text-align:left;
+	font-size:90%;
 }
 
 #ranked_table {
