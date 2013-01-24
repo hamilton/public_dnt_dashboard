@@ -1,6 +1,6 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
 	var w = 960,
-		h = 300,
+		h = 350,
 		xPadding = 22,
 		yPadding = 30,
 		x_axis_format = "%b %e, %Y";
