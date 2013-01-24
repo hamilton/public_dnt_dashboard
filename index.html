@@ -27,13 +27,13 @@
 		<div id="page">
 			<div id="full_date"></div>
 			<div id="options">
-				<span class="selected_option"><a href="#">DESKTOP</a></span> &nbsp;<a href="#">MOBILE</a>
+				<span class="selected_option"><a href="#" id="ff">DESKTOP</a></span> &nbsp;<a href="#" id="fennec">MOBILE</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;<a href="#">DAILY</a>&nbsp; <span class="selected_option"><a href="#">WEEKLY</a></span> &nbsp;<a href="#">MONTHLY</a>
+				&nbsp;<a href="#" id="dnt_perc_daily">DAILY</a>&nbsp; <span class="selected_option"><a href="#" id="dnt_perc_weekly">WEEKLY</a></span> &nbsp;<a href="#" id="dnt_perc_monthly">MONTHLY</a>
 			</div>
 			
 			<div id="trend">			
-				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-60px" />
+				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-60px;margin-top:20px" />
 				<div></div>
 			</div>
 			
@@ -46,9 +46,14 @@
 		
 		<div id="wide_pane">		
 			<div id="metrics_logo_container">
-				<a href="https://metrics.mozilla.com/preview">
-					<img src="images/logo.png" id="metrics" />
-				</a>
+				<div style="float:left;padding-top:13px;padding-left:15px;width:740px;z-index:1;position:absolute">
+					The Metrics team is committed to developing useful and usable visualizations.  Is there something that we can help your team with?  Get in touch (#metrics).
+				</div>
+				<div style="float:right;z-index:2">
+					<a href="https://metrics.mozilla.com/preview">
+						<img src="images/logo.png" id="metrics" />
+					</a>
+				</div>
 			</div>
 		</div>
 	

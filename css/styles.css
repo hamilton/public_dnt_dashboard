@@ -362,7 +362,7 @@ img.label {
 	position:absolute;
 	background-color:#e33258;
 	width:100%;
-	height:600px;
+	height:100px;
 	margin-top:80px;
 	z-index:1;
 }
@@ -375,14 +375,19 @@ img.label {
 #metrics_logo_container {
 	position:absolute;
 	right:0;
-	bottom:0;
-	width:260px;
+	bottom:20px;
+	width:100%;
 	z-index:2;
+	color:white;
+	font-size:13px;
+	font-weight:300;
+	font-family:'Open Sans';
 }
 
 #metrics {
 	width:247px;
 	height:55px;
+	padding-right:10px;
 }
 
 .selected_option {

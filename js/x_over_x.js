@@ -10,13 +10,13 @@ function yoy_growth(series, date_obj){
 
 }
 
-d3.json('data/ff_dnt_perc_monthly_avg.json',function(monthly){
+d3.json('data/ff_dnt_perc_monthly.json',function(monthly){
 	// get max date
 	var last = monthly[monthly.length-1];
 	console.log('monthly', yoy_growth(monthly, last))
 })
 
-d3.json('data/ff_dnt_perc_weekly_avg.json', function(weekly){
+d3.json('data/ff_dnt_perc_weekly.json', function(weekly){
 	var last = weekly[weekly.length-1];
 	console.log('weekly', yoy_growth(weekly, last));
 })
