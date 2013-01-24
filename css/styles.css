@@ -334,9 +334,9 @@ img.label {
 
 #top_logo {
 	position:absolute;
-	top:10px;
+	top:36px;
 	z-index:-1;
-	margin-left:-100px;
+	margin-left:-64px;
 	left:50%;
 }
 
