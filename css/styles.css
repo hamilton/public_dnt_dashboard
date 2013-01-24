@@ -55,6 +55,7 @@ p {
 
 h1 {
 	font-size:34px;
+	font-weight:300;
 	color:#3b3b3b;
 	position:relative;
 	clear:both;
@@ -208,7 +209,7 @@ line {
 }
 
 .point {
-	fill:#3e83e2;
+	fill:#6d6d6d;
 	/*stroke-width:1px;
 	stroke:rgb(255,255,255);*/
 	display:none;

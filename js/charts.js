@@ -190,7 +190,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
    			.attr("cy", function(d) { 
    				return yScale(d.perc);
    			})
-   			.attr("r", 2)
+   			.attr("r", 4)
    			.each(function(d, i) {
    					var ze_date = new Date(d.date).getFullYear() + "-" + (new Date(d.date).getMonth()+1) + "-" + (new Date(d.date).getDate()+1);
 
@@ -230,8 +230,10 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 				    	.attr('height', h-yPadding+2) //height of transparent bar
 				    	.on('mouseover.tooltip', function(d_local) {
 				    		d3.select(".tooltip_box").remove();
-				    		$(".trans_rect").css("opacity", 0);
-				    		$(".trans_rect_" + i).css("opacity", 0.2);
+				    		//$(".trans_rect").css("opacity", 0);
+				    		//$(".trans_rect_" + i).css("opacity", 0.2);
+				    		$(".point").hide();
+				    		$(".point_" + i).show();
 				    	
 							d3.selectAll(".tooltip").remove(); //timestamp is used as id
 							d3.select(which_metric + " svg")
