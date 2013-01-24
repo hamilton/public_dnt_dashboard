@@ -7,7 +7,6 @@ function yoy_growth(series, date_obj){
     	return distancea - distanceb;
 	})[0];
 	return (date_obj.perc - yoy.perc) / yoy.perc;
-
 }
 
 d3.json('data/ff_dnt_perc_monthly_avg.json',function(monthly){
