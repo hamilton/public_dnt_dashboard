@@ -16,7 +16,6 @@ $(document).ready(function () {
 	});
 });
 
-//TODO clean up; put in separate function
 function assignEventListeners() {
 	$("#desktop").on("click", function() {
 		shift_selected("desktop", "platform");
