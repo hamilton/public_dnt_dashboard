@@ -329,7 +329,7 @@ function populateCountriesTable() {
 	d3.json("data/ff_dnt_perc_weekly_by_country.json", function(data_weekly) {
 		var tbody,
 		n=0;
-	
+
 		$.each(data_monthly, function(i, data_country) {
 			n++;
 				
@@ -340,18 +340,17 @@ function populateCountriesTable() {
 					+ yoy_growth(data_country, last_monthly).toFixed(2) + "%"
 					+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
 					+ "</td><td style='width:150px'></td></tr>";
-					
+
 			//return (n != 15); // will stop running after "three"
 		});
-	
+
 		$("#ranked_table_countries tbody").html(tbody);
 		$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
 		
-		//todo: remove all countries beyond first 20
-		for(var i=20;i<$("#ranked_table_countries tbody tr").length;i++) {
+		//remove all countries beyond first 20
+		for(var i=20;i<=$("#ranked_table_countries tbody tr").length;i++) {
 			$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
 		}
-		
 	});
 	});
 }
@@ -364,7 +363,7 @@ function populateStatesTable() {
 	
 		$.each(data_monthly, function(i, data_state) {
 			n++;
-				console.log(i);
+			
 			var last_monthly = data_state[data_state.length-1],
 				last_weekly = data_weekly[i][data_weekly[i].length-1];
 
@@ -378,7 +377,7 @@ function populateStatesTable() {
 		$("#ranked_table_states").tablesorter({sortList: [[1,1], [0,1]]});
 		
 		//todo: remove all countries beyond first 20
-		for(var i=20;i<$("#ranked_table_states tbody tr").length;i++) {
+		for(var i=20;i<=$("#ranked_table_states tbody tr").length;i++) {
 			$("#ranked_table_states tbody tr:nth-child(" + i + ")").hide()
 		}
 		
