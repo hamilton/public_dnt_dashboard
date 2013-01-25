@@ -8,7 +8,6 @@ var LANG,
 	data_ff_country,
 	data_fennec_country;
 	
-	
 var state = new Object();
 	state['AL'] = "Alabama";
 	state['AK'] = "Alaska";
@@ -181,10 +180,10 @@ var country = new Object();
 	country['KE'] = "Kenya";
 	country['KI'] = "Kiribati";
 	country['KP'] = "Korea";
-	country['KR'] = "Korea; Republic of";
+	country['KR'] = "Korea";
 	country['KW'] = "Kuwait";
 	country['KG'] = "Kyrgyzstan";
-	country['LA'] = "Lao People's Democratic Republic";
+	country['LA'] = "Lao";
 	country['LV'] = "Latvia";
 	country['LB'] = "Lebanon";
 	country['LS'] = "Lesotho";
@@ -208,7 +207,7 @@ var country = new Object();
 	country['YT'] = "Mayotte";
 	country['MX'] = "Mexico";
 	country['FM'] = "Micronesia";
-	country['MD'] = "Moldova; Republic of";
+	country['MD'] = "Moldova";
 	country['MC'] = "Monaco";
 	country['MN'] = "Mongolia";
 	country['ME'] = "Montenegro";
@@ -326,17 +325,17 @@ $(document).ready(function () {
 		drawCharts("ff_dnt_perc_weekly.json");
 		
 		//populate second pane
-		d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_monthly_state) {
-		d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(data_mobile_monthly_state) {
-		d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_desktop_monthly_country) {
-		d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(data_mobile_monthly_country) {
-			data_ff_state = data_desktop_monthly_state;
-			data_fennec_state = data_mobile_monthly_state;
-			data_ff_country = data_desktop_monthly_country;
-			data_fennec_country = data_mobile_monthly_country;
+		d3.json("data/ff_dnt_perc_weekly_by_state.json", function(data_desktop_state) {
+		d3.json("data/fennec_dnt_perc_weekly_by_state.json", function(data_mobile_state) {
+		d3.json("data/ff_dnt_perc_weekly_by_country.json", function(data_desktop_country) {
+		d3.json("data/fennec_dnt_perc_weekly_by_country.json", function(data_mobile_country) {
+			data_ff_state = data_desktop_state;
+			data_fennec_state = data_mobile_state;
+			data_ff_country = data_desktop_country;
+			data_fennec_country = data_mobile_country;
 
-			console.log(data_ff_country);
-			console.log(data_fennec_country);
+			//console.log(data_ff_country);
+			//console.log(data_fennec_country);
 			
 			//$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
 			$("#ranked_table_countries").tablesorter();
@@ -352,7 +351,7 @@ $(document).ready(function () {
 	
 	setTimeout(function() {
 		drawMap();
-	}, 50);
+	}, 500);
 });
 
 function drawMap() {
@@ -436,61 +435,64 @@ function resortStates() {
 	//}
 }
 
-function populateCountriesTable(desktop_or_mobile) {console.log(desktop_or_mobile);
-		var tbody = "",
-		n = 0;
-
+function populateCountriesTable(desktop_or_mobile) {
+		var tbody = "";
+		
 		$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
-			n++;
+			//console.log(i);
+			//console.log(country[i]);
 
 			var last_monthly = data_country[data_country.length-1];
 			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 			
-			tbody += "<tr><td style='width:400px'>" + country[i] + "</td><td>" 
-					+ yoy_growth(data_country, last_monthly).toFixed(2) + "%"
+			tbody += "<tr><td style='width:400px'>" + country[i] + "</td>"
+					+ "<td>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%"
 					//+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
-					+ "</td><td style='width:150px'></td></tr>";
+					+ "</td><td style='width:150px' id='spark_country_" + i + "'></td></tr>";
 		});
 
-		console.log($("#ranked_table_countries tbody tr").length);
 		$("#ranked_table_countries tbody").empty();
-		console.log($("#ranked_table_countries tbody tr").length);
 		$("#ranked_table_countries tbody").html(tbody);
-		console.log($("#ranked_table_countries tbody tr").length);
 		
 		
 		$("#ranked_table_countries").trigger("update"); 
 		setTimeout(function() {
 			resortCountries();
 		}, 1);
+		
+		//draw sparklines
+		$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
+			drawSparkLine(data_country, "#spark_country_" + i);
+		});
 }
 
 function populateStatesTable(desktop_or_mobile) {
-		var tbody = "",
-		n = 0;
+		var tbody = "";
+		
 		$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
-			n++;
-			
 			var last_monthly = data_state[data_state.length-1];
 			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 
-			tbody += "<tr><td style='width:400px'>" + state[i] + "</td><td>" 
-					+ yoy_growth(data_state, last_monthly).toFixed(2) + "%"
+			tbody += "<tr><td style='width:400px'>" + state[i] + "</td>" 
+					+ "<td>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%"
 					//+ "</td><td>" + yoy_growth(data_state, last_weekly).toFixed(2) + "%"
-					+ "</td><td style='width:150px'></td></tr>";
+					+ "</td><td style='width:150px' id='spark_state_" + i + "'></td></tr>";
 		});
 	
-		console.log($("#ranked_table_states tbody tr").length);
 		$("#ranked_table_states tbody").empty();
-		console.log($("#ranked_table_states tbody tr").length);
 		$("#ranked_table_states tbody").html(tbody);
-		console.log($("#ranked_table_states tbody tr").length);
 		
 		
 		$("#ranked_table_states").trigger("update"); 
 		setTimeout(function() {
 			resortStates();
 		}, 1);
+		
+		
+		//draw sparklines
+		$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
+			drawSparkLine(data_state, "#spark_state_" + i);
+		});
 }
 
 function assignEventListeners() {

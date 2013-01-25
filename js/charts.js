@@ -282,3 +282,100 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 								});*/
 				});
 }
+
+
+function drawSparkLine(data, container) {
+	if(data == undefined) return;
+	
+	var w = 230,
+		h = 35,
+		xPadding = 0,
+		yPadding = 10,
+		x_axis_format = "%b %e";
+	
+	//for clarity, we reassign
+	var which_metric = container;
+
+	//update date formats
+	$.each(data, function(i, value) {	
+		data[i].date = +new Date(value.date);
+	});	
+	data.sort(function(a,b){return a.date - b.date});
+	
+    //prepare our scales and axes
+	var xMin = d3.min(d3.values(data), function(d) { return d.date; }),
+	    xMax = d3.max(d3.values(data), function(d) { return d.date; }),
+	    yMin = d3.min(d3.values(data), function(d) { return d.perc; }),
+	    yMax = d3.max(d3.values(data), function(d) { return d.perc; });
+	    	
+	//add some padding
+	yMax+= 0.1;
+			
+	var xScale = d3.time.scale()
+        .domain([xMin, xMax])
+        .range([xPadding+16, w-xPadding]);
+            
+    var yScale = d3.scale.linear()
+        .domain([yMin, yMax])
+        .range([h-yPadding+2, yPadding-6]);
+            
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient("bottom")
+        .tickFormat(d3.time.format(x_axis_format))
+        .ticks(10);
+	$(".x g text").attr("text-anchor", "left");
+            
+	var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient("left")
+        .tickFormat(d3.format("%"))
+        .ticks(4);
+            
+    //draw svg
+	var svg = d3.select(container)
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+    		
+	//draw x axis
+	var xAxis = svg.append("g")
+    	.attr("class", "axis x")
+	    .attr("transform", "translate(-26," + (h-xPadding-3) + ")")
+    	.call(xAxis);
+    	    	
+	//draw y axis
+	svg.append("g")
+    	.attr("class", "axis y")
+	    .attr("transform", "translate(" + (yPadding+10) + ",0)")
+    	.call(yAxis);
+
+	//draw the line		
+	var line = d3.svg.line()
+		.interpolate("basis")
+		.x(function(d,i) { return xScale(d.value.date); })
+		.y(function(d) {
+			 return yScale(d.value.perc);
+		});
+
+	var paths = svg.append("svg:path")
+	    .attr("class", "the_glorious_line default_path_format")
+    	.attr("d", function() {
+	    	return line(d3.entries(data));
+    	});
+
+	//draw points
+	var circle = svg.selectAll("circle")
+   		.data(d3.values(data))
+   		.enter()
+   			.append("circle")
+   			.attr('class', function(d,i) { return "point_" + i + " point"; })
+   			.attr('opacity', 1)
+   			.attr("cx", function(d) {
+        		return xScale(d.date);
+   			})
+   			.attr("cy", function(d) { 
+   				return yScale(d.perc);
+   			})
+   			.attr("r", 0);
+}

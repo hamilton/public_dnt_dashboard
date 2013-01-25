@@ -328,7 +328,7 @@ img.label {
 	margin-top:30px;
 	margin-bottom:15px;
 	border-radius:5px;
-	height:665px;
+	height:940px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
@@ -482,7 +482,7 @@ td {
 
 .black path {
   fill: none;
-  stroke: #ccc;
+  stroke: none;
   stroke-width: 3px;
 }
 
@@ -492,6 +492,20 @@ td {
 }
 
 .grey path {
-  fill: #ccc;
-  stroke: #666;
+  fill: #e8e8e8;
+  stroke: #9f9f9f;
+}
+
+
+
+
+/* sparkline css */
+td svg .axis text {
+	display:none;
+}
+
+td svg {
+	padding:0;
+	margin:0;
+	margin-left:-100px;
 }
