@@ -328,7 +328,7 @@ img.label {
 	margin-top:30px;
 	margin-bottom:15px;
 	border-radius:5px;
-	height:940px;
+	height:770px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
@@ -508,4 +508,8 @@ td svg {
 	padding:0;
 	margin:0;
 	margin-left:-100px;
+}
+
+tr {
+	height:30px;
 }

@@ -2,6 +2,7 @@
 
 var LANG,
 	desktop_or_mobile = "ff",
+	desktop_or_mobile2 = "ff",
 	date_granularity = "weekly",
 	data_ff_state,
 	data_fennec_state,
@@ -325,10 +326,10 @@ $(document).ready(function () {
 		drawCharts("ff_dnt_perc_weekly.json");
 		
 		//populate second pane
-		d3.json("data/ff_dnt_perc_weekly_by_state.json", function(data_desktop_state) {
-		d3.json("data/fennec_dnt_perc_weekly_by_state.json", function(data_mobile_state) {
-		d3.json("data/ff_dnt_perc_weekly_by_country.json", function(data_desktop_country) {
-		d3.json("data/fennec_dnt_perc_weekly_by_country.json", function(data_mobile_country) {
+		d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_state) {
+		d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(data_mobile_state) {
+		d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_desktop_country) {
+		d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(data_mobile_country) {
 			data_ff_state = data_desktop_state;
 			data_fennec_state = data_mobile_state;
 			data_ff_country = data_desktop_country;
@@ -343,15 +344,13 @@ $(document).ready(function () {
 			
 			populateCountriesTable("ff");
 			populateStatesTable("ff");
+			
+			drawMap();
 		});
 		});
 		});
 		});
 	});
-	
-	setTimeout(function() {
-		drawMap();
-	}, 500);
 });
 
 function drawMap() {
@@ -363,7 +362,7 @@ var data = [
   .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
 ];
 
-var svg = d3.select("#map").append("svg")
+var svg_map = d3.select("#map").append("svg")
     .attr("width", 960)
     .attr("height", 500);
 
@@ -371,7 +370,7 @@ d3.json("data/us-states.json", function(json) {
   var path = d3.geo.path();
 
   // A thick black stroke for the exterior.
-  svg.append("g")
+  svg_map.append("g")
       .attr("class", "black")
     .selectAll("path")
       .data(json.features)
@@ -379,7 +378,7 @@ d3.json("data/us-states.json", function(json) {
       .attr("d", path);
 
   // A white overlay to hide interior black strokes.
-  svg.append("g")
+  svg_map.append("g")
       .attr("class", "white")
     .selectAll("path")
       .data(json.features)
@@ -387,7 +386,7 @@ d3.json("data/us-states.json", function(json) {
       .attr("d", path);
 
   // The polygons, scaled!
-  svg.append("g")
+  svg_map.append("g")
       .attr("class", "grey")
     .selectAll("path")
       .data(json.features)
@@ -417,7 +416,7 @@ function resortCountries() {
 	//console.log($("#ranked_table_countries tbody tr").length);
 		
 	//remove all countries beyond first 15
-	//for(var i=15;i<=$("#ranked_table_countries tbody tr").length;i++) {
+	//for(var i=10;i<=$("#ranked_table_countries tbody tr").length;i++) {
 	//	$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
 	//}
 }
@@ -429,8 +428,8 @@ function resortStates() {
 		
 	//console.log($("#ranked_table_countries tbody tr").length);
 		
-	//remove all countries beyond first 15
-	//for(var i=15;i<=$("#ranked_table_states tbody tr").length;i++) {
+	//remove all states beyond first 15
+	//for(var i=10;i<=$("#ranked_table_states tbody tr").length;i++) {
 	//	$("#ranked_table_states tbody tr:nth-child(" + i + ")").hide()
 	//}
 }
@@ -445,10 +444,15 @@ function populateCountriesTable(desktop_or_mobile) {
 			var last_monthly = data_country[data_country.length-1];
 			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 			
-			tbody += "<tr><td style='width:400px'>" + country[i] + "</td>"
-					+ "<td>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%"
-					//+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
-					+ "</td><td style='width:150px' id='spark_country_" + i + "'></td></tr>";
+			//console.log(data_country[data_country.length-1]);
+		
+			
+			
+			tbody += "<tr><td style='width:60%'>" + country[i] + "</td>"
+					+ "<td style='width:25%'>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + mom_growth(data_country, last_monthly).toFixed(2) + "%</td>"
+					//+ "</td><td style='width:150px' id='spark_country_" + i + "'></td>"
+					+ "</tr>";
 		});
 
 		$("#ranked_table_countries tbody").empty();
@@ -461,9 +465,9 @@ function populateCountriesTable(desktop_or_mobile) {
 		}, 1);
 		
 		//draw sparklines
-		$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
-			drawSparkLine(data_country, "#spark_country_" + i);
-		});
+		//$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
+		//	drawSparkLine(data_country, "#spark_country_" + i);
+		//});
 }
 
 function populateStatesTable(desktop_or_mobile) {
@@ -473,10 +477,11 @@ function populateStatesTable(desktop_or_mobile) {
 			var last_monthly = data_state[data_state.length-1];
 			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 
-			tbody += "<tr><td style='width:400px'>" + state[i] + "</td>" 
-					+ "<td>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%"
-					//+ "</td><td>" + yoy_growth(data_state, last_weekly).toFixed(2) + "%"
-					+ "</td><td style='width:150px' id='spark_state_" + i + "'></td></tr>";
+			tbody += "<tr><td style='width:60%'>" + state[i] + "</td>" 
+					+ "<td style='width:25%'>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + mom_growth(data_state, last_monthly).toFixed(2) + "%</td>"
+					//+ "</td><td style='width:150px' id='spark_state_" + i + "'></td>"
+					+ "</tr>";
 		});
 	
 		$("#ranked_table_states tbody").empty();
@@ -490,15 +495,19 @@ function populateStatesTable(desktop_or_mobile) {
 		
 		
 		//draw sparklines
-		$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
-			drawSparkLine(data_state, "#spark_state_" + i);
-		});
+		//$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
+		//	drawSparkLine(data_state, "#spark_state_" + i);
+		//});
 }
 
 function assignEventListeners() {
 	$("#desktop2").on("click", function() {
+		if(desktop_or_mobile2 == "ff")
+			return false;
+			
 		shift_selected2("desktop");
-
+		desktop_or_mobile2 = "ff";
+		
 		populateCountriesTable("ff");
 		populateStatesTable("ff");
 		
@@ -506,7 +515,11 @@ function assignEventListeners() {
 	});
 	
 	$("#mobile2").on("click", function() {
+		if(desktop_or_mobile2 == "fennec")
+			return false;
+			
 		shift_selected2("mobile");
+		desktop_or_mobile2 = "fennec";
 		
 		populateCountriesTable("fennec");
 		populateStatesTable("fennec");
