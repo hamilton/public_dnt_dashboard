@@ -364,7 +364,7 @@ function populateStatesTable() {
 	
 		$.each(data_monthly, function(i, data_state) {
 			n++;
-				
+				console.log(i);
 			var last_monthly = data_state[data_state.length-1],
 				last_weekly = data_weekly[i][data_weekly[i].length-1];
 
