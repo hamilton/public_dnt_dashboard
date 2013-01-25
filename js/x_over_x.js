@@ -6,6 +6,9 @@ function yoy_growth(series, date_obj){
     	var distanceb = Math.abs(target_date - new Date(b.date));
     	return distancea - distanceb;
 	})[0];
+	
+	if(yoy.perc == 0) return 0;
+	
 	return (date_obj.perc - yoy.perc) / yoy.perc;
 }
 

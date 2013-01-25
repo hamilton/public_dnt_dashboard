@@ -328,7 +328,7 @@ img.label {
 	margin-top:30px;
 	margin-bottom:15px;
 	border-radius:5px;
-	height:700px;
+	height:665px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
@@ -362,6 +362,23 @@ img.label {
 	z-index:99;
 	margin-left:700px;
 	margin-top:6px;
+	border-radius:5px;
+	/*background-color:#e33258;*/
+	font-family:'Open Sans';
+	font-size:11px;
+	padding-left:8px;
+	padding-right:4px;
+	padding-top:4px;
+}
+
+#options2 {
+	position:absolute;
+	margin-left:15px;
+	width:285px;
+	height:22px;
+	z-index:99;
+	margin-left:868px;
+	margin-top:-4px;
 	border-radius:5px;
 	/*background-color:#e33258;*/
 	font-family:'Open Sans';
@@ -444,10 +461,37 @@ th {
 
 td {
 	text-align:left;
-	font-size:90%;
+	font-size:13px;
+}
+
+#ranked_table_countries {
+	margin-top:24px;
+	padding-top:10px;
+	border-top:1px solid #cccccc;
 }
 
 #ranked_table_countries,
 #ranked_table_states {
 	width:100%;
+}
+
+#chart {
+  width: 960px;
+  height: 500px;
+}
+
+.black path {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 3px;
+}
+
+.white path {
+  fill: #fff;
+  stroke: #fff;
+}
+
+.grey path {
+  fill: #ccc;
+  stroke: #666;
 }

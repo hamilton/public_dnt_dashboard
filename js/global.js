@@ -2,7 +2,12 @@
 
 var LANG,
 	desktop_or_mobile = "ff",
-	date_granularity = "weekly";
+	date_granularity = "weekly",
+	data_ff_state,
+	data_fennec_state,
+	data_ff_country,
+	data_fennec_country;
+	
 	
 var state = new Object();
 	state['AL'] = "Alabama";
@@ -319,53 +324,155 @@ $(document).ready(function () {
 		
 		assignEventListeners();
 		drawCharts("ff_dnt_perc_weekly.json");
-		populateCountriesTable();
-		populateStatesTable();
+		
+		//populate second pane
+		d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_monthly_state) {
+		d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(data_mobile_monthly_state) {
+		d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_desktop_monthly_country) {
+		d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(data_mobile_monthly_country) {
+			data_ff_state = data_desktop_monthly_state;
+			data_fennec_state = data_mobile_monthly_state;
+			data_ff_country = data_desktop_monthly_country;
+			data_fennec_country = data_mobile_monthly_country;
+
+			console.log(data_ff_country);
+			console.log(data_fennec_country);
+			
+			//$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
+			$("#ranked_table_countries").tablesorter();
+			$("#ranked_table_states").tablesorter();
+			
+			populateCountriesTable("ff");
+			populateStatesTable("ff");
+		});
+		});
+		});
+		});
 	});
+	
+	setTimeout(function() {
+		drawMap();
+	}, 50);
 });
 
-function populateCountriesTable() {
-	d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_monthly) {
-	d3.json("data/ff_dnt_perc_weekly_by_country.json", function(data_weekly) {
-		var tbody,
-		n=0;
+function drawMap() {
+	// Ratio of Obese (BMI >= 30) in U.S. Adults, CDC 2008
+var data = [
+  , .187, .198, , .133, .175, .151, , .1, .125, .171, , .172, .133, , .108,
+  .142, .167, .201, .175, .159, .169, .177, .141, .163, .117, .182, .153, .195,
+  .189, .134, .163, .133, .151, .145, .13, .139, .169, .164, .175, .135, .152,
+  .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
+];
 
-		$.each(data_monthly, function(i, data_country) {
+var svg = d3.select("#map").append("svg")
+    .attr("width", 960)
+    .attr("height", 500);
+
+d3.json("data/us-states.json", function(json) {
+  var path = d3.geo.path();
+
+  // A thick black stroke for the exterior.
+  svg.append("g")
+      .attr("class", "black")
+    .selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", path);
+
+  // A white overlay to hide interior black strokes.
+  svg.append("g")
+      .attr("class", "white")
+    .selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", path);
+
+  // The polygons, scaled!
+  svg.append("g")
+      .attr("class", "grey")
+    .selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("transform", function(d) {
+        var centroid = path.centroid(d),
+            x = centroid[0],
+            y = centroid[1];
+        return "translate(" + x + "," + y + ")"
+            + "scale(" + Math.sqrt(data[+d.id] * 5 || 0) + ")"
+            + "translate(" + -x + "," + -y + ")";
+      })
+      .style("stroke-width", function(d) {
+        return 1 / Math.sqrt(data[+d.id] * 5 || 1);
+      });
+});
+}
+
+function resortCountries() {
+	//$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
+	
+	//resort
+	var sorting = [[1,1], [0,1]]; 
+	$("#ranked_table_countries").trigger("sorton",[sorting]); 
+		
+	//console.log($("#ranked_table_countries tbody tr").length);
+		
+	//remove all countries beyond first 15
+	//for(var i=15;i<=$("#ranked_table_countries tbody tr").length;i++) {
+	//	$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
+	//}
+}
+
+function resortStates() {
+	//resort
+	var sorting = [[1,1], [0,1]]; 
+	$("#ranked_table_states").trigger("sorton",[sorting]); 
+		
+	//console.log($("#ranked_table_countries tbody tr").length);
+		
+	//remove all countries beyond first 15
+	//for(var i=15;i<=$("#ranked_table_states tbody tr").length;i++) {
+	//	$("#ranked_table_states tbody tr:nth-child(" + i + ")").hide()
+	//}
+}
+
+function populateCountriesTable(desktop_or_mobile) {console.log(desktop_or_mobile);
+		var tbody = "",
+		n = 0;
+
+		$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
 			n++;
-				
-			var last_monthly = data_country[data_country.length-1],
-				last_weekly = data_weekly[i][data_weekly[i].length-1];
 
+			var last_monthly = data_country[data_country.length-1];
+			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
+			
 			tbody += "<tr><td style='width:400px'>" + country[i] + "</td><td>" 
 					+ yoy_growth(data_country, last_monthly).toFixed(2) + "%"
 					//+ "</td><td>" + yoy_growth(data_country, last_weekly).toFixed(2) + "%"
 					+ "</td><td style='width:150px'></td></tr>";
-
-			//return (n != 15); // will stop running after "three"
 		});
 
+		console.log($("#ranked_table_countries tbody tr").length);
+		$("#ranked_table_countries tbody").empty();
+		console.log($("#ranked_table_countries tbody tr").length);
 		$("#ranked_table_countries tbody").html(tbody);
-		$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
+		console.log($("#ranked_table_countries tbody tr").length);
 		
-		//remove all countries beyond first 15
-		for(var i=15;i<=$("#ranked_table_countries tbody tr").length;i++) {
-			$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
-		}
-	});
-	});
+		
+		$("#ranked_table_countries").trigger("update"); 
+		setTimeout(function() {
+			resortCountries();
+		}, 1);
 }
 
-function populateStatesTable() {
-	d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_monthly) {
-	d3.json("data/ff_dnt_perc_weekly_by_state.json", function(data_weekly) {
-		var tbody,
-		n=0;
-	
-		$.each(data_monthly, function(i, data_state) {
+function populateStatesTable(desktop_or_mobile) {
+		var tbody = "",
+		n = 0;
+		$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
 			n++;
 			
-			var last_monthly = data_state[data_state.length-1],
-				last_weekly = data_weekly[i][data_weekly[i].length-1];
+			var last_monthly = data_state[data_state.length-1];
+			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 
 			tbody += "<tr><td style='width:400px'>" + state[i] + "</td><td>" 
 					+ yoy_growth(data_state, last_monthly).toFixed(2) + "%"
@@ -373,19 +480,38 @@ function populateStatesTable() {
 					+ "</td><td style='width:150px'></td></tr>";
 		});
 	
+		console.log($("#ranked_table_states tbody tr").length);
+		$("#ranked_table_states tbody").empty();
+		console.log($("#ranked_table_states tbody tr").length);
 		$("#ranked_table_states tbody").html(tbody);
-		$("#ranked_table_states").tablesorter({sortList: [[1,1], [0,1]]});
+		console.log($("#ranked_table_states tbody tr").length);
 		
-		//todo: remove all countries beyond first 15
-		for(var i=15;i<=$("#ranked_table_states tbody tr").length;i++) {
-			$("#ranked_table_states tbody tr:nth-child(" + i + ")").hide()
-		}
 		
-	});
-	});
+		$("#ranked_table_states").trigger("update"); 
+		setTimeout(function() {
+			resortStates();
+		}, 1);
 }
 
 function assignEventListeners() {
+	$("#desktop2").on("click", function() {
+		shift_selected2("desktop");
+
+		populateCountriesTable("ff");
+		populateStatesTable("ff");
+		
+		return false;
+	});
+	
+	$("#mobile2").on("click", function() {
+		shift_selected2("mobile");
+		
+		populateCountriesTable("fennec");
+		populateStatesTable("fennec");
+		
+		return false;
+	});
+	
 	$("#desktop").on("click", function() {
 		shift_selected("desktop", "platform");
 		desktop_or_mobile = "ff";
@@ -432,6 +558,13 @@ function shift_selected(option, platform_or_granularity) {
 		
 		$("#" + option).html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
 	}
+}
+
+function shift_selected2(option) {
+	$("#desktop2").html("DESKTOP");
+	$("#mobile2").html("MOBILE");
+		
+	$("#" + option + "2").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
 }
 
 function drawCharts(json) {console.log(json);

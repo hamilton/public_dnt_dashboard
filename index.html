@@ -12,12 +12,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
 		
    		<script type="text/javascript" src="js/d3.v2.min.js"></script>
+
    		<script type="text/javascript" src="js/date.js"></script>	
 		<script type="text/javascript" src="js/x_over_x.js"></script>
    		<script type="text/javascript" src="js/global.js"></script>
    		<script type="text/javascript" src="js/charts.js"></script>
    		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 
    		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />   		
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
@@ -46,6 +47,11 @@
 			<div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia dapibus bibendum. Aenean lacinia turpis id massa dictum sed fringilla enim volutpat. In scelerisque lectus et lacus sollicitudin sollicitudin. Maecenas iaculis porta lacus vel ultricies. Morbi non bibendum lorem. Cras magna nibh, fermentum a scelerisque a, porttitor sit amet enim. Morbi eget tortor augue. Nulla facilisi. Nullam tincidunt vehicula aliquam. </div>
 			<div style="clear:both"></div>
 			<div id="ranked_table_and_map">
+				<div id="options2">
+					<a href="#" id="desktop2"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile2">MOBILE</a>
+				</div>
+			
+				<div style="height:347px;overflow:hidden">
 				<table id="ranked_table_countries" class="tablesorter">
 					<thead>
 						<tr>
@@ -58,9 +64,11 @@
 					<tbody>
 					</tbody>
 				</table>
+				</div>
 				
 				<div style="width:100%;height:12px;border-top:1px solid #cccccc;margin-top:15px"></div>
 				
+				<div style="height:290px;overflow:hidden">
 				<table id="ranked_table_states" class="tablesorter">
 					<thead>
 						<tr>
@@ -73,6 +81,7 @@
 					<tbody>
 					</tbody>
 				</table>
+				</div>
 			</div>
 			
 					
@@ -80,7 +89,8 @@
 			
 			<div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia dapibus bibendum. Aenean lacinia turpis id massa dictum sed fringilla enim volutpat. In scelerisque lectus et lacus sollicitudin sollicitudin. Maecenas iaculis porta lacus vel ultricies. Morbi non bibendum lorem. Cras magna nibh, fermentum a scelerisque a, porttitor sit amet enim. Morbi eget tortor augue. Nulla facilisi. Nullam tincidunt vehicula aliquam. </div>
 			<div style="clear:both"></div>
-			<div id="map">tba: map</div>
+			<div id="map">
+			</div>
 		</div> <!-- end page -->
 
 		<div id="wide_pane">		
