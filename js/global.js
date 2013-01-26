@@ -3,11 +3,11 @@
 var LANG,
 	desktop_or_mobile = "ff",
 	desktop_or_mobile2 = "ff",
-	date_granularity = "weekly",
-	data_ff_state,
+	date_granularity = "weekly";
+	/*data_ff_state,
 	data_fennec_state,
 	data_ff_country,
-	data_fennec_country;
+	data_fennec_country;*/
 	
 var state = new Object();
 	state['AL'] = "Alabama";
@@ -326,14 +326,14 @@ $(document).ready(function () {
 		drawCharts("ff_dnt_perc_weekly.json");
 		
 		//populate second pane
-		d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_state) {
+		/*d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_state) {
 		d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(data_mobile_state) {
 		d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_desktop_country) {
 		d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(data_mobile_country) {
-			data_ff_state = data_desktop_state;
-			data_fennec_state = data_mobile_state;
-			data_ff_country = data_desktop_country;
-			data_fennec_country = data_mobile_country;
+			data_ff_state = sort_data(data_desktop_state);
+			data_fennec_state = sort_data(data_mobile_state);
+			data_ff_country = sort_data(data_desktop_country);
+			data_fennec_country = sort_data(data_mobile_country);
 
 			//console.log(data_ff_country);
 			//console.log(data_fennec_country);
@@ -342,16 +342,49 @@ $(document).ready(function () {
 			$("#ranked_table_countries").tablesorter();
 			$("#ranked_table_states").tablesorter();
 			
-			populateCountriesTable("ff");
-			populateStatesTable("ff");
+			setTimeout(function() {
+				populateCountriesTable("ff");
+				populateStatesTable("ff");
+			}, 1000);
 			
 			drawMap();
 		});
 		});
 		});
-		});
+		});*/
+		
+		
+		$("#ranked_table_countries").tablesorter();
+		$("#ranked_table_states").tablesorter();
+			
+		setTimeout(function() {
+			populateCountriesTable("ff");
+			populateStatesTable("ff");
+		}, 1);
+		
+		/*setTimeout(function() {
+			drawMap();
+		}, 1200);*/
+			
 	});
 });
+
+//sort all countries/states by date, ascending
+function sort_data(data) {
+	return data;
+	
+	//update date formats
+	$.each(data, function(i, value) {
+		data[i].sort(function(a,b){
+			//return a.date - b.date
+			if (a.date < b.date) return -1;
+			if (a.date > b.date) return 1;
+			return 0;
+		});
+	});
+
+	console.log(data);
+}
 
 function drawMap() {
 	// Ratio of Obese (BMI >= 30) in U.S. Adults, CDC 2008
@@ -362,11 +395,11 @@ var data = [
   .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
 ];
 
-var svg_map = d3.select("#map").append("svg")
+d3.json("data/us-states.json", function(json) {
+	var svg_map = d3.select("#map").append("svg")
     .attr("width", 960)
     .attr("height", 500);
-
-d3.json("data/us-states.json", function(json) {
+    
   var path = d3.geo.path();
 
   // A thick black stroke for the exterior.
@@ -410,7 +443,7 @@ function resortCountries() {
 	//$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
 	
 	//resort
-	var sorting = [[1,1], [0,1]]; 
+	var sorting = [[1,1], [0,0]]; 
 	$("#ranked_table_countries").trigger("sorton",[sorting]); 
 		
 	//console.log($("#ranked_table_countries tbody tr").length);
@@ -419,11 +452,13 @@ function resortCountries() {
 	//for(var i=10;i<=$("#ranked_table_countries tbody tr").length;i++) {
 	//	$("#ranked_table_countries tbody tr:nth-child(" + i + ")").hide()
 	//}
+	
+	$("#ranked_table_countries tbody").fadeIn("fast");
 }
 
 function resortStates() {
 	//resort
-	var sorting = [[1,1], [0,1]]; 
+	var sorting = [[1,1], [0,0]]; 
 	$("#ranked_table_states").trigger("sorton",[sorting]); 
 		
 	//console.log($("#ranked_table_countries tbody tr").length);
@@ -435,18 +470,15 @@ function resortStates() {
 }
 
 function populateCountriesTable(desktop_or_mobile) {
-		var tbody = "";
-		
-		$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
+	var tbody = "";
+
+	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
+		$.each(data_country, function(i, data_country) {
 			//console.log(i);
 			//console.log(country[i]);
 
+			//elements of a set apparently don't preserver order in json
 			var last_monthly = data_country[data_country.length-1];
-			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
-			
-			//console.log(data_country[data_country.length-1]);
-		
-			
 			
 			tbody += "<tr><td style='width:60%'>" + country[i] + "</td>"
 					+ "<td style='width:25%'>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%</td>"
@@ -456,7 +488,7 @@ function populateCountriesTable(desktop_or_mobile) {
 		});
 
 		$("#ranked_table_countries tbody").empty();
-		$("#ranked_table_countries tbody").html(tbody);
+		$("#ranked_table_countries tbody").hide().html(tbody);
 		
 		
 		$("#ranked_table_countries").trigger("update"); 
@@ -468,14 +500,14 @@ function populateCountriesTable(desktop_or_mobile) {
 		//$.each(eval("data_" + desktop_or_mobile + "_country"), function(i, data_country) {
 		//	drawSparkLine(data_country, "#spark_country_" + i);
 		//});
+	});
 }
 
 function populateStatesTable(desktop_or_mobile) {
-		var tbody = "";
-		
-		$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
+	var tbody = "";
+	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
+		$.each(data_state, function(i, data_state) {
 			var last_monthly = data_state[data_state.length-1];
-			//var last_weekly = data_weekly[i][data_weekly[i].length-1];
 
 			tbody += "<tr><td style='width:60%'>" + state[i] + "</td>" 
 					+ "<td style='width:25%'>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%</td>"
@@ -498,6 +530,7 @@ function populateStatesTable(desktop_or_mobile) {
 		//$.each(eval("data_" + desktop_or_mobile + "_state"), function(i, data_state) {
 		//	drawSparkLine(data_state, "#spark_state_" + i);
 		//});
+	});
 }
 
 function assignEventListeners() {

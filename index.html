@@ -20,9 +20,24 @@
    		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 
-   		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />   		
+   		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
+   		<link rel="stylesheet" href="css/tablesorter_styles.css" type="text/css" media="screen" />
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
 		<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+		
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37922069-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 	</head>
 	<body>
 		<img src="images/fxlogo_top.png" id="top_logo" />
@@ -44,7 +59,7 @@
 			
 			<br />
 			
-			<div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia dapibus bibendum. Aenean lacinia turpis id massa dictum sed fringilla enim volutpat. In scelerisque lectus et lacus sollicitudin sollicitudin. Maecenas iaculis porta lacus vel ultricies. Morbi non bibendum lorem. Cras magna nibh, fermentum a scelerisque a, porttitor sit amet enim. Morbi eget tortor augue. Nulla facilisi. Nullam tincidunt vehicula aliquam. </div>
+			<div class="copy">No Firefox user was tracked to generate this data.  Do Not Track is a step toward putting you in control of the way your information is collected and used online. Do Not Track is a feature in Firefox that allows you to let a website know you would like to opt-out of third-party tracking for purposes including behavioral advertising. It does this by transmitting a Do Not Track HTTP header every time your data is requested from the Web.  Please refer to the <a href="http://www.mozilla.org/en-US/dnt/" style="border-bottom:1px dotted #cccccc">Do Not Track FAQ</a> on our website for more info.</div>
 			<div style="clear:both"></div>
 			<div id="ranked_table_and_map">
 				<div id="options2">
@@ -55,9 +70,9 @@
 				<table id="ranked_table_countries" class="tablesorter">
 					<thead>
 						<tr>
-						    <th>Country</th>
-						    <th>Yearly growth</th>
-						    <th>Monthly growth</th>
+						    <th style="width:60%" class="header1">Country</th>
+						    <th style="width:25%" class="header2">Yearly growth</th>
+						    <th style="width:15%" class="header3">Monthly growth</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,9 +86,9 @@
 				<table id="ranked_table_states" class="tablesorter">
 					<thead>
 						<tr>
-						    <th>U.S. state</th>
-						    <th>Yearly growth</th>
-						    <th>Monthly growth</th>
+						    <th style="width:60%" class="header1">Country</th>
+						    <th style="width:25%" class="header2">Yearly growth</th>
+						    <th style="width:15%" class="header3">Monthly growth</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -83,12 +98,13 @@
 			</div>
 			
 					
-			<br />
+			<!--<br />
 			
 			<div class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia dapibus bibendum. Aenean lacinia turpis id massa dictum sed fringilla enim volutpat. In scelerisque lectus et lacus sollicitudin sollicitudin. Maecenas iaculis porta lacus vel ultricies. Morbi non bibendum lorem. Cras magna nibh, fermentum a scelerisque a, porttitor sit amet enim. Morbi eget tortor augue. Nulla facilisi. Nullam tincidunt vehicula aliquam. </div>
 			<div style="clear:both"></div>
 			<div id="map">
-			</div>
+				<img src="images/usmap.png" />
+			</div>-->
 		</div> <!-- end page -->
 
 		<div id="wide_pane">		
