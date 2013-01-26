@@ -17,6 +17,9 @@ table.tablesorter thead tr th.header3 {
 	background-position: 130px center;
 }
 
+table.tablesorter thead tr th.header1b {
+	background-position: 75px center;
+}
 
 table.tablesorter tbody td {
 	color: #3D3D3D;
