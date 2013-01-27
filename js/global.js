@@ -480,10 +480,9 @@ function populateCountriesTable(desktop_or_mobile) {
 			//elements of a set apparently don't preserver order in json
 			var last_monthly = data_country[data_country.length-1];
 			
-			tbody += "<tr><td style='width:60%'>" + country[i] + "</td>"
-					+ "<td style='width:25%'>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%</td>"
-					+ "<td style='width:15%'>" + mom_growth(data_country, last_monthly).toFixed(2) + "%</td>"
-					//+ "</td><td style='width:150px' id='spark_country_" + i + "'></td>"
+			tbody += "<tr><td style='width:50%'>" + country[i] + "</td>"
+					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%</td>"
 					+ "</tr>";
 		});
 
@@ -509,9 +508,9 @@ function populateStatesTable(desktop_or_mobile) {
 		$.each(data_state, function(i, data_state) {
 			var last_monthly = data_state[data_state.length-1];
 
-			tbody += "<tr><td style='width:60%'>" + state[i] + "</td>" 
-					+ "<td style='width:25%'>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%</td>"
-					+ "<td style='width:15%'>" + mom_growth(data_state, last_monthly).toFixed(2) + "%</td>"
+			tbody += "<tr><td style='width:50%'>" + state[i] + "</td>" 
+					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%</td>"
 					//+ "</td><td style='width:150px' id='spark_state_" + i + "'></td>"
 					+ "</tr>";
 		});

@@ -6,19 +6,19 @@ table.tablesorter thead tr th {
 }
 
 table.tablesorter thead tr th.header1 {
-	background-position: 65px center;
+	background-position: 70px center;
 }
 
 table.tablesorter thead tr th.header2 {
-	background-position: 115px center;
+	background-position: 185px center;
 }
 
 table.tablesorter thead tr th.header3 {
-	background-position: 130px center;
+	background-position: 125px center;
 }
 
 table.tablesorter thead tr th.header1b {
-	background-position: 75px center;
+	background-position: 80px center;
 }
 
 table.tablesorter tbody td {
