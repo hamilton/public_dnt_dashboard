@@ -297,10 +297,10 @@ function drawSparkLine(data, container) {
 	var which_metric = container;
 
 	//update date formats
-	$.each(data, function(i, value) {	
+	/*$.each(data, function(i, value) {	
 		data[i].date = +new Date(value.date);
 	});	
-	data.sort(function(a,b){return a.date - b.date});
+	data.sort(function(a,b){return a.date - b.date});*/
 	
     //prepare our scales and axes
 	var xMin = d3.min(d3.values(data), function(d) { return d.date; }),
