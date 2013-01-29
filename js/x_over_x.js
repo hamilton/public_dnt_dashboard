@@ -9,7 +9,6 @@ function yoy_growth(series, date_obj){
 	
 
 	if(yoy.perc == 0) return 0;
-	
 	return (date_obj.perc - yoy.perc) / yoy.perc;
 }
 

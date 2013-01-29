@@ -8,7 +8,60 @@ var LANG,
 	data_fennec_state,
 	data_ff_country,
 	data_fennec_country;*/
-	
+
+var yStateCoords = new Object();
+	yStateCoords['AL'] = [0,0];
+	yStateCoords['AK'] = [0,0];
+	yStateCoords['AZ'] = [0,0];
+	yStateCoords['AR'] = [0,0];
+	yStateCoords['CA'] = [0,0];
+	yStateCoords['CO'] = [0,0];
+	yStateCoords['CT'] = [0,0];
+	yStateCoords['DE'] = [0,0];
+	yStateCoords['DC'] = [0,0];
+	yStateCoords['FL'] = [0,0];
+	yStateCoords['GA'] = [0,0];
+	yStateCoords['HI'] = [0,0];
+	yStateCoords['ID'] = [0,0];
+	yStateCoords['IL'] = [0,0];
+	yStateCoords['IN'] = [0,0];
+	yStateCoords['IA'] = [0,0];
+	yStateCoords['KS'] = [0,0];
+	yStateCoords['KY'] = [0,0];
+	yStateCoords['LA'] = [0,0];
+	yStateCoords['ME'] = [0,0];
+	yStateCoords['MD'] = [0,0];
+	yStateCoords['MA'] = [0,0];
+	yStateCoords['MI'] = [0,0];
+	yStateCoords['MN'] = [0,0];
+	yStateCoords['MS'] = [0,0];
+	yStateCoords['MO'] = [0,0];
+	yStateCoords['MT'] = [0,0];
+	yStateCoords['NE'] = [0,0];
+	yStateCoords['NV'] = [0,0];
+	yStateCoords['NH'] = [0,0];
+	yStateCoords['NJ'] = [0,0];
+	yStateCoords['NM'] = [0,0];
+	yStateCoords['NY'] = [0,0];
+	yStateCoords['NC'] = [0,0];
+	yStateCoords['ND'] = [0,0];
+	yStateCoords['OH'] = [0,0];
+	yStateCoords['OK'] = [0,0];
+	yStateCoords['OR'] = [-140,40];
+	yStateCoords['PA'] = [0,0];
+	yStateCoords['RI'] = [0,0];
+	yStateCoords['SC'] = [0,0];
+	yStateCoords['SD'] = [0,0];
+	yStateCoords['TN'] = [0,0];
+	yStateCoords['TX'] = [0,0];
+	yStateCoords['UT'] = [0,0];
+	yStateCoords['VT'] = [0,0];
+	yStateCoords['VA'] = [0,0];
+	yStateCoords['WA'] = [-140,0];
+	yStateCoords['WV'] = [0,0];
+	yStateCoords['WI'] = [0,0];
+	yStateCoords['WY'] = [0,0];
+		
 var state = new Object();
 	state['AL'] = "Alabama";
 	state['AK'] = "Alaska";
@@ -61,6 +114,7 @@ var state = new Object();
 	state['WV'] = "West Virginia";
 	state['WI'] = "Wisconsin";
 	state['WY'] = "Wyoming";
+	state['PA'] = "Puerto Rico";
 	
 var country = new Object();
 	country['AF'] = "Afghanistan";
@@ -241,7 +295,6 @@ var country = new Object();
 	country['PN'] = "Pitcairn";
 	country['PL'] = "Poland";
 	country['PT'] = "Portugal";
-	country['PR'] = "Puerto Rico";
 	country['QA'] = "Qatar";
 	country['RE'] = "Réunion";
 	country['RO'] = "Romania";
@@ -324,36 +377,7 @@ $(document).ready(function () {
 		
 		assignEventListeners();
 		drawCharts("ff_dnt_perc_weekly.json");
-		
-		//populate second pane
-		/*d3.json("data/ff_dnt_perc_monthly_by_state.json", function(data_desktop_state) {
-		d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(data_mobile_state) {
-		d3.json("data/ff_dnt_perc_monthly_by_country.json", function(data_desktop_country) {
-		d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(data_mobile_country) {
-			data_ff_state = sort_data(data_desktop_state);
-			data_fennec_state = sort_data(data_mobile_state);
-			data_ff_country = sort_data(data_desktop_country);
-			data_fennec_country = sort_data(data_mobile_country);
-
-			//console.log(data_ff_country);
-			//console.log(data_fennec_country);
-			
-			//$("#ranked_table_countries").tablesorter({sortList: [[1,1], [0,1]]});
-			$("#ranked_table_countries").tablesorter();
-			$("#ranked_table_states").tablesorter();
-			
-			setTimeout(function() {
-				populateCountriesTable("ff");
-				populateStatesTable("ff");
-			}, 1000);
-			
-			drawMap();
-		});
-		});
-		});
-		});*/
-		
-		
+				
 		$("#ranked_table_countries").tablesorter();
 		$("#ranked_table_states").tablesorter();
 			
@@ -362,9 +386,9 @@ $(document).ready(function () {
 			populateStatesTable("ff");
 		}, 1);
 		
-		/*setTimeout(function() {
+		setTimeout(function() {
 			drawMap();
-		}, 1200);*/
+		}, 1200);
 			
 	});
 });
@@ -387,56 +411,84 @@ function sort_data(data) {
 }
 
 function drawMap() {
-	// Ratio of Obese (BMI >= 30) in U.S. Adults, CDC 2008
-var data = [
-  , .187, .198, , .133, .175, .151, , .1, .125, .171, , .172, .133, , .108,
-  .142, .167, .201, .175, .159, .169, .177, .141, .163, .117, .182, .153, .195,
-  .189, .134, .163, .133, .151, .145, .13, .139, .169, .164, .175, .135, .152,
-  .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
-];
+	var data = [
+	  , .187, .198, , .133, .175, .151, , .1, .125, .171, , .172, .133, , .108,
+	  .142, .167, .201, .175, .159, .169, .177, .141, .163, .117, .182, .153, .195,
+	  .189, .134, .163, .133, .151, .145, .13, .139, .169, .164, .175, .135, .152,
+	  .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
+	];
 
-d3.json("data/us-states.json", function(json) {
-	var svg_map = d3.select("#map").append("svg")
-    .attr("width", 960)
-    .attr("height", 500);
+	d3.json("data/us-states.json", function(json) {
+		console.log(json);
+		
+		var svg_map = d3.select("#map").append("svg")
+	    .attr("width", 960)
+    	.attr("height", 500);
     
-  var path = d3.geo.path();
+	  var path = d3.geo.path();
 
-  // A thick black stroke for the exterior.
-  svg_map.append("g")
-      .attr("class", "black")
-    .selectAll("path")
-      .data(json.features)
-    .enter().append("path")
-      .attr("d", path);
+	  // A thick black stroke for the exterior.
+	  svg_map.append("g")
+    	  .attr("class", "black")
+	    .selectAll("path")
+    	  .data(json.features)
+	    .enter().append("path")
+    	  .attr("d", path);
 
-  // A white overlay to hide interior black strokes.
-  svg_map.append("g")
-      .attr("class", "white")
-    .selectAll("path")
-      .data(json.features)
-    .enter().append("path")
-      .attr("d", path);
+	  // A white overlay to hide interior black strokes.
+	  svg_map.append("g")
+    	  .attr("class", "white")
+	    .selectAll("path")
+    	  .data(json.features)
+	    .enter().append("path")
+    	  .attr("d", path);
 
-  // The polygons, scaled!
-  svg_map.append("g")
-      .attr("class", "grey")
-    .selectAll("path")
-      .data(json.features)
-    .enter().append("path")
-      .attr("d", path)
-      .attr("transform", function(d) {
-        var centroid = path.centroid(d),
-            x = centroid[0],
-            y = centroid[1];
-        return "translate(" + x + "," + y + ")"
-            + "scale(" + Math.sqrt(data[+d.id] * 5 || 0) + ")"
-            + "translate(" + -x + "," + -y + ")";
-      })
-      .style("stroke-width", function(d) {
-        return 1 / Math.sqrt(data[+d.id] * 5 || 1);
-      });
-});
+	  // The polygons, scaled!
+	  svg_map.append("g")
+    	  .attr("class", "grey")
+	    .selectAll("path")
+    	  .data(json.features)
+	    .enter().append("path")
+    	  .attr("d", path)
+    	  .attr("id", function(d) { return d.id; })
+	      /*.attr("transform", function(d) {
+    	    var centroid = path.centroid(d),
+	            x = centroid[0],
+    	        y = centroid[1];
+	        return "translate(" + x + "," + y + ")"
+    	        + "scale(" + Math.sqrt(data[+d.id] * 5 || 0) + ")"
+	            + "translate(" + -x + "," + -y + ")";
+    	  })*/
+	      .style("stroke-width", function(d) {
+    	    return 1 / Math.sqrt(data[+d.id] * 5 || 1);
+	      })
+		  .transition()
+		  	.duration(1000)
+			.attr("transform", function(d, i) {
+				var state_id = d.id;
+				console.log(yStateCoords[state_id][1]);
+				
+				return "scale(0.7) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+			});
+	      
+	      
+	    //color states
+	    var colorScale = d3.scale.linear().domain([0, 0.2]).range(["white", "black"]);
+	    /*var colorScale = d3.scale.linear()
+		    .range(["white", "black"])
+		    .interpolate(d3.interpolateHcl);*/
+	    
+	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
+			$.each(data_state, function(i, data_state) {
+				var last_monthly = data_state[data_state.length-1];
+
+				//TODO color state based on adoption rate
+				$("#" + i).css("fill", function(d) {
+					return colorScale(last_monthly.perc);
+				});
+			});
+		});
+	});
 }
 
 function resortCountries() {
@@ -479,10 +531,10 @@ function populateCountriesTable(desktop_or_mobile) {
 
 			//elements of a set apparently don't preserver order in json
 			var last_monthly = data_country[data_country.length-1];
-			
+			//console.log(country[i]);
 			tbody += "<tr><td style='width:50%'>" + country[i] + "</td>"
 					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
-					+ "<td style='width:15%'>" + yoy_growth(data_country, last_monthly).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + (yoy_growth(data_country, last_monthly)*100).toFixed(2) + "%</td>"
 					+ "</tr>";
 		});
 
@@ -510,7 +562,7 @@ function populateStatesTable(desktop_or_mobile) {
 
 			tbody += "<tr><td style='width:50%'>" + state[i] + "</td>" 
 					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
-					+ "<td style='width:15%'>" + yoy_growth(data_state, last_monthly).toFixed(2) + "%</td>"
+					+ "<td style='width:15%'>" + (yoy_growth(data_state, last_monthly)*100).toFixed(2) + "%</td>"
 					//+ "</td><td style='width:150px' id='spark_state_" + i + "'></td>"
 					+ "</tr>";
 		});
