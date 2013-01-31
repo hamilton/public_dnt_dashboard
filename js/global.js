@@ -425,8 +425,13 @@ function redrawMap() {
 		.transition()
 		  	.duration(1000)
 			.attr("transform", function(d, i) {
-				var state_id = d.id;
-				return "translate(-" + (yStateCoords[state_id][0]) + ", -" + (yStateCoords[state_id][1]) + ") scale(1)";
+				var state_id = d.id,
+					new_x = -1 * yStateCoords[state_id][0],
+					new_y = -1 * yStateCoords[state_id][1];
+				
+				//console.log(state_id, new_x, new_y);
+				return "matrix(1, 0, 0, 1, " + new_x + ", 1*" + new_y + ")";
+				
 			})
 			
 	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
@@ -628,8 +633,12 @@ function drawStates() {
 		  	.style("fill", "#f6f6f6")
 		  	//.style("stroke-width", 0)
 			.attr("transform", function(d, i) {
-				var state_id = d.id;
-				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+				var state_id = d.id,
+					new_x = yStateCoords[state_id][0],
+					new_y = yStateCoords[state_id][1];
+				
+				//console.log(state_id, new_x, new_y);
+				return "matrix(.4, 0, 0, .4, " + .4*new_x + ", " + .4*new_y + ")";
 			})
 			
 		$("#map_legend").fadeOut("slow");
