@@ -7,9 +7,6 @@ var LANG,
 	map_or_states = "map",
 	date_granularity = "weekly";
 	
-	//color states
-var colorScale = d3.scale.linear().domain([0, 0.2]).range(["red", "steelblue"]);
-
 var yStateCoords = new Object();
 	yStateCoords['AL'] = [-590,-250];
 	yStateCoords['AK'] = [280,-290];
@@ -412,8 +409,8 @@ function sort_data(data) {
 }
 
 function addLegend() {
-	var legend = "<div class='legend high'></div><div class='legend_text'>HIGHER ADOPTION</div>"
-			+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWER ADOPTION</div>";
+	var legend = "<div class='legend high'></div><div class='legend_text'>HIGHEST ADOPTION</div>"
+			+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWEST ADOPTION</div>";
 	
 	$("#map_legend").append(legend);
 }
@@ -436,20 +433,25 @@ function redrawMap() {
 			})
 			
 	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
-			$.each(data_state, function(i, data_state) {
-				var last_monthly = data_state[data_state.length-1];
-
-				$("#" + i).css("fill", function(d) {
-					return colorScale(last_monthly.perc);
-				});
-				
-				//populate map_data div
-				var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
-					? "<img src='images/up.png' class='up_down' />"
-					: "<img src='images/down.png' class='up_down' />";
+		var min_max = minMaxState(data_state);
+	    console.log(min_max[0], min_max[1]);
+	    	
+	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["red", "steelblue"]);
 			
-				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+		$.each(data_state, function(i, data_state) {
+			var last_monthly = data_state[data_state.length-1];
+
+			$("#" + i).css("fill", function(d) {
+				return colorScale(last_monthly.perc);
 			});
+				
+			//populate map_data div
+			var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
+				? "<img src='images/up.png' class='up_down' />"
+				: "<img src='images/down.png' class='up_down' />";
+			
+			$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+		});
 	});
 }
 
@@ -515,9 +517,14 @@ function drawMap() {
 	      });
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
+	    	var min_max = minMaxState(data_state);
+	    	console.log(min_max[0], min_max[1]);
+	    	
+	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["red", "steelblue"]);
+
 			$.each(data_state, function(i, data_state) {
 				var last_monthly = data_state[data_state.length-1];
-
+				
 				$("#" + i).css("fill", function(d) {
 					return colorScale(last_monthly.perc);
 				});
@@ -531,6 +538,21 @@ function drawMap() {
 			});
 		});
 	});
+}
+
+function minMaxState(data) {
+	var min = -1,
+   		max = -1;
+   		
+   	$.each(data, function(i, data_state) {
+		var last_monthly = data_state[data_state.length-1].perc;
+				
+		//check min/max
+		if(last_monthly < min || min == -1) min = last_monthly;
+		if(last_monthly > max || max == -1) max = last_monthly;
+	});
+	    	
+	return [min, max];
 }
 
 function resortCountries() {
