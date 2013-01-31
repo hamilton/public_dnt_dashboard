@@ -4,6 +4,7 @@ var LANG,
 	desktop_or_mobile = "ff",
 	desktop_or_mobile2 = "ff",
 	desktop_or_mobile3 = "ff",
+	map_or_states = "map",
 	date_granularity = "weekly";
 	
 	//color states
@@ -669,14 +670,22 @@ function assignEventListeners() {
 	});*/
 	
 	$("#show_map").on("click", function() {
+		if(map_or_states == "map")
+			return false;
+			
 		shift_selected3("map", "map");
+		map_or_states = "map";
 		redrawMap();
 		
 		return false;
 	});
 	
 	$("#show_states").on("click", function() {
+		if(map_or_states == "states")
+			return false;
+			
 		shift_selected3("states", "map");
+		map_or_states = "states";
 		drawStates();
 		
 		return false;
