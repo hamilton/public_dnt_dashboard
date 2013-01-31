@@ -435,7 +435,7 @@ function redrawMap() {
 				
 			})
 			
-	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
+	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
 			$.each(data_state, function(i, data_state) {
 				var last_monthly = data_state[data_state.length-1];
 
@@ -626,6 +626,11 @@ function populateStatesTable(desktop_or_mobile) {
 	});
 }
 
+function redrawStates() {
+	redrawMap();
+	drawStates();
+}
+
 function drawStates() {
 	d3.selectAll(".grey path")
 		.transition()
@@ -698,7 +703,10 @@ function assignEventListeners() {
 		shift_selected3("desktop", "platform");
 		desktop_or_mobile3 = "ff";
 		
-		//TODO
+		if(map_or_states == "map")
+			redrawMap();
+		else if(map_or_states == "states")
+			redrawStates();
 		
 		return false;
 	});      
@@ -710,7 +718,10 @@ function assignEventListeners() {
 		shift_selected3("mobile", "platform");
 		desktop_or_mobile3 = "fennec";
 		
-		//TODO
+		if(map_or_states == "map")
+			redrawMap();
+		else if(map_or_states == "states")
+			redrawStates();
 		
 		return false;
 	});
