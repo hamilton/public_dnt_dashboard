@@ -347,6 +347,7 @@ img.label {
 
 #map svg {
 	position:relative;
+	margin-top:25px;
 }
 
 #full_date {
@@ -382,6 +383,23 @@ img.label {
 	height:22px;
 	z-index:99;
 	margin-left:868px;
+	margin-top:-4px;
+	border-radius:5px;
+	/*background-color:#e33258;*/
+	font-family:'Open Sans';
+	font-size:11px;
+	padding-left:8px;
+	padding-right:4px;
+	padding-top:4px;
+}
+
+#options3 {
+	position:absolute;
+	margin-left:15px;
+	width:285px;
+	height:22px;
+	z-index:99;
+	margin-left:758px;
 	margin-top:-4px;
 	border-radius:5px;
 	/*background-color:#e33258;*/
@@ -530,6 +548,7 @@ tr {
 	position:absolute;
 	width:960px;
 	height:600px;
+	margin-top:25px;
 	padding-left:10px;
 }
 
@@ -591,4 +610,8 @@ tr {
 	float:left;
 	margin-top:2px;
 	margin-left:10px;
+}
+
+#map_data .firstrow {
+	border-top:1px solid #efefef;
 }

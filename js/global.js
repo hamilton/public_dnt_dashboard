@@ -3,18 +3,18 @@
 var LANG,
 	desktop_or_mobile = "ff",
 	desktop_or_mobile2 = "ff",
+	desktop_or_mobile3 = "ff",
 	date_granularity = "weekly";
-	/*data_ff_state,
-	data_fennec_state,
-	data_ff_country,
-	data_fennec_country;*/
+	
+	//color states
+var colorScale = d3.scale.linear().domain([0, 0.2]).range(["red", "steelblue"]);
 
 var yStateCoords = new Object();
 	yStateCoords['AL'] = [-590,-250];
-	yStateCoords['AK'] = [280,-300];
+	yStateCoords['AK'] = [280,-290];
 	yStateCoords['AZ'] = [410,-210];
 	yStateCoords['AR'] = [410,-220];
-	yStateCoords['CA'] = [1100,-130];
+	yStateCoords['CA'] = [1100,-123];
 	yStateCoords['CO'] = [1195, -160];
 	yStateCoords['CT'] = [1050,-65];
 	yStateCoords['DE'] = [1355,-120];
@@ -32,35 +32,35 @@ var yStateCoords = new Object();
 	yStateCoords['ME'] = [200,400];
 	yStateCoords['MD'] = [460,280];
 	yStateCoords['MA'] = [700,360];
-	yStateCoords['MI'] = [3000,0];
-	yStateCoords['MN'] = [3000,0];
-	yStateCoords['MS'] = [3000,0];
-	yStateCoords['MO'] = [3000,0];
-	yStateCoords['MT'] = [3000,0];
-	yStateCoords['NE'] = [3000,0];
-	yStateCoords['NV'] = [3000,0];
-	yStateCoords['NH'] = [3000,0];
-	yStateCoords['NJ'] = [3000,0];
-	yStateCoords['NM'] = [3000,0];
-	yStateCoords['NY'] = [3000,0];
-	yStateCoords['NC'] = [3000,0];
-	yStateCoords['ND'] = [3000,0];
-	yStateCoords['OH'] = [3000,0];
-	yStateCoords['OK'] = [3000,0];
-	yStateCoords['OR'] = [3000,0];
-	yStateCoords['PA'] = [3000,0];
-	yStateCoords['RI'] = [3000,0];
-	yStateCoords['SC'] = [3000,0];
-	yStateCoords['SD'] = [3000,0];
-	yStateCoords['TN'] = [3000,0];
-	yStateCoords['TX'] = [3000,0];
-	yStateCoords['UT'] = [3000,0];
-	yStateCoords['VT'] = [3000,0];
-	yStateCoords['VA'] = [3000,0];
-	yStateCoords['WA'] = [3000,0];
-	yStateCoords['WV'] = [3000,0];
-	yStateCoords['WI'] = [3000,0];
-	yStateCoords['WY'] = [3000,0];
+	yStateCoords['MI'] = [1400,360];
+	yStateCoords['MN'] = [1670,420];
+	yStateCoords['MS'] = [-400,400];
+	yStateCoords['MO'] = [-200,480];
+	yStateCoords['MT'] = [340,640];
+	yStateCoords['NE'] = [520,565];
+	yStateCoords['NV'] = [1050,500];
+	yStateCoords['NH'] = [700,600];
+	yStateCoords['NJ'] = [1040,520];
+	yStateCoords['NM'] = [1850,430];
+	yStateCoords['NY'] = [-630,840];
+	yStateCoords['NC'] = [-340,720];
+	yStateCoords['ND'] = [260,880];
+	yStateCoords['OH'] = [360,700];
+	yStateCoords['OK'] = [800,670];
+	yStateCoords['OR'] = [1360,840];
+	yStateCoords['PA'] = [1100,750];
+	yStateCoords['RI'] = [1300,750];
+	yStateCoords['SC'] = [-600,880];
+	yStateCoords['SD'] = [-75,1040];
+	yStateCoords['TN'] = [100,840];
+	yStateCoords['TX'] = [500,785];
+	yStateCoords['UT'] = [920,930];
+	yStateCoords['VT'] = [700,1000];
+	yStateCoords['VA'] = [1250,860];
+	yStateCoords['WA'] = [1950,1050];
+	yStateCoords['WV'] = [-500,1100];
+	yStateCoords['WI'] = [-180,1225];
+	yStateCoords['WY'] = [300,1200];
 		
 var state = new Object();
 	state['AL'] = "Alabama";
@@ -417,7 +417,40 @@ function addLegend() {
 	$("#map_legend").append(legend);
 }
 
+function redrawMap() {
+	$("#map_data").fadeOut("fast");
+	$("#map_legend").fadeIn("fast");
+	
+	d3.selectAll(".grey path")
+		.transition()
+		  	.duration(1000)
+			.attr("transform", function(d, i) {
+				var state_id = d.id;
+				return "translate(-" + (yStateCoords[state_id][0]) + ", -" + (yStateCoords[state_id][1]) + ") scale(1)";
+			})
+			
+	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
+			$.each(data_state, function(i, data_state) {
+				var last_monthly = data_state[data_state.length-1];
+
+				$("#" + i).css("fill", function(d) {
+					return colorScale(last_monthly.perc);
+				});
+				
+				//populate map_data div
+				var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
+					? "<img src='images/up.png' class='up_down' />"
+					: "<img src='images/down.png' class='up_down' />";
+			
+				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+			});
+	});
+}
+
 function drawMap() {
+	$("#map svg").remove();
+	$("#map_data").fadeOut("fast");
+	
 	addLegend();
     
 	/*var data = [
@@ -474,12 +507,6 @@ function drawMap() {
 			//no stroke for Alaska or Hawaii
     	    return (d.id == "AK" || d.id == "HI") ? 0 : 1;
 	      });
-	      
-	    //color states
-	    var colorScale = d3.scale.linear().domain([0, 0.2]).range(["red", "steelblue"]);
-	    /*var colorScale = d3.scale.linear()
-		    .range(["white", "black"])
-		    .interpolate(d3.interpolateHcl);*/
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
 			$.each(data_state, function(i, data_state) {
@@ -593,7 +620,83 @@ function populateStatesTable(desktop_or_mobile) {
 	});
 }
 
+function drawStates() {
+	d3.selectAll(".grey path")
+		.transition()
+		  	.duration(1000)
+		  	//.style("fill", "#e33258")
+		  	.style("fill", "#f6f6f6")
+		  	//.style("stroke-width", 0)
+			.attr("transform", function(d, i) {
+				var state_id = d.id;
+				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+			})
+			
+		$("#map_legend").fadeOut("slow");
+			
+		setTimeout(function() {
+			$("#map_data").fadeIn("slow");
+		}, 800);
+}
+
 function assignEventListeners() {
+	/*$("#map").on("mouseenter", function() {
+		d3.selectAll(".grey path")
+		.transition()
+		  	.duration(1000)
+		  	//.style("fill", "#e33258")
+		  	.style("fill", "#f6f6f6")
+		  	//.style("stroke-width", 0)
+			.attr("transform", function(d, i) {
+				var state_id = d.id;
+				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+			})
+			
+		$("#map_legend").fadeOut("slow");
+			
+		setTimeout(function() {
+			$("#map_data").fadeIn("slow");
+		}, 800);
+	});*/
+	
+	$("#show_map").on("click", function() {
+		shift_selected3("map", "map");
+		redrawMap();
+		
+		return false;
+	});
+	
+	$("#show_states").on("click", function() {
+		shift_selected3("states", "map");
+		drawStates();
+		
+		return false;
+	});
+	
+	$("#desktop3").on("click", function() {
+		if(desktop_or_mobile3 == "ff")
+			return false;
+			
+		shift_selected3("desktop", "platform");
+		desktop_or_mobile3 = "ff";
+		
+		//TODO
+		
+		return false;
+	});      
+	
+	$("#mobile3").on("click", function() {
+		if(desktop_or_mobile3 == "fennec")
+			return false;
+			
+		shift_selected3("mobile", "platform");
+		desktop_or_mobile3 = "fennec";
+		
+		//TODO
+		
+		return false;
+	});
+	
 	$("#desktop2").on("click", function() {
 		if(desktop_or_mobile2 == "ff")
 			return false;
@@ -605,34 +708,7 @@ function assignEventListeners() {
 		populateStatesTable("ff");
 		
 		return false;
-	});
-	
-	$("#map").on("mouseenter", function() {
-		d3.selectAll(".grey path")
-		.transition()
-		  	.duration(1000)
-		  	//.style("fill", "#e33258")
-		  	.style("fill", "#e8e8e8")
-		  	//.style("stroke-width", 0)
-			.attr("transform", function(d, i) {
-				var state_id = d.id;
-				
-				//for teeny weeny states, we'll have to slightly magnify them
-				/*return (state_id != "DC")
-						? "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")" 
-						: "scale(1.6) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
-				*/
-				
-				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
-			})
-			
-		$("#map_legend").fadeOut("slow");
-			
-		setTimeout(function() {
-			$("#map_data").fadeIn("slow");
-		}, 800);
-	});
-	      
+	});      
 	
 	$("#mobile2").on("click", function() {
 		if(desktop_or_mobile2 == "fennec")
@@ -700,6 +776,21 @@ function shift_selected2(option) {
 	$("#mobile2").html("MOBILE");
 		
 	$("#" + option + "2").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
+}
+
+function shift_selected3(option, platform_or_map) {
+	if(platform_or_map == "map") {
+		$("#show_map").html("MAP");
+		$("#show_states").html("STATES");
+
+		$("#show_" + option).html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
+	}
+	else if(platform_or_map == "platform") {
+		$("#desktop3").html("DESKTOP");
+		$("#mobile3").html("MOBILE");
+		
+		$("#" + option + "3").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
+	}
 }
 
 function drawCharts(json) {console.log(json);
