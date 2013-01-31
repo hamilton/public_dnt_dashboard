@@ -10,57 +10,57 @@ var LANG,
 	data_fennec_country;*/
 
 var yStateCoords = new Object();
-	yStateCoords['AL'] = [0,0];
-	yStateCoords['AK'] = [0,0];
-	yStateCoords['AZ'] = [0,0];
-	yStateCoords['AR'] = [0,0];
-	yStateCoords['CA'] = [0,0];
-	yStateCoords['CO'] = [0,0];
-	yStateCoords['CT'] = [0,0];
-	yStateCoords['DE'] = [0,0];
-	yStateCoords['DC'] = [0,0];
-	yStateCoords['FL'] = [0,0];
-	yStateCoords['GA'] = [0,0];
-	yStateCoords['HI'] = [0,0];
-	yStateCoords['ID'] = [0,0];
-	yStateCoords['IL'] = [0,0];
-	yStateCoords['IN'] = [0,0];
-	yStateCoords['IA'] = [0,0];
-	yStateCoords['KS'] = [0,0];
-	yStateCoords['KY'] = [0,0];
-	yStateCoords['LA'] = [0,0];
-	yStateCoords['ME'] = [0,0];
-	yStateCoords['MD'] = [0,0];
-	yStateCoords['MA'] = [0,0];
-	yStateCoords['MI'] = [0,0];
-	yStateCoords['MN'] = [0,0];
-	yStateCoords['MS'] = [0,0];
-	yStateCoords['MO'] = [0,0];
-	yStateCoords['MT'] = [0,0];
-	yStateCoords['NE'] = [0,0];
-	yStateCoords['NV'] = [0,0];
-	yStateCoords['NH'] = [0,0];
-	yStateCoords['NJ'] = [0,0];
-	yStateCoords['NM'] = [0,0];
-	yStateCoords['NY'] = [0,0];
-	yStateCoords['NC'] = [0,0];
-	yStateCoords['ND'] = [0,0];
-	yStateCoords['OH'] = [0,0];
-	yStateCoords['OK'] = [0,0];
-	yStateCoords['OR'] = [-140,40];
-	yStateCoords['PA'] = [0,0];
-	yStateCoords['RI'] = [0,0];
-	yStateCoords['SC'] = [0,0];
-	yStateCoords['SD'] = [0,0];
-	yStateCoords['TN'] = [0,0];
-	yStateCoords['TX'] = [0,0];
-	yStateCoords['UT'] = [0,0];
-	yStateCoords['VT'] = [0,0];
-	yStateCoords['VA'] = [0,0];
-	yStateCoords['WA'] = [-140,0];
-	yStateCoords['WV'] = [0,0];
-	yStateCoords['WI'] = [0,0];
-	yStateCoords['WY'] = [0,0];
+	yStateCoords['AL'] = [-590,-250];
+	yStateCoords['AK'] = [280,-300];
+	yStateCoords['AZ'] = [410,-210];
+	yStateCoords['AR'] = [410,-220];
+	yStateCoords['CA'] = [1100,-130];
+	yStateCoords['CO'] = [1195, -160];
+	yStateCoords['CT'] = [1050,-65];
+	yStateCoords['DE'] = [1355,-120];
+	yStateCoords['DC'] = [-750,90];
+	yStateCoords['FL'] = [-360, -120];
+	yStateCoords['GA'] = [-30,-50];
+	yStateCoords['HI'] = [560,-170];
+	yStateCoords['ID'] = [960,190];
+	yStateCoords['IL'] = [945,100];
+	yStateCoords['IN'] = [1200,80];
+	yStateCoords['IA'] = [1600,110];
+	yStateCoords['KS'] = [-350,255];
+	yStateCoords['KY'] = [-320,240];
+	yStateCoords['LA'] = [80,130];
+	yStateCoords['ME'] = [200,400];
+	yStateCoords['MD'] = [460,280];
+	yStateCoords['MA'] = [700,360];
+	yStateCoords['MI'] = [3000,0];
+	yStateCoords['MN'] = [3000,0];
+	yStateCoords['MS'] = [3000,0];
+	yStateCoords['MO'] = [3000,0];
+	yStateCoords['MT'] = [3000,0];
+	yStateCoords['NE'] = [3000,0];
+	yStateCoords['NV'] = [3000,0];
+	yStateCoords['NH'] = [3000,0];
+	yStateCoords['NJ'] = [3000,0];
+	yStateCoords['NM'] = [3000,0];
+	yStateCoords['NY'] = [3000,0];
+	yStateCoords['NC'] = [3000,0];
+	yStateCoords['ND'] = [3000,0];
+	yStateCoords['OH'] = [3000,0];
+	yStateCoords['OK'] = [3000,0];
+	yStateCoords['OR'] = [3000,0];
+	yStateCoords['PA'] = [3000,0];
+	yStateCoords['RI'] = [3000,0];
+	yStateCoords['SC'] = [3000,0];
+	yStateCoords['SD'] = [3000,0];
+	yStateCoords['TN'] = [3000,0];
+	yStateCoords['TX'] = [3000,0];
+	yStateCoords['UT'] = [3000,0];
+	yStateCoords['VT'] = [3000,0];
+	yStateCoords['VA'] = [3000,0];
+	yStateCoords['WA'] = [3000,0];
+	yStateCoords['WV'] = [3000,0];
+	yStateCoords['WI'] = [3000,0];
+	yStateCoords['WY'] = [3000,0];
 		
 var state = new Object();
 	state['AL'] = "Alabama";
@@ -388,7 +388,7 @@ $(document).ready(function () {
 		
 		setTimeout(function() {
 			drawMap();
-		}, 1200);
+		}, 1000);
 			
 	});
 });
@@ -410,20 +410,29 @@ function sort_data(data) {
 	console.log(data);
 }
 
+function addLegend() {
+	var legend = "<div class='legend high'></div><div class='legend_text'>HIGHER ADOPTION</div>"
+			+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWER ADOPTION</div>";
+	
+	$("#map_legend").append(legend);
+}
+
 function drawMap() {
-	var data = [
+	addLegend();
+    
+	/*var data = [
 	  , .187, .198, , .133, .175, .151, , .1, .125, .171, , .172, .133, , .108,
 	  .142, .167, .201, .175, .159, .169, .177, .141, .163, .117, .182, .153, .195,
 	  .189, .134, .163, .133, .151, .145, .13, .139, .169, .164, .175, .135, .152,
 	  .169, , .132, .167, .139, .184, .159, .14, .146, .157, , .139, .183, .16, .143
-	];
+	];*/
 
 	d3.json("data/us-states.json", function(json) {
 		console.log(json);
 		
 		var svg_map = d3.select("#map").append("svg")
 	    .attr("width", 960)
-    	.attr("height", 500);
+    	.attr("height", 600);
     
 	  var path = d3.geo.path();
 
@@ -460,20 +469,14 @@ function drawMap() {
 	            + "translate(" + -x + "," + -y + ")";
     	  })*/
 	      .style("stroke-width", function(d) {
-    	    return 1 / Math.sqrt(data[+d.id] * 5 || 1);
-	      })
-		  .transition()
-		  	.duration(1000)
-			.attr("transform", function(d, i) {
-				var state_id = d.id;
-				console.log(yStateCoords[state_id][1]);
-				
-				return "scale(0.7) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
-			});
-	      
+    	    //return 1 / Math.sqrt(data[+d.id] * 5 || 1);
+
+			//no stroke for Alaska or Hawaii
+    	    return (d.id == "AK" || d.id == "HI") ? 0 : 1;
+	      });
 	      
 	    //color states
-	    var colorScale = d3.scale.linear().domain([0, 0.2]).range(["white", "black"]);
+	    var colorScale = d3.scale.linear().domain([0, 0.2]).range(["red", "steelblue"]);
 	    /*var colorScale = d3.scale.linear()
 		    .range(["white", "black"])
 		    .interpolate(d3.interpolateHcl);*/
@@ -482,10 +485,16 @@ function drawMap() {
 			$.each(data_state, function(i, data_state) {
 				var last_monthly = data_state[data_state.length-1];
 
-				//TODO color state based on adoption rate
 				$("#" + i).css("fill", function(d) {
 					return colorScale(last_monthly.perc);
 				});
+				
+				//populate map_data div
+				var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
+					? "<img src='images/up.png' class='up_down' />"
+					: "<img src='images/down.png' class='up_down' />";
+			
+				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
 			});
 		});
 	});
@@ -597,6 +606,33 @@ function assignEventListeners() {
 		
 		return false;
 	});
+	
+	$("#map").on("mouseenter", function() {
+		d3.selectAll(".grey path")
+		.transition()
+		  	.duration(1000)
+		  	//.style("fill", "#e33258")
+		  	.style("fill", "#e8e8e8")
+		  	//.style("stroke-width", 0)
+			.attr("transform", function(d, i) {
+				var state_id = d.id;
+				
+				//for teeny weeny states, we'll have to slightly magnify them
+				/*return (state_id != "DC")
+						? "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")" 
+						: "scale(1.6) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+				*/
+				
+				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
+			})
+			
+		$("#map_legend").fadeOut("slow");
+			
+		setTimeout(function() {
+			$("#map_data").fadeIn("slow");
+		}, 800);
+	});
+	      
 	
 	$("#mobile2").on("click", function() {
 		if(desktop_or_mobile2 == "fennec")

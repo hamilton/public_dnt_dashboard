@@ -12,6 +12,20 @@ function yoy_growth(series, date_obj){
 	return (date_obj.perc - yoy.perc) / yoy.perc;
 }
 
+function mom_growth(series, date_obj){	
+	var target_date = new Date(date_obj.date);
+	target_date.setDate(target_date.getDate() - 31);
+	var mom = series.sort(function(a,b){
+		var distancea = Math.abs(target_date - new Date(a.date));
+    	var distanceb = Math.abs(target_date - new Date(b.date));
+    	return distancea - distanceb;
+	})[0];
+	
+
+	if(mom.perc == 0) return 0;
+	return (date_obj.perc - mom.perc) / mom.perc;
+}
+
 /*d3.json('data/ff_dnt_perc_monthly.json',function(monthly){
 	// get max date
 	var last = monthly[monthly.length-1];
