@@ -627,8 +627,20 @@ function populateStatesTable(desktop_or_mobile) {
 }
 
 function redrawStates() {
-	redrawMap();
-	drawStates();
+	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
+			$.each(data_state, function(i, data_state) {
+				var last_monthly = data_state[data_state.length-1];
+
+				//populate map_data div
+				var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
+					? "<img src='images/up.png' class='up_down' />"
+					: "<img src='images/down.png' class='up_down' />";
+			
+				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+			});
+	});
+	
+	$("#map_data").fadeIn("slow");
 }
 
 function drawStates() {
