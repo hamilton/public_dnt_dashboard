@@ -1,6 +1,4 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
-	$("svg").remove()
-	
 	var w = 960,
 		h = 350,
 		xPadding = 22,
@@ -9,6 +7,8 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	
 	//we always use the div within the container for placing the svg
 	container += " div";
+	
+	$(container + " svg").remove();
 	
 	//for clarity, we reassign
 	var which_metric = container;
