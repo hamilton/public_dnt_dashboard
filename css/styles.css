@@ -24,7 +24,7 @@ p {
 	margin-right:auto;
 	position:relative;
 	background-color:#d7d7d7;
-	border-radius:10px;
+	border-radius:0px;
 }
 
 #container1 {
@@ -316,7 +316,7 @@ img.label {
 }
 
 #trend {
-	border-radius:5px;
+	border-radius:0px;
 	height:350px;
 	padding:10px;
 	background-color:#ffffff;
@@ -325,12 +325,29 @@ img.label {
 }
 
 #ranked_table_and_map {
-	margin-top:50px;
-	border-radius:5px;
-	height:500px;
+	margin-top:30px;
+	margin-bottom:15px;
+	border-radius:0px;
+	height:770px;
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
+	overflow:hidden;
+}
+
+#map {
+	margin-top:32px;
+	margin-left:20px
+	border-radius:0px;
+	height:600px;
+	padding:10px;
+	background-color:#ffffff;
+	border:1px solid #cccccc;
+}
+
+#map svg {
+	position:relative;
+	margin-top:25px;
 }
 
 #full_date {
@@ -359,6 +376,40 @@ img.label {
 	padding-top:4px;
 }
 
+#options2 {
+	position:absolute;
+	margin-left:15px;
+	width:285px;
+	height:22px;
+	z-index:99;
+	margin-left:868px;
+	margin-top:-4px;
+	border-radius:5px;
+	/*background-color:#e33258;*/
+	font-family:'Open Sans';
+	font-size:11px;
+	padding-left:8px;
+	padding-right:4px;
+	padding-top:4px;
+}
+
+#options3 {
+	position:absolute;
+	margin-left:15px;
+	width:285px;
+	height:22px;
+	z-index:99;
+	margin-left:758px;
+	margin-top:-4px;
+	border-radius:5px;
+	/*background-color:#e33258;*/
+	font-family:'Open Sans';
+	font-size:11px;
+	padding-left:8px;
+	padding-right:4px;
+	padding-top:4px;
+}
+
 #top_logo {
 	position:absolute;
 	top:10px;
@@ -377,7 +428,7 @@ img.label {
 }
 
 .copy {
-	font-style:italic;
+	font-style:normal;
 	line-height:30px;
 }
 
@@ -421,6 +472,146 @@ img.label {
 	color:#3b3b3b;
 }
 
-svg {
+#trend svg {
 	margin-left:15px;
+}
+
+th {
+	cursor:pointer;
+	text-align:left;
+}
+
+td {
+	text-align:left;
+	font-size:13px;
+}
+
+#ranked_table_countries {
+	margin-top:24px;
+	padding-top:10px;
+	border-top:1px solid #cccccc;
+}
+
+#ranked_table_countries,
+#ranked_table_states {
+	width:100%;
+}
+
+#chart {
+  width: 960px;
+  height: 500px;
+}
+
+.black path {
+  fill: none;
+  stroke: none;
+  stroke-width: 3px;
+}
+
+.white path {
+  fill: #fff;
+  stroke: #fff;
+}
+
+.grey path {
+  fill: #e8e8e8;
+  stroke: #bababa;
+}
+
+
+
+
+/* sparkline css */
+td svg .axis text {
+	display:none;
+}
+
+td svg {
+	padding:0;
+	margin:0;
+	margin-left:-100px;
+}
+
+tr {
+	height:30px;
+}
+
+.footnote {
+	margin-top:10px;
+	font-size:12px;
+	text-align:center;
+}
+
+#map_data {
+	display:none;
+	z-index:99;
+	position:absolute;
+	width:960px;
+	height:600px;
+	margin-top:25px;
+	padding-left:10px;
+}
+
+#map_data div {
+	width:110px;
+	padding:10px;
+	padding-left:5px;
+	padding-right:5px;
+	height:63px;
+	float:left;
+	font-size:13px;
+	border-bottom:1px solid #f1f1f1;
+}
+
+#map_data div div {
+	clear:left;
+	padding:0;
+	margin:0;
+	font-weight:400;
+	font-size:22px;
+	width:100%;
+	height:40px;
+	font-family:'Open Sans';
+	border:0;
+}
+
+.up_down {
+	position:relative;
+	top:-5px;
+	padding-left:5px;
+}
+
+#map_legend {
+	position:absolute;
+	margin-top:-40px;
+	margin-left:30px;
+	width:500px;
+	height:100px;
+	z-index:99999;
+	font-family:'Open Sans';
+	font-size:11px;
+}
+
+.legend {
+	width:20px;
+	height:20px;
+	float:left;
+}
+
+.high {
+	background-color:steelblue;
+}
+
+.low {
+	background-color:red;
+}
+
+.legend_text {
+	float:left;
+	margin-top:2px;
+	margin-left:10px;
+}
+
+#map_data .firstrow {
+	border-top:1px solid #efefef;
 }
