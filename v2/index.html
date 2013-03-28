@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- 
+			Metrics Team, Mozilla, January 2013 
+			#metrics (irc.mozilla.org)
+			Ali Almossawi, Hamilton Ulmer and Anurag Phadke
+		-->
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Do Not Track, Firefox</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
+		
+   		<script type="text/javascript" src="js/d3.v2.min.js"></script>
+
+   		<script type="text/javascript" src="js/date.js"></script>	
+		<script type="text/javascript" src="js/x_over_x.js"></script>
+   		<script type="text/javascript" src="js/global.js"></script>
+   		<script type="text/javascript" src="js/charts.js"></script>
+   		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+
+		<link rel="stylesheet" href="css/styles.css" type="text/css" />
+   		<link rel="stylesheet" href="css/tabzilla.css" />
+   		<link rel="stylesheet" href="css/tablesorter_styles.css" type="text/css" />
+   		<link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
+		<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+		
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37922069-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	</head>
+	<body>
+		<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+		<img src="images/fxlogo_top.png" id="top_logo" />
+			
+		<div id="page">
+		
+			<h1 class="shadow">THE STATE OF DO NOT TRACK IN FIREFOX</h1>
+			
+			<div class="copy">
+			<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a
+Do Not Track feature that enables users to express a preference not to be
+tracked online. When the feature is turned on in one of our products, an
+automated signal is sent to all the sites and services you interact with,
+including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry.
+However, it is supported by all major browsers and a few leading companies have
+started respecting the signal.</p>
+
+<p>The following graphs are intended to provide a view into how many Firefox users
+are seeking out and enabling Do Not Track in their desktop and mobile versions
+of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.</p>
+
+<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both
+Firefox and Firefox for Android automatically download the latest list of
+insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests
+made by the browser, we can count the number of times we see the signal. No
+other information is logged on our servers. Anyone with a website and access to
+a web server can start counting how many users are sending DNT:1, which is how
+the signal is expressed via HTTP requests.</p>
+			</div>
+			<div id="full_date"></div>
+			<div id="options">
+				<a href="#" id="desktop"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile">MOBILE</a>
+			</div>
+			
+			<div id="trend">			
+				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-10px;margin-top:20px" />
+				<div></div>
+			</div>
+			
+			
+			
+			
+			<div style="clear:both"></div>
+			<div id="map">
+				<div id="options3">
+					<a href="#" id="desktop3"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile3">MOBILE</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;<a href="#" id="show_map"><span class="selected_option">MAP</span></a>&nbsp; <a href="#" id="show_states">STATES</a>
+				</div>
+				
+				<div id="map_data">
+					<div id="AL_box" class="firstrow">Alabama<div></div></div>
+					<div id="AK_box" class="firstrow">Alaska<div></div></div>
+					<div id="AZ_box" class="firstrow">Arizona<div></div></div>
+					<div id="AR_box" class="firstrow">Arkansas<div></div></div>
+					<div id="CA_box" class="firstrow">California<div></div></div>
+					<div id="CO_box" class="firstrow">Colorado<div></div></div>
+					<div id="CT_box" class="firstrow">Connecticut<div></div></div>
+					<div id="DE_box" class="firstrow">Delaware<div></div></div>
+					
+					<div id="DC_box">D.C.<div></div></div>
+					<div id="IA_box">Florida<div></div></div>
+					<div id="GA_box">Georgia<div></div></div>
+					<div id="HI_box">Hawaii<div></div></div>
+					<div id="HI_box">Idaho<div></div></div>
+					<div id="IL_box">Illinois<div></div></div>
+					<div id="IN_box">Indiana<div></div></div>
+					<div id="IA_box">Iowa<div></div></div>
+					
+					<div id="KS_box">Kansas<div></div></div>
+					<div id="KY_box">Kentucky<div></div></div>
+					<div id="LA_box">Louisiana<div></div></div>
+					<div id="ME_box">Maine<div></div></div>
+					<div id="MD_box">Maryland<div></div></div>
+					<div id="MA_box">Massachusetts<div></div></div>
+					<div id="MI_box">Michigan<div></div></div>
+					<div id="MN_box">Minnesota<div></div></div>
+					
+					<div id="MS_box">Mississippi<div></div></div>
+					<div id="MO_box">Missouri<div></div></div>
+					<div id="MT_box">Montana<div></div></div>
+					<div id="NE_box">Nebraska<div></div></div>
+					<div id="NV_box">Nevada<div></div></div>
+					<div id="NH_box">New Hampshire<div></div></div>
+					<div id="NJ_box">New Jersey<div></div></div>
+					<div id="NM_box">New Mexico<div></div></div>
+					
+					<div id="NY_box">New York<div></div></div>
+					<div id="NC_box">N. Carolina<div></div></div>
+					<div id="ND_box">N. Dakota<div></div></div>
+					<div id="OH_box">Ohio<div></div></div>
+					<div id="OK_box">Oklahoma<div></div></div>
+					<div id="OR_box">Oregon<div></div></div>
+					<div id="PA_box">Pennsylvania<div></div></div>
+					<div id="RI_box">Rhode Island<div></div></div>
+					
+					<div id="SC_box">S. Carolina<div></div></div>
+					<div id="SD_box">S. Dakota<div></div></div>
+					<div id="TN_box">Tennessee<div></div></div>
+					<div id="TX_box">Texas<div></div></div>
+					<div id="UT_box">Utah<div></div></div>
+					<div id="VT_box">Vermont<div></div></div>
+					<div id="VA_box">Virginia<div></div></div>
+					<div id="WA_box">Washington<div></div></div>
+					
+					<div id="WV_box" style="border:0">W. Virginia<div></div></div>
+					<div id="WI_box" style="border:0">Wisconsin<div></div></div>
+					<div id="WY_box" style="border:0">Wyoming<div></div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				
+				<!--<img src="images/usmap.png" />-->
+			</div>
+			<div id="map_legend"></div>
+			
+			
+			<div style="clear:both"></div>
+			<div id="map_world">
+				<div id="options4">
+					<a href="#" id="desktop4"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile4">MOBILE</a>
+				</div>
+				
+				<div id="map_data_world">
+					<div id="AL_box" class="firstrow">Alabama<div></div></div>
+					<div id="AK_box" class="firstrow">Alaska<div></div></div>
+					<div id="AZ_box" class="firstrow">Arizona<div></div></div>
+					<div id="AR_box" class="firstrow">Arkansas<div></div></div>
+					<div id="CA_box" class="firstrow">California<div></div></div>
+					<div id="CO_box" class="firstrow">Colorado<div></div></div>
+					<div id="CT_box" class="firstrow">Connecticut<div></div></div>
+					<div id="DE_box" class="firstrow">Delaware<div></div></div>
+					
+					<div id="DC_box">D.C.<div></div></div>
+					<div id="IA_box">Florida<div></div></div>
+					<div id="GA_box">Georgia<div></div></div>
+					<div id="HI_box">Hawaii<div></div></div>
+					<div id="HI_box">Idaho<div></div></div>
+					<div id="IL_box">Illinois<div></div></div>
+					<div id="IN_box">Indiana<div></div></div>
+					<div id="IA_box">Iowa<div></div></div>
+					
+					<div id="KS_box">Kansas<div></div></div>
+					<div id="KY_box">Kentucky<div></div></div>
+					<div id="LA_box">Louisiana<div></div></div>
+					<div id="ME_box">Maine<div></div></div>
+					<div id="MD_box">Maryland<div></div></div>
+					<div id="MA_box">Massachusetts<div></div></div>
+					<div id="MI_box">Michigan<div></div></div>
+					<div id="MN_box">Minnesota<div></div></div>
+					
+					<div id="MS_box">Mississippi<div></div></div>
+					<div id="MO_box">Missouri<div></div></div>
+					<div id="MT_box">Montana<div></div></div>
+					<div id="NE_box">Nebraska<div></div></div>
+					<div id="NV_box">Nevada<div></div></div>
+					<div id="NH_box">New Hampshire<div></div></div>
+					<div id="NJ_box">New Jersey<div></div></div>
+					<div id="NM_box">New Mexico<div></div></div>
+					
+					<div id="NY_box">New York<div></div></div>
+					<div id="NC_box">N. Carolina<div></div></div>
+					<div id="ND_box">N. Dakota<div></div></div>
+					<div id="OH_box">Ohio<div></div></div>
+					<div id="OK_box">Oklahoma<div></div></div>
+					<div id="OR_box">Oregon<div></div></div>
+					<div id="PA_box">Pennsylvania<div></div></div>
+					<div id="RI_box">Rhode Island<div></div></div>
+					
+					<div id="SC_box">S. Carolina<div></div></div>
+					<div id="SD_box">S. Dakota<div></div></div>
+					<div id="TN_box">Tennessee<div></div></div>
+					<div id="TX_box">Texas<div></div></div>
+					<div id="UT_box">Utah<div></div></div>
+					<div id="VT_box">Vermont<div></div></div>
+					<div id="VA_box">Virginia<div></div></div>
+					<div id="WA_box">Washington<div></div></div>
+					
+					<div id="WV_box" style="border:0">W. Virginia<div></div></div>
+					<div id="WI_box" style="border:0">Wisconsin<div></div></div>
+					<div id="WY_box" style="border:0">Wyoming<div></div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div id="map_legend_world"></div>
+			
+			<div class="copy hightop">
+			Further resources: <a href="http://www.w3.org/2011/tracking-protection/">W3C Tracking Protection Working Group</a> &middot; 
+			<a href="http://www.mozilla.org/en-US/dnt/">Mozilla's Do Not Track FAQ</a> &middot; 
+			<a href="http://donottrack.us/">Stanford University's Do Not Track Resource</a>
+			</div>
+		</div> <!-- end page -->
+
+		<div id="wide_pane">		
+			<div id="metrics_logo_container">
+				<div style="float:left;padding-top:17px;padding-left:15px;width:200px;z-index:2;position:relative">
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://metrics.mozilla.com/dnt" data-size="large" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+				
+				<div style="float:left;padding-top:13px;padding-left:125px;width:740px;z-index:1;position:absolute">
+					Mozilla Metrics &middot; April 2013 &middot; Is there something that we can help you with?  Feel free to get in touch.
+					<br />Ali Almossawi &nbsp; Anurag Phadke &nbsp; Hamilton Ulmer
+				</div>
+				
+				<div style="float:right;z-index:3">
+					<a href="https://metrics.mozilla.com/preview">
+						<img src="images/logo.png" id="metrics" />
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+	</body>
+</html>
