@@ -826,6 +826,15 @@ function assignEventListeners() {
 		return false;
 	});
 	
+	$(".region_select").on("click", function(d) {
+		console.log($(this).attr("id"));
+		shift_selected4_region_select($(this).attr("id"));
+		
+		//todo
+		
+		return false;
+	});     
+	
 	$("#desktop4").on("click", function() {
 		if(desktop_or_mobile4 == "ff")
 			return false;
@@ -982,6 +991,17 @@ function shift_selected4(option, platform_or_map) {
 		
 		$("#" + option + "4").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
 	}
+}
+
+function shift_selected4_region_select(option) {
+	$("#the_world").html("THE WORLD");
+	$("#africa").html("AFRICA");
+	$("#asia").html("ASIA");
+	$("#europe").html("EUROPE");
+	$("#south_america").html("SOUTH AMERICA");
+	$("#north_america").html("NORTH AMERICA");
+		
+	$("#" + option).html("<span class='selected_option'>" + option.replace("_", " ").toUpperCase() + "</span>");
 }
 
 function drawCharts(json) {console.log(json);
