@@ -86,6 +86,7 @@ h2 {
 	position:absolute;
 	padding-top:0;
 	margin-top:0;
+	z-index:999999;
 }
 
 a,a:active,a:link,a:visited,a:hover {
@@ -351,6 +352,7 @@ img.label {
 	padding:10px;
 	background-color:#ffffff;
 	border:1px solid #cccccc;
+	overflow:hidden;
 }
 
 #map svg,
@@ -422,7 +424,7 @@ img.label {
 	position:absolute;
 	width:285px;
 	height:22px;
-	z-index:99;
+	z-index:999999;
 	margin-left:866px;
 	margin-top:-4px;
 	border-radius:5px;
@@ -438,7 +440,7 @@ img.label {
 	position:absolute;
 	width:385px;
 	height:22px;
-	z-index:99;
+	z-index:999999;
 	margin-left:448px;
 	margin-top:-4px;
 	border-radius:5px;
@@ -564,7 +566,7 @@ td {
 
 .grey path {
   fill: #e8e8e8;
-  stroke: #bababa;
+  stroke: #9d9d99;
 }
 
 
@@ -643,6 +645,15 @@ tr {
 	z-index:99999;
 	font-family:'Open Sans';
 	font-size:11px;
+}
+
+#map_world_top_gradient {
+	position:absolute;
+	margin-top:15px;
+	margin-left:-10px;
+	width:998px;
+	height:50px;
+	z-index:99999;
 }
 
 .legend {

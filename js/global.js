@@ -573,8 +573,8 @@ function drawMapWorld() {
     
 	//data from http://stackoverflow.com/questions/14265112/d3-js-map-svg-auto-fit-into-parent-container-and-resize-with-window
 	d3.json("data/world-countries.json", function(json) {
-		var w = 960,
-			h = 600;
+		var w = 980,
+			h = 540;
 		
 		console.log(json);
 		
@@ -610,7 +610,7 @@ function drawMapWorld() {
 	    .enter().append("path")
     	  .attr("d", path)
     	  .attr("id", function(d) { return "w" + d.id; })
-	      .style("stroke-width", 0);
+	      .style("stroke-width", 0.3);
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
 	    	var min_max = minMaxState(data_country);
@@ -633,7 +633,7 @@ function drawMapWorld() {
 				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
 			});
 		});
-	});
+	});		
 }
 
 function minMaxState(data) {
@@ -829,8 +829,26 @@ function assignEventListeners() {
 	$(".region_select").on("click", function(d) {
 		console.log($(this).attr("id"));
 		shift_selected4_region_select($(this).attr("id"));
-		
-		//todo
+		switch($(this).attr("id")) {
+			case "the_world":
+				worldmapZoom("the_world");
+				break;
+			case "africa":
+				worldmapZoom("africa");
+				break;
+			case "asia":
+				worldmapZoom("asia");
+				break;
+			case "europe":
+				worldmapZoom("europe");
+				break;
+			case "north_america":
+				worldmapZoom("north_america");
+				break;
+			case "south_america":
+				worldmapZoom("south_america");
+				break;
+		}
 		
 		return false;
 	});     
@@ -944,6 +962,29 @@ function assignEventListeners() {
 		date_granularity = "monthly";
 		drawCharts(desktop_or_mobile + "_dnt_perc_monthly.json");
 	});
+}
+
+function worldmapZoom(region) {
+	d3.selectAll("#map_world svg .grey path")
+		.transition()
+		  	.duration(1000)
+			.attr("transform", function(d, i) {
+				switch(region) {
+					case "the_world":
+						return "scale(1) translate(0,0)";
+					case "africa":
+						return "scale(2.3) translate(-330,-160)";
+					case "asia":
+						return "scale(2.2) translate(-490,-150)";
+					case "europe":
+						return "scale(4.2) translate(-420,-100)";
+					case "north_america":
+						return "scale(2.5) translate(-50,-60)";
+					case "south_america":
+						return "scale(2.5) translate(-150,-220)";
+				}
+			})
+	
 }
 
 function shift_selected(option, platform_or_granularity) {
