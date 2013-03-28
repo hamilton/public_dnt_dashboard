@@ -425,7 +425,7 @@ function redrawMap() {
 	$("#map_data").fadeOut("fast");
 	$("#map_legend").delay(1000).fadeIn("fast");
 	
-	d3.selectAll(".grey path")
+	d3.selectAll("#map svg .grey path")
 		.transition()
 		  	.duration(1000)
 			.attr("transform", function(d, i) {
@@ -582,7 +582,7 @@ function drawMapWorld() {
 	    .attr("width", w)
     	.attr("height", h);
     
-		var projection = d3.geo.equirectangular().scale(890).translate([960/2, 600/2]);
+		var projection = d3.geo.equirectangular().scale(890).translate([w/2, h/2+20]);
 		var path = d3.geo.path().projection(projection);
 
 	  // A thick black stroke for the exterior.
@@ -762,7 +762,7 @@ function redrawStates() {
 }
 
 function drawStates() {
-	d3.selectAll(".grey path")
+	d3.selectAll("#map svg .grey path")
 		.transition()
 		  	.duration(1000)
 		  	//.style("fill", "#e33258")
