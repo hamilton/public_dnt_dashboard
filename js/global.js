@@ -4,8 +4,9 @@ var LANG,
 	desktop_or_mobile = "ff",
 	desktop_or_mobile2 = "ff",
 	desktop_or_mobile3 = "ff",
+	desktop_or_mobile4 = "ff",
 	map_or_states = "map",
-	date_granularity = "weekly";
+	date_granularity = "monthly";
 	
 var yStateCoords = new Object();
 	yStateCoords['AL'] = [-590,-250];
@@ -374,7 +375,7 @@ $(document).ready(function () {
 		$("input, textarea, select").uniform();
 		
 		assignEventListeners();
-		drawCharts("ff_dnt_perc_weekly.json");
+		drawCharts("ff_dnt_perc_monthly.json");
 				
 		$("#ranked_table_countries").tablesorter();
 		$("#ranked_table_states").tablesorter();
@@ -386,6 +387,7 @@ $(document).ready(function () {
 		
 		setTimeout(function() {
 			drawMap();
+			drawMapWorld();
 		}, 1000);
 			
 	});
@@ -408,16 +410,20 @@ function sort_data(data) {
 	console.log(data);
 }
 
-function addLegend() {
-	var legend = "<div class='legend high'></div><div class='legend_text'>HIGHEST ADOPTION</div>"
-			+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWEST ADOPTION</div>";
+function addLegend(container) {
+	//var legend = "<div class='legend high'></div><div class='legend_text'>HIGHEST ADOPTION</div>"
+	//		+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWEST ADOPTION</div>";
 	
-	$("#map_legend").append(legend);
+	var legend = "<div class='legend'><div class='legend_text'>HIGHEST ADOPTION</div>"
+			+ "<img src='images/gradient_key.png' style='float:left' />"
+			+ "<div class='legend_text'>LOWEST ADOPTION</div></div>";
+	
+	$(container).append(legend);
 }
 
 function redrawMap() {
 	$("#map_data").fadeOut("fast");
-	$("#map_legend").fadeIn("fast");
+	$("#map_legend").delay(1000).fadeIn("fast");
 	
 	d3.selectAll(".grey path")
 		.transition()
@@ -436,7 +442,7 @@ function redrawMap() {
 		var min_max = minMaxState(data_state);
 	    console.log(min_max[0], min_max[1]);
 	    	
-	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["red", "steelblue"]);
+	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 			
 		$.each(data_state, function(i, data_state) {
 			var last_monthly = data_state[data_state.length-1];
@@ -459,7 +465,7 @@ function drawMap() {
 	$("#map svg").remove();
 	$("#map_data").fadeOut("fast");
 	
-	addLegend();
+	addLegend("#map_legend");
     
 	/*var data = [
 	  , .187, .198, , .133, .175, .151, , .1, .125, .171, , .172, .133, , .108,
@@ -493,7 +499,6 @@ function drawMap() {
 	    .enter().append("path")
     	  .attr("d", path);
 
-	  // The polygons, scaled!
 	  svg_map.append("g")
     	  .attr("class", "grey")
 	    .selectAll("path")
@@ -501,14 +506,6 @@ function drawMap() {
 	    .enter().append("path")
     	  .attr("d", path)
     	  .attr("id", function(d) { return d.id; })
-	      /*.attr("transform", function(d) {
-    	    var centroid = path.centroid(d),
-	            x = centroid[0],
-    	        y = centroid[1];
-	        return "translate(" + x + "," + y + ")"
-    	        + "scale(" + Math.sqrt(data[+d.id] * 5 || 0) + ")"
-	            + "translate(" + -x + "," + -y + ")";
-    	  })*/
 	      .style("stroke-width", function(d) {
     	    //return 1 / Math.sqrt(data[+d.id] * 5 || 1);
 
@@ -516,11 +513,12 @@ function drawMap() {
     	    return (d.id == "AK" || d.id == "HI") ? 0 : 1;
 	      });
 	    
+	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
 	    	var min_max = minMaxState(data_state);
 	    	console.log(min_max[0], min_max[1]);
 	    	
-	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["red", "steelblue"]);
+	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 
 			$.each(data_state, function(i, data_state) {
 				var last_monthly = data_state[data_state.length-1];
@@ -531,6 +529,104 @@ function drawMap() {
 				
 				//populate map_data div
 				var up_or_down = ((mom_growth(data_state, last_monthly) > 0 ))
+					? "<img src='images/up.png' class='up_down' />"
+					: "<img src='images/down.png' class='up_down' />";
+			
+				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+			});
+		});
+	});
+}
+
+function redrawMapWorld() {
+	$("#map_data_world").fadeOut("fast");
+	$("#map_legend_world").delay(1000).fadeIn("fast");
+			
+	d3.json("data/" + desktop_or_mobile4 + "_dnt_perc_monthly_by_country.json", function(data_country) {
+		var min_max = minMaxState(data_country);
+	    console.log(min_max[0], min_max[1]);
+	    	
+	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
+			
+		$.each(data_country, function(i, data_country) {
+			var last_monthly = data_country[data_country.length-1];
+
+			$("#w" + i).css("fill", function(d) {
+				return colorScale(last_monthly.perc);
+			});
+				
+			//populate map_data div
+			var up_or_down = ((mom_growth(data_country, last_monthly) > 0 ))
+				? "<img src='images/up.png' class='up_down' />"
+				: "<img src='images/down.png' class='up_down' />";
+			
+			$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+		});
+	});
+}
+
+function drawMapWorld() {
+	$("#map_world svg").remove();
+	$("#map_data_world").fadeOut("fast");
+	
+	addLegend("#map_legend_world");
+    
+	//data from http://stackoverflow.com/questions/14265112/d3-js-map-svg-auto-fit-into-parent-container-and-resize-with-window
+	d3.json("data/world-countries.json", function(json) {
+		var w = 960,
+			h = 600;
+		
+		console.log(json);
+		
+		var svg_map = d3.select("#map_world").append("svg")
+	    .attr("width", w)
+    	.attr("height", h);
+    
+		var projection = d3.geo.equirectangular().scale(890).translate([960/2, 600/2]);
+		var path = d3.geo.path().projection(projection);
+
+	  // A thick black stroke for the exterior.
+	  svg_map.append("g")
+    	  .attr("class", "black")
+	    .selectAll("path")
+    	  .data(json.features).enter()
+            .append('path')
+            .attr('d', path)
+            .attr("width", w)
+            .attr("height", h);
+
+	  // A white overlay to hide interior black strokes.
+	  svg_map.append("g")
+    	  .attr("class", "white")
+	    .selectAll("path")
+    	  .data(json.features)
+	    .enter().append("path")
+    	  .attr("d", path);
+
+	  svg_map.append("g")
+    	  .attr("class", "grey")
+	    .selectAll("path")
+    	  .data(json.features)
+	    .enter().append("path")
+    	  .attr("d", path)
+    	  .attr("id", function(d) { return "w" + d.id; })
+	      .style("stroke-width", 0);
+	    
+	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
+	    	var min_max = minMaxState(data_country);
+	    	console.log(min_max[0], min_max[1]);
+	    	
+	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
+
+			$.each(data_country, function(i, data_country) {
+				var last_monthly = data_country[data_country.length-1];
+				
+				$("#w" + i).css("fill", function(d) {
+					return colorScale(last_monthly.perc);
+				});
+				
+				//populate map_data div
+				var up_or_down = ((mom_growth(data_country, last_monthly) > 0 ))
 					? "<img src='images/up.png' class='up_down' />"
 					: "<img src='images/down.png' class='up_down' />";
 			
@@ -730,6 +826,29 @@ function assignEventListeners() {
 		return false;
 	});
 	
+	$("#desktop4").on("click", function() {
+		if(desktop_or_mobile4 == "ff")
+			return false;
+			
+		shift_selected4("desktop", "platform");
+		desktop_or_mobile4 = "ff";
+		redrawMapWorld();
+		
+		return false;
+	});      
+	
+	$("#mobile4").on("click", function() {
+		if(desktop_or_mobile4 == "fennec")
+			return false;
+			
+		shift_selected4("mobile", "platform");
+		desktop_or_mobile4 = "fennec";
+		
+		redrawMapWorld();
+		
+		return false;
+	});
+	
 	$("#desktop3").on("click", function() {
 		if(desktop_or_mobile3 == "ff")
 			return false;
@@ -853,6 +972,15 @@ function shift_selected3(option, platform_or_map) {
 		$("#mobile3").html("MOBILE");
 		
 		$("#" + option + "3").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
+	}
+}
+
+function shift_selected4(option, platform_or_map) {
+	if(platform_or_map == "platform") {
+		$("#desktop4").html("DESKTOP");
+		$("#mobile4").html("MOBILE");
+		
+		$("#" + option + "4").html("<span class='selected_option'>" + option.toUpperCase() + "</span>");
 	}
 }
 

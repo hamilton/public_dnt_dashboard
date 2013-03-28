@@ -1,16 +1,18 @@
 html {
 	outline:none;
-	font-family:Georgia, "Gill Sans",Lato,"Helvetica Neue",Helvetica,sans-serif;
+	/*font-family:Georgia, "Gill Sans",Lato,"Helvetica Neue",Helvetica,sans-serif;*/
+	font-family: 'PT Serif', Cardo, serif;
 }
 
 body {
+	position:absolutes;
 	background-color:#fcfbfb;
 	margin:0;
 	padding:0;
 }
 
 p {
-	font-size:10pt;
+	font-size:18px;
 	line-height:1.5;
 }
 
@@ -51,6 +53,7 @@ p {
 	z-index:-1;
 	margin-left:-100px;
 	left:50%;
+	display:none;
 }
 
 h1 {
@@ -76,11 +79,11 @@ h1 {
 }
 
 h2 {
+	font-family: 'PT Sans';
 	font-weight:400;
-	font-size:30px;
-	color:black;
-	position:relative;
-	top:0px;
+	font-size:26px;
+	color:#3b3b3b;
+	position:absolute;
 	padding-top:0;
 	margin-top:0;
 }
@@ -89,6 +92,10 @@ a,a:active,a:link,a:visited,a:hover {
 	color:black;
 	text-decoration:none;
 	/* border-bottom:1px #3b3b3b dotted; */
+}
+
+.copy a, .copy a:active, .copy a:link, .copy a:visited, .copy a:hover {
+	border-bottom:1px dotted #a6a6a6;
 }
 
 .chart_container {
@@ -164,7 +171,7 @@ a,a:active,a:link,a:visited,a:hover {
 }
 
 .shadow {
-	text-shadow:0.03em 0.03em #000
+	text-shadow:0.03em 0.03em #fff
 }
 
 .axis g text {
@@ -311,7 +318,7 @@ img.label {
 	width:1000px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:124px;
+	padding-top:74px;
 	margin-bottom:30px;
 }
 
@@ -335,7 +342,8 @@ img.label {
 	overflow:hidden;
 }
 
-#map {
+#map,
+#map_world {
 	margin-top:32px;
 	margin-left:20px
 	border-radius:0px;
@@ -345,12 +353,14 @@ img.label {
 	border:1px solid #cccccc;
 }
 
-#map svg {
+#map svg,
+#map_world svg {
 	position:relative;
 	margin-top:25px;
 }
 
 #full_date {
+	font-size:12px;
 	position:absolute;
 	margin-left:914px;
 	height:50px;
@@ -365,7 +375,7 @@ img.label {
 	width:285px;
 	height:22px;
 	z-index:99;
-	margin-left:700px;
+	margin-left:878px;
 	margin-top:6px;
 	border-radius:5px;
 	/*background-color:#e33258;*/
@@ -378,7 +388,6 @@ img.label {
 
 #options2 {
 	position:absolute;
-	margin-left:15px;
 	width:285px;
 	height:22px;
 	z-index:99;
@@ -395,7 +404,6 @@ img.label {
 
 #options3 {
 	position:absolute;
-	margin-left:15px;
 	width:285px;
 	height:22px;
 	z-index:99;
@@ -410,12 +418,30 @@ img.label {
 	padding-top:4px;
 }
 
+#options4 {
+	position:absolute;
+	width:285px;
+	height:22px;
+	z-index:99;
+	margin-left:868px;
+	margin-top:-4px;
+	border-radius:5px;
+	/*background-color:#e33258;*/
+	font-family:'Open Sans';
+	font-size:11px;
+	padding-left:8px;
+	padding-right:4px;
+	padding-top:4px;
+}
+
+
 #top_logo {
 	position:absolute;
-	top:10px;
+	top:75px;
 	z-index:-1;
 	margin-left:-100px;
 	left:50%;
+	opacity:0.2;
 }
 
 #wide_pane {
@@ -430,6 +456,13 @@ img.label {
 .copy {
 	font-style:normal;
 	line-height:30px;
+	padding-bottom:10px;
+}
+
+.copy p {
+	color:#3b3b3b;
+	font-size:17px;
+	text-align:justify;
 }
 
 #metrics_logo_container {
@@ -542,7 +575,8 @@ tr {
 	text-align:center;
 }
 
-#map_data {
+#map_data,
+#map_data_world {
 	display:none;
 	z-index:99;
 	position:absolute;
@@ -552,7 +586,8 @@ tr {
 	padding-left:10px;
 }
 
-#map_data div {
+#map_data div,
+#map_data_world div {
 	width:110px;
 	padding:10px;
 	padding-left:5px;
@@ -563,7 +598,8 @@ tr {
 	border-bottom:1px solid #f1f1f1;
 }
 
-#map_data div div {
+#map_data div div,
+#map_data_world div div {
 	clear:left;
 	padding:0;
 	margin:0;
@@ -581,7 +617,8 @@ tr {
 	padding-left:5px;
 }
 
-#map_legend {
+#map_legend,
+#map_legend_world {
 	position:absolute;
 	margin-top:-40px;
 	margin-left:30px;
@@ -593,7 +630,7 @@ tr {
 }
 
 .legend {
-	width:20px;
+	width:500px;
 	height:20px;
 	float:left;
 }
@@ -609,9 +646,15 @@ tr {
 .legend_text {
 	float:left;
 	margin-top:2px;
-	margin-left:10px;
+	margin-left:4px;
+	margin-right:4px;
 }
 
 #map_data .firstrow {
 	border-top:1px solid #efefef;
+}
+
+.hightop {
+	margin-top:30px;
+	text-align:center;
 }

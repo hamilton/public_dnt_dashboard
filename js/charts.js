@@ -127,7 +127,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	*/
 
 	var area = d3.svg.area()
-		    //.interpolate("basis")
+		    .interpolate("basis")
     		.x(function(d) { return xScale(d.date); })
 		    .y0(function(d) { return yScale(0); })
 		    .y1(function(d) { return yScale(d.perc); });
@@ -143,6 +143,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    	    
 	//draw the line		
 	var line = d3.svg.line()
+		.interpolate("basis")
 		.x(function(d,i) { return xScale(d.value.date); })
 		.y(function(d) {
 			 return yScale(d.value.perc);
@@ -155,7 +156,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
     	});
     
     //draw mean line	
-    svg.append("svg:line")
+    /*svg.append("svg:line")
 	    .attr("class", "mean_line")
 	    .style("opacity", 0.9)
 		.attr("stroke-dasharray","1,3")
@@ -169,7 +170,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 			.attr("class", "mean_text")
 			.text("avg")
     		.attr('y', yScale(mean)+3)
-			.attr('x', xScale(xMax)+4);
+			.attr('x', xScale(xMax)+4);*/
     	
     //x-axis text	
     /*d3.select(which_metric + " svg")
@@ -236,10 +237,8 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 				    	.attr('height', h-yPadding+2) //height of transparent bar
 				    	.on('mouseover.tooltip', function(d_local) {
 				    		d3.select(".tooltip_box").remove();
-				    		//$(".trans_rect").css("opacity", 0);
-				    		//$(".trans_rect_" + i).css("opacity", 0.2);
-				    		$(".point").hide();
-				    		$(".point_" + i).show();
+				    		//$(".point").hide();
+				    		//$(".point_" + i).show();
 				    	
 							d3.selectAll(".tooltip").remove(); //timestamp is used as id
 							d3.select(which_metric + " svg")
@@ -259,7 +258,8 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 												+ "-" + ('0' + (new Date(d.date).getMonth()+1)).slice(-2)
 												+ "-" + ('0' + new Date(d.date).getDate()).slice(-2);
 										
-										$("#full_date").html(ze_date);
+										//var formatted_date = new Date(d.date).toString('MMMM dd, yyyy');
+										//$("#full_date").html(formatted_date);
 										return (d.perc*100).toFixed(2) + "%";
 									})					
 									.attr("x", function() { return xScale(d.date); })
