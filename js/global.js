@@ -118,7 +118,7 @@ var state = new Object();
 	state['WV'] = "West Virginia";
 	state['WI'] = "Wisconsin";
 	state['WY'] = "Wyoming";
-	state['PA'] = "Puerto Rico";
+	state['PR'] = "Puerto Rico";
 	
 var country = new Object();
 	country['AF'] = "Afghanistan";
@@ -975,6 +975,8 @@ function assignEventListeners() {
 		shift_selected("desktop", "platform");
 		desktop_or_mobile = "ff";
 		drawCharts(desktop_or_mobile + "_dnt_perc_" + date_granularity + ".json");
+		
+		return false;
 	});
 	
 	$("#mobile").on("click", function() {
@@ -982,6 +984,8 @@ function assignEventListeners() {
 		
 		desktop_or_mobile = "fennec";
 		drawCharts(desktop_or_mobile + "_dnt_perc_" + date_granularity + ".json");
+		
+		return false;
 	});
 	
 	$("#dnt_perc_daily").on("click", function() {

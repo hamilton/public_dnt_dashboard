@@ -6,7 +6,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 		x_axis_format = "%b %e, %Y";
 	
 	//we always use the div within the container for placing the svg
-	container += " div";
+	container += " div.chart_content";
 	
 	$(container + " svg").remove();
 	
