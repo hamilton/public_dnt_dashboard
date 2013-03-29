@@ -243,11 +243,11 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							d3.selectAll(".tooltip").remove(); //timestamp is used as id
 							d3.select(which_metric + " svg")
 								.append("svg:rect")
-									.attr("width", 44)
-									.attr("height", 16)
-									.attr("x", xScale(d.date)-22)
+									.attr("width", 60)
+									.attr("height", 26)
+									.attr("x", xScale(d.date)-40)
 									.attr("y", function() {
-										return yScale(d.perc)-24;
+										return yScale(d.perc)-28;
 									})
 									.attr("class", "tooltip_box");
 						
@@ -262,9 +262,9 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 										//$("#full_date").html(formatted_date);
 										return (d.perc*100).toFixed(2) + "%";
 									})					
-									.attr("x", function() { return xScale(d.date); })
+									.attr("x", function() { return xScale(d.date)-10; })
 									.attr("y", function() {
-										return yScale(d.perc)-13;
+										return yScale(d.perc)-9;
 									})
 									.style("cursor", "default")
 									.attr("dy", "0.35m")

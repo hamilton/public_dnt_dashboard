@@ -8,6 +8,11 @@ var LANG,
 	map_or_states = "map",
 	date_granularity = "monthly";
 	
+var ff_country_data,
+	fennec_country_data,
+	ff_state_data,
+	fennec_state_data;
+	
 var yStateCoords = new Object();
 	yStateCoords['AL'] = [-590,-250];
 	yStateCoords['AK'] = [280,-290];
@@ -385,6 +390,8 @@ $(document).ready(function () {
 			populateStatesTable("ff");
 		}, 1);
 		
+		getCountryData();
+		
 		setTimeout(function() {
 			drawMap();
 			drawMapWorld();
@@ -392,6 +399,21 @@ $(document).ready(function () {
 			
 	});
 });
+
+function getCountryData(desktop_or_mobile) {
+	d3.json("data/ff_dnt_perc_monthly_by_country.json", function(ff_country) {
+	d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(fennec_country) {
+	d3.json("data/ff_dnt_perc_monthly_by_state.json", function(ff_state) {
+	d3.json("data/fennec_dnt_perc_monthly_by_state.json", function(fennec_state) {
+		ff_country_data = ff_country;
+		fennec_country_data = fennec_country;
+		ff_state_data = ff_state;
+		fennec_state_data = fennec_state;
+	});
+	});
+	});
+	});
+}
 
 //sort all countries/states by date, ascending
 function sort_data(data) {
@@ -407,7 +429,7 @@ function sort_data(data) {
 		});
 	});
 
-	console.log(data);
+	//console.log(data);
 }
 
 function addLegend(container) {
@@ -475,7 +497,7 @@ function drawMap() {
 	];*/
 
 	d3.json("data/us-states.json", function(json) {
-		console.log(json);
+		//console.log(json);
 		
 		var svg_map = d3.select("#map").append("svg")
 	    .attr("width", 960)
@@ -511,12 +533,30 @@ function drawMap() {
 
 			//no stroke for Alaska or Hawaii
     	    return (d.id == "AK" || d.id == "HI") ? 0 : 1;
-	      });
+	      })
+	      .on("mousemove", function(d) {
+	      	var data_desktop_or_mobile;
+	      	if(desktop_or_mobile3 == "ff") {
+	      		data_desktop_or_mobile = ff_state_data;
+	      	}
+	      	else if(desktop_or_mobile3 == "fennec") {
+	      		data_desktop_or_mobile = fennec_state_data;
+	      	}
+	      	
+	      	var len = data_desktop_or_mobile[(d.id)].length-1;
+	      	var last_monthly = data_desktop_or_mobile[(d.id)][len]
+	      	
+	      	$("#tooltip")
+	      		.show()
+	      		.html(state[d.id] + "<br />" + (last_monthly.perc*100).toFixed(2) + "%")
+	      		.css("left", (d3.event.pageX+35) + "px")
+	      		.css("top", (d3.event.pageY-35) + "px");
+	      });;
 	    
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
 	    	var min_max = minMaxState(data_state);
-	    	console.log(min_max[0], min_max[1]);
+	    	//console.log(min_max[0], min_max[1]);
 	    	
 	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 
@@ -539,12 +579,11 @@ function drawMap() {
 }
 
 function redrawMapWorld() {
-	$("#map_data_world").fadeOut("fast");
 	$("#map_legend_world").delay(1000).fadeIn("fast");
 			
 	d3.json("data/" + desktop_or_mobile4 + "_dnt_perc_monthly_by_country.json", function(data_country) {
 		var min_max = minMaxState(data_country);
-	    console.log(min_max[0], min_max[1]);
+	    //console.log(min_max[0], min_max[1]);
 	    	
 	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 			
@@ -567,7 +606,6 @@ function redrawMapWorld() {
 
 function drawMapWorld() {
 	$("#map_world svg").remove();
-	$("#map_data_world").fadeOut("fast");
 	
 	addLegend("#map_legend_world");
     
@@ -576,7 +614,7 @@ function drawMapWorld() {
 		var w = 980,
 			h = 540;
 		
-		console.log(json);
+		//console.log(json);
 		
 		var svg_map = d3.select("#map_world").append("svg")
 	    .attr("width", w)
@@ -610,11 +648,32 @@ function drawMapWorld() {
 	    .enter().append("path")
     	  .attr("d", path)
     	  .attr("id", function(d) { return "w" + d.id; })
-	      .style("stroke-width", 0.3);
-	    
+	      .style("stroke-width", 0.3)
+	      .on("mousemove", function(d) {
+	      	//console.log(d);
+	      	
+	      	//todo, need to have access to {desktop,mobile} numbers for each country to show on mouseover
+	      	var data_desktop_or_mobile;
+	      	if(desktop_or_mobile4 == "ff") {
+	      		data_desktop_or_mobile = ff_country_data;
+	      	}
+	      	else if(desktop_or_mobile4 == "fennec") {
+	      		data_desktop_or_mobile = fennec_country_data;
+	      	}
+	      	
+	      	var len = data_desktop_or_mobile[(d.id)].length-1;
+	      	var last_monthly = data_desktop_or_mobile[(d.id)][len]
+	      	
+	      	$("#tooltip")
+	      		.show()
+	      		.html(country[d.id] + "<br />" + (last_monthly.perc*100).toFixed(2) + "%")
+	      		.css("left", (d3.event.pageX+35) + "px")
+	      		.css("top", (d3.event.pageY-35) + "px");
+	      });
+	      
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
 	    	var min_max = minMaxState(data_country);
-	    	console.log(min_max[0], min_max[1]);
+	    	//console.log(min_max[0], min_max[1]);
 	    	
 	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 
@@ -624,13 +683,6 @@ function drawMapWorld() {
 				$("#w" + i).css("fill", function(d) {
 					return colorScale(last_monthly.perc);
 				});
-				
-				//populate map_data div
-				var up_or_down = ((mom_growth(data_country, last_monthly) > 0 ))
-					? "<img src='images/up.png' class='up_down' />"
-					: "<img src='images/down.png' class='up_down' />";
-			
-				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
 			});
 		});
 	});		
@@ -805,6 +857,7 @@ function assignEventListeners() {
 	});*/
 	
 	$("#show_map").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(map_or_states == "map")
 			return false;
 			
@@ -816,6 +869,7 @@ function assignEventListeners() {
 	});
 	
 	$("#show_states").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(map_or_states == "states")
 			return false;
 			
@@ -827,33 +881,15 @@ function assignEventListeners() {
 	});
 	
 	$(".region_select").on("click", function(d) {
-		console.log($(this).attr("id"));
+		$("#tooltip").fadeOut();
 		shift_selected4_region_select($(this).attr("id"));
-		switch($(this).attr("id")) {
-			case "the_world":
-				worldmapZoom("the_world");
-				break;
-			case "africa":
-				worldmapZoom("africa");
-				break;
-			case "asia":
-				worldmapZoom("asia");
-				break;
-			case "europe":
-				worldmapZoom("europe");
-				break;
-			case "north_america":
-				worldmapZoom("north_america");
-				break;
-			case "south_america":
-				worldmapZoom("south_america");
-				break;
-		}
+		worldmapZoom($(this).attr("id"));
 		
 		return false;
 	});     
 	
 	$("#desktop4").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(desktop_or_mobile4 == "ff")
 			return false;
 			
@@ -865,6 +901,7 @@ function assignEventListeners() {
 	});      
 	
 	$("#mobile4").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(desktop_or_mobile4 == "fennec")
 			return false;
 			
@@ -877,6 +914,7 @@ function assignEventListeners() {
 	});
 	
 	$("#desktop3").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(desktop_or_mobile3 == "ff")
 			return false;
 			
@@ -892,6 +930,7 @@ function assignEventListeners() {
 	});      
 	
 	$("#mobile3").on("click", function() {
+		$("#tooltip").fadeOut();
 		if(desktop_or_mobile3 == "fennec")
 			return false;
 			
@@ -975,11 +1014,13 @@ function worldmapZoom(region) {
 					case "africa":
 						return "scale(2.3) translate(-330,-160)";
 					case "asia":
-						return "scale(2.2) translate(-490,-150)";
+						return "scale(2.4) translate(-490,-100)";
 					case "europe":
 						return "scale(4.2) translate(-420,-100)";
 					case "north_america":
 						return "scale(2.5) translate(-50,-60)";
+					case "oceania":
+						return "scale(2.5) translate(-590,-200)";
 					case "south_america":
 						return "scale(2.5) translate(-150,-220)";
 				}
@@ -1040,12 +1081,13 @@ function shift_selected4_region_select(option) {
 	$("#asia").html("ASIA");
 	$("#europe").html("EUROPE");
 	$("#south_america").html("SOUTH AMERICA");
+	$("#oceania").html("OCEANIA");
 	$("#north_america").html("NORTH AMERICA");
 		
 	$("#" + option).html("<span class='selected_option'>" + option.replace("_", " ").toUpperCase() + "</span>");
 }
 
-function drawCharts(json) {console.log(json);
+function drawCharts(json) {
 	d3.json("data/annotations.json", function(annotations) {
 	d3.json("data/" + json, function(data) {
 		var format = "%",
