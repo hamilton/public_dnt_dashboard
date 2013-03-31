@@ -841,6 +841,10 @@ function drawStates() {
 }
 
 function assignEventListeners() {
+	$("#page").on("mouseleave", function() {
+		$("#tooltip").fadeOut("fast");
+	});
+	
 	/*$("#map").on("mouseenter", function() {
 		d3.selectAll(".grey path")
 		.transition()
