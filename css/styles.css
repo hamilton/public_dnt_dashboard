@@ -65,7 +65,7 @@ h1 {
 	left:0px;
 	text-align:center;
 	font-family:'Signika';
-	margin-top:10px;
+	margin-top:0;
 }
 
 #title_caption {
@@ -246,7 +246,11 @@ line {
 }
 
 .tickx {
-	display:none;
+	/*display:none;*/
+}
+
+.tickx line {
+	stroke:#c6c6c6;
 }
 
 /*.x g .tick {
@@ -265,11 +269,23 @@ line {
 	fill:#fff;
 	font-size:17px;
 	font-weight:normal;
+	z-index:9999999;
+}
+
+.tooltip_date {
+	font-family:'PT Sans';
+	fill:#fff;
+	font-size:14px;
+	font-weight:normal;
+	z-index:9999999;
 }
 
 .tooltip_box {
 	fill:#3b3b3b;
-	opacity:0.9;
+	opacity:0.8;
+	z-index:9999999;
+	stroke-width:5;
+    stroke-linejoin:round;
 }
 
 img {
@@ -308,7 +324,7 @@ img.label {
 	width:1000px;
 	margin-left:auto;
 	margin-right:auto;
-	padding-top:74px;
+	padding-top:0;
 	margin-bottom:30px;
 }
 
@@ -395,7 +411,7 @@ img.label {
 
 #options3 {
 	position:absolute;
-	width:285px;
+	width:225px;
 	height:22px;
 	z-index:99;
 	margin-left:758px;
@@ -411,7 +427,7 @@ img.label {
 
 #options4 {
 	position:absolute;
-	width:285px;
+	width:115px;
 	height:22px;
 	z-index:999999;
 	margin-left:866px;
@@ -690,6 +706,8 @@ tr {
 	color:white;
 	padding:5px;
 	display:none;
+	z-index:999999;
+	cursor:default;
 }
 
 #copyright {
@@ -705,4 +723,48 @@ tr {
 	color:white;
 	text-decoration:none;
 	border-bottom:1px dotted #fff;
+}
+
+.x_label_year {
+	font-family:'PT Sans';
+	color:#3b3b3b;
+	position:absolute;
+	margin-top:342px;
+	font-size:11px;
+	font-weight:bold;
+}
+
+#download_firefox a, #download_firefox a:link, #download_firefox a:active, #download_firefox a:visited {
+	text-decoration:underline;
+}
+
+#header {
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	margin-bottom:0;
+	height:80px;
+}
+
+
+#download_firefox {
+	font-family:'PT Sans';
+	font-size:13px;
+	height:15px;
+	top:0;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	width:500px;
+	border:1px solid #f098ab;
+	background-color:#f7e0e5;
+	border-radius:10px;
+	color:#3b3b3b;
+	padding:10px;
+	display:none;
+}
+
+.sans {
+	font-family:'PT Sans';
 }

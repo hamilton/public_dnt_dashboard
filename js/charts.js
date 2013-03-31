@@ -1,9 +1,12 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
+	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ 
 	var w = 960,
-		h = 350,
-		xPadding = 22,
+		h = 340,
+		xPadding = 18,
 		yPadding = 30,
-		x_axis_format = "%b %e, %Y";
+		x_axis_format = "%b";
+		//x_axis_format = "%b %e, %Y";
 	
 	//we always use the div within the container for placing the svg
 	container += " div.chart_content";
@@ -15,6 +18,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	
 	//update date formats
 	$.each(data, function(i, value) {
+		data[i].date_raw = value.date;
 		data[i].date = +new Date(value.date);
 	});
 	
@@ -27,7 +31,9 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    yMin = 0,
 	    yMax = d3.max(d3.values(data), function(d) { return d.perc; });
 	
-	yMax += 0.01;
+	//todo kruge
+	yMax += 0.03;
+	xMax += 100000000;
 	
 	var mean = d3.mean(d3.values(data), function(d) { return d.perc; });
 	
@@ -47,7 +53,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         .scale(xScale)
         .orient("bottom")
         .tickFormat(d3.time.format(x_axis_format))
-        .ticks(9);
+        .ticks(15);
         
 	$(".x g text").attr("text-anchor", "left");
    
@@ -56,7 +62,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         .scale(yScale)
         .orient("left")
         .tickFormat(d3.format(format))
-        .ticks(5);
+        .ticks(7);
             
     //draw svg
 	var svg = d3.select(container)
@@ -66,7 +72,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    	    
     //draw extended ticks (horizontal)
     var ticks = svg.selectAll('.ticky')
-    	.data(yScale.ticks(5))
+    	.data(yScale.ticks(7))
     	.enter()
     		.append('svg:g')
     		.attr('transform', function(d) {
@@ -97,23 +103,6 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
     	.attr('x2', yPadding+6)
     	.attr('y1', yPadding-14)
     	.attr('y2', h-xPadding-5);*/
-    
-    //extended ticks (vertical)
-    ticks = svg.selectAll('.tickx')
-    	.data(xScale.ticks(9))
-    	.enter()
-    		.append('svg:g')
-    			.attr('transform', function(d, i) {
-				    return "translate(" + (xScale(d)-26) + ", 0)";
-			    })
-			    .attr('class', 'tickx');
-	
-	//draw y ticks
-    ticks.append('svg:line')
-    	.attr('y1', h-xPadding)
-    	.attr('y2', xPadding)
-    	.attr('x1', 0)
-    	.attr('x2', 0);
 
     //y labels
     /*ticks
@@ -140,6 +129,24 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         		.attr("d", area(data))
 	        	.style("fill", "#e8e8e8")
 	    	    .style("fill-opacity", 1);
+	    	    
+	//extended ticks (vertical)
+    ticks = svg.selectAll('.tickx')
+    	.data(xScale.ticks(21))
+    	.enter()
+    		.append('svg:g')
+    			.attr('transform', function(d, i) {
+				    return "translate(" + (xScale(d)) + ", 0)";
+			    })
+			    .attr('class', 'tickx');
+	
+	//draw y ticks
+    ticks.append('svg:line')
+    	//.attr('y1', h-xPadding)
+    	.attr('y1', h-xPadding)
+    	.attr('y2', h-xPadding-7)
+    	.attr('x1', 0)
+    	.attr('x2', 0);
 	    	    
 	//draw the line		
 	var line = d3.svg.line()
@@ -197,9 +204,11 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
    			})
    			.attr("r", 4)
    			.each(function(d, i) {
-   					var ze_date = new Date(d.date).getFullYear() 
-							+ "-" + ('0' + (new Date(d.date).getMonth()+1)).slice(-2)
-							+ "-" + ('0' + new Date(d.date).getDate()).slice(-2);
+   					var date = new Date(d.date*1000);
+   				
+   					var ze_date = date.getFullYear() 
+							+ "-" + ('0' + (date.getMonth()+1)).slice(-2)
+							+ "-" + ('0' + date.getDate()).slice(-2);
 
    					if("undefined" != typeof annotations[ze_date]) {
 						//add a vertical line at that point
@@ -227,60 +236,35 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 			    		.attr('x', function() {
 			    			//TODO
 			    			//subtract from width/2 to shift rect to middle of point rather than from left edge of point
-			    			return xScale(d.date);
+			    			return xScale(d.date) - (((w-xPadding)/data.length)/2);
 			    		})
     					.attr('y', 0)
 	    				.attr("class", function() { return "trans_rect_" + i + " trans_rect"; })
 	    				.attr('width', function() {
-	    					return (w-xPadding)/data.length;
+	    					return ((w-xPadding)/data.length); //place transp rect in middle
 			    		})
 				    	.attr('height', h-yPadding+2) //height of transparent bar
 				    	.on('mouseover.tooltip', function(d_local) {
 				    		d3.select(".tooltip_box").remove();
 				    		//$(".point").hide();
 				    		//$(".point_" + i).show();
+				    		
+				    		//todo
+				    		//$(".tickx line").attr("y2", 0);
 				    	
-							d3.selectAll(".tooltip").remove(); //timestamp is used as id
-							d3.select(which_metric + " svg")
-								.append("svg:rect")
-									.attr("width", 60)
-									.attr("height", 26)
-									.attr("x", xScale(d.date)-40)
-									.attr("y", function() {
-										return yScale(d.perc)-28;
-									})
-									.attr("class", "tooltip_box");
-						
-							d3.select(which_metric + " svg")
-								.append("text")
-									.text(function() {
-										var ze_date = new Date(d.date).getFullYear() 
-												+ "-" + ('0' + (new Date(d.date).getMonth()+1)).slice(-2)
-												+ "-" + ('0' + new Date(d.date).getDate()).slice(-2);
-										
-										//var formatted_date = new Date(d.date).toString('MMMM dd, yyyy');
-										//$("#full_date").html(formatted_date);
-										return (d.perc*100).toFixed(2) + "%";
-									})					
-									.attr("x", function() { return xScale(d.date)-10; })
-									.attr("y", function() {
-										return yScale(d.perc)-9;
-									})
-									.style("cursor", "default")
-									.attr("dy", "0.35m")
-									.attr("text-anchor", "middle")
-									.attr("class", "tooltip");
-								})
-								/*.on('mouseout.tooltip', function() {
-									d3.select(".tooltip_box").remove();
-									d3.select(".tooltip")
-										.transition()
-										.duration(200)
-										.style("opacity", 0)
-										.attr("transform", "translate(0,-10)")
-										.remove();
-								});*/
+							d3.selectAll(".tooltip").remove();
+							d3.selectAll(".tooltip_date").remove();
+							
+							var formatted_date = Date.parse(d.date_raw).toString('MMM yyyy');
+							
+							$("#tooltip")
+	      						.show()
+					      		.html((d.perc*100).toFixed(2) + "%<br /><span style='font-size:13px'>" + formatted_date + "</span>")
+					      		.css("left", (d3.event.pageX-40) + "px")
+					      		.css("top", yScale(d.perc)+110 + "px")
+								
 				});
+			});
 }
 
 

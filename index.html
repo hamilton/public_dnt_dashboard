@@ -45,11 +45,14 @@
 	<body>
 		<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 		<img src="images/fxlogo_top.png" id="top_logo" />
+		
+		<div id="header">
+			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
+		</div>
 			
 		<div id="page">
-		
+					
 			<h1 class="shadow">THE STATE OF DO NOT TRACK IN FIREFOX</h1>
-			
 			<div id="full_date"></div>
 			
 			<div id="trend">
@@ -57,6 +60,9 @@
 					<a href="#" id="desktop"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile">MOBILE</a>
 				</div>
 				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-10px;margin-top:20px" />
+				<div class="x_label_year" style="margin-left:40px">2011</div>
+				<div class="x_label_year" style="margin-left:344px">2012</div>
+				<div class="x_label_year" style="margin-left:863px">2013</div>
 				<div class="chart_content"></div>
 			</div>
 			
@@ -184,7 +190,7 @@ the signal is expressed via HTTP requests.</p>
 			
 			<div id="tooltip"></div>
 			
-			<div class="copy hightop centered_copy">
+			<div class="copy hightop centered_copy sans">
 			<span style="font-weight:bold;letter-spacing:2px">FURTHER RESOURCES</span><br />
 			<a href="http://www.w3.org/2011/tracking-protection/">W3C Tracking Protection Working Group</a><br />
 			<a href="http://www.mozilla.org/en-US/dnt/">Mozilla's Do Not Track FAQ</a><br />

@@ -361,7 +361,7 @@ var country = new Object();
 	country['UZ'] = "Uzbekistan";
 	country['VU'] = "Vanuatu";
 	country['VE'] = "Venezuela";
-	country['VN'] = "Viet Nam";
+	country['VN'] = "Vietnam";
 	country['VG'] = "Virgin Islands; British";
 	country['VI'] = "Virgin Islands; U.S.";
 	country['WF'] = "Wallis and Futuna";
@@ -372,6 +372,10 @@ var country = new Object();
 	
 
 $(document).ready(function () {	
+	if(!$.browser.mozilla) {
+		$("#download_firefox").show();
+	}
+
 	//provide lang literals globally
 	d3.json("lang/en_US.json", function(data) {
 		LANG = data;
@@ -856,6 +860,12 @@ function assignEventListeners() {
 		}, 800);
 	});*/
 	
+	$("#dismiss").on("click", function() {
+		$("#download_firefox").fadeOut("fast");
+		
+		return false;
+	});
+	
 	$("#show_map").on("click", function() {
 		$("#tooltip").fadeOut();
 		if(map_or_states == "map")
@@ -972,6 +982,7 @@ function assignEventListeners() {
 	});
 	
 	$("#desktop").on("click", function() {
+		$("#tooltip").fadeOut();
 		shift_selected("desktop", "platform");
 		desktop_or_mobile = "ff";
 		drawCharts(desktop_or_mobile + "_dnt_perc_" + date_granularity + ".json");
@@ -980,12 +991,17 @@ function assignEventListeners() {
 	});
 	
 	$("#mobile").on("click", function() {
+		$("#tooltip").fadeOut();
 		shift_selected("mobile", "platform");
 		
 		desktop_or_mobile = "fennec";
 		drawCharts(desktop_or_mobile + "_dnt_perc_" + date_granularity + ".json");
 		
 		return false;
+	});
+	
+	$("#tooltip").on("click", function() {
+		$(this).fadeOut();
 	});
 	
 	$("#dnt_perc_daily").on("click", function() {
@@ -1018,7 +1034,7 @@ function worldmapZoom(region) {
 					case "africa":
 						return "scale(2.3) translate(-330,-160)";
 					case "asia":
-						return "scale(2.4) translate(-490,-100)";
+						return "scale(2.7) translate(-530,-140)";
 					case "europe":
 						return "scale(4.2) translate(-420,-100)";
 					case "north_america":

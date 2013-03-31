@@ -1,3 +1,5 @@
 
 .DS_Store
 d3/*
+data/deprecated
+data/deprecated/fennec_dnt_perc_daily.json
