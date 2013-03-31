@@ -77,7 +77,8 @@ h1 {
 	letter-spacing:-1px;
 }
 
-h2 {
+#map h2,
+#map_world h2 {
 	font-family: 'PT Sans';
 	font-weight:400;
 	font-size:26px;
