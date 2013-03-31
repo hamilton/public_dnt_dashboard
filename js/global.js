@@ -389,12 +389,12 @@ $(document).ready(function () {
 		$("#ranked_table_countries").tablesorter();
 		$("#ranked_table_states").tablesorter();
 			
-		setTimeout(function() {
+		/*setTimeout(function() {
 			populateCountriesTable("ff");
 			populateStatesTable("ff");
-		}, 1);
+		}, 1);*/
 		
-		getCountryData();
+		getCountryAndStateData();
 		
 		setTimeout(function() {
 			drawMap();
@@ -404,7 +404,7 @@ $(document).ready(function () {
 	});
 });
 
-function getCountryData(desktop_or_mobile) {
+function getCountryAndStateData(desktop_or_mobile) {
 	d3.json("data/ff_dnt_perc_monthly_by_country.json", function(ff_country) {
 	d3.json("data/fennec_dnt_perc_monthly_by_country.json", function(fennec_country) {
 	d3.json("data/ff_dnt_perc_monthly_by_state.json", function(ff_state) {
@@ -466,7 +466,7 @@ function redrawMap() {
 			
 	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
 		var min_max = minMaxState(data_state);
-	    console.log(min_max[0], min_max[1]);
+	    //console.log(min_max[0], min_max[1]);
 	    	
 	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
 			
@@ -518,12 +518,12 @@ function drawMap() {
     	  .attr("d", path);
 
 	  // A white overlay to hide interior black strokes.
-	  svg_map.append("g")
+	  /*svg_map.append("g")
     	  .attr("class", "white")
 	    .selectAll("path")
     	  .data(json.features)
 	    .enter().append("path")
-    	  .attr("d", path);
+    	  .attr("d", path);*/
 
 	  svg_map.append("g")
     	  .attr("class", "grey")
@@ -638,12 +638,12 @@ function drawMapWorld() {
             .attr("height", h);
 
 	  // A white overlay to hide interior black strokes.
-	  svg_map.append("g")
+	  /*svg_map.append("g")
     	  .attr("class", "white")
 	    .selectAll("path")
     	  .data(json.features)
 	    .enter().append("path")
-    	  .attr("d", path);
+    	  .attr("d", path);*/
 
 	  svg_map.append("g")
     	  .attr("class", "grey")
@@ -656,7 +656,6 @@ function drawMapWorld() {
 	      .on("mousemove", function(d) {
 	      	//console.log(d);
 	      	
-	      	//todo, need to have access to {desktop,mobile} numbers for each country to show on mouseover
 	      	var data_desktop_or_mobile;
 	      	if(desktop_or_mobile4 == "ff") {
 	      		data_desktop_or_mobile = ff_country_data;
@@ -737,7 +736,7 @@ function resortStates() {
 	//}
 }
 
-function populateCountriesTable(desktop_or_mobile) {
+/*function populateCountriesTable(desktop_or_mobile) {
 	var tbody = "";
 
 	d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
@@ -768,7 +767,7 @@ function populateCountriesTable(desktop_or_mobile) {
 		//	drawSparkLine(data_country, "#spark_country_" + i);
 		//});
 	});
-}
+}*/
 
 function populateStatesTable(desktop_or_mobile) {
 	var tbody = "";
@@ -844,25 +843,6 @@ function assignEventListeners() {
 	$("#page").on("mouseleave", function() {
 		$("#tooltip").fadeOut("fast");
 	});
-	
-	/*$("#map").on("mouseenter", function() {
-		d3.selectAll(".grey path")
-		.transition()
-		  	.duration(1000)
-		  	//.style("fill", "#e33258")
-		  	.style("fill", "#f6f6f6")
-		  	//.style("stroke-width", 0)
-			.attr("transform", function(d, i) {
-				var state_id = d.id;
-				return "scale(0.4) translate(" + yStateCoords[state_id][0] + ", " + yStateCoords[state_id][1] + ")";
-			})
-			
-		$("#map_legend").fadeOut("slow");
-			
-		setTimeout(function() {
-			$("#map_data").fadeIn("slow");
-		}, 800);
-	});*/
 	
 	$("#dismiss").on("click", function() {
 		$("#download_firefox").fadeOut("fast");
@@ -959,7 +939,7 @@ function assignEventListeners() {
 		return false;
 	});
 	
-	$("#desktop2").on("click", function() {
+	/*$("#desktop2").on("click", function() {
 		if(desktop_or_mobile2 == "ff")
 			return false;
 			
@@ -983,7 +963,7 @@ function assignEventListeners() {
 		populateStatesTable("fennec");
 		
 		return false;
-	});
+	});*/
 	
 	$("#desktop").on("click", function() {
 		$("#tooltip").fadeOut();

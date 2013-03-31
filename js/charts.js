@@ -1,6 +1,4 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
-	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- 
 	var w = 960,
 		h = 340,
 		xPadding = 18,

@@ -357,6 +357,9 @@ img.label {
 	height:600px;
 	padding:10px;
 	background-color:#ffffff;
+	background-image:url(../images/map_bg.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
 	border:1px solid #cccccc;
 	overflow:hidden;
 }
