@@ -465,7 +465,7 @@ function redrawMap() {
 			})
 			
 	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
-		var min_max = minMaxState(data_state);
+		var min_max = minMaxStateOrCountry(data_state);
 	    //console.log(min_max[0], min_max[1]);
 	    	
 	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
@@ -474,7 +474,7 @@ function redrawMap() {
 			var last_monthly = data_state[data_state.length-1];
 
 			$("#" + i).css("fill", function(d) {
-				return colorScale(last_monthly.perc);
+				return colorScale(last_monthly.percentage);
 			});
 				
 			//populate map_data div
@@ -482,7 +482,7 @@ function redrawMap() {
 				? "<img src='images/up.png' class='up_down' />"
 				: "<img src='images/down.png' class='up_down' />";
 			
-			$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+			$("#" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
 		});
 	});
 }
@@ -536,7 +536,7 @@ function drawMap() {
     	    //return 1 / Math.sqrt(data[+d.id] * 5 || 1);
 
 			//no stroke for Alaska or Hawaii
-    	    return (d.id == "AK" || d.id == "HI") ? 0 : 1;
+    	    //return (d.id == "AK" || d.id == "HI") ? 0 : 1;
 	      })
 	      .on("mousemove", function(d) {
 	      	var data_desktop_or_mobile;
@@ -552,14 +552,14 @@ function drawMap() {
 	      	
 	      	$("#tooltip")
 	      		.show()
-	      		.html(state[d.id] + "<br />" + (last_monthly.perc*100).toFixed(2) + "%")
+	      		.html(state[d.id] + "<br />" + (last_monthly.percentage*100).toFixed(2) + "%")
 	      		.css("left", (d3.event.pageX+35) + "px")
 	      		.css("top", (d3.event.pageY-35) + "px");
 	      });;
 	    
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
-	    	var min_max = minMaxState(data_state);
+	    	var min_max = minMaxStateOrCountry(data_state);
 	    	//console.log(min_max[0], min_max[1]);
 	    	
 	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
@@ -568,7 +568,7 @@ function drawMap() {
 				var last_monthly = data_state[data_state.length-1];
 				
 				$("#" + i).css("fill", function(d) {
-					return colorScale(last_monthly.perc);
+					return colorScale(last_monthly.percentage);
 				});
 				
 				//populate map_data div
@@ -576,7 +576,7 @@ function drawMap() {
 					? "<img src='images/up.png' class='up_down' />"
 					: "<img src='images/down.png' class='up_down' />";
 			
-				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+				$("#" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
 			});
 		});
 	});
@@ -586,7 +586,7 @@ function redrawMapWorld() {
 	$("#map_legend_world").delay(1000).fadeIn("fast");
 			
 	d3.json("data/" + desktop_or_mobile4 + "_dnt_perc_monthly_by_country.json", function(data_country) {
-		var min_max = minMaxState(data_country);
+		var min_max = minMaxStateOrCountry(data_country);
 	    //console.log(min_max[0], min_max[1]);
 	    	
 	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
@@ -595,7 +595,7 @@ function redrawMapWorld() {
 			var last_monthly = data_country[data_country.length-1];
 
 			$("#w" + i).css("fill", function(d) {
-				return colorScale(last_monthly.perc);
+				return colorScale(last_monthly.percentage);
 			});
 				
 			//populate map_data div
@@ -603,7 +603,7 @@ function redrawMapWorld() {
 				? "<img src='images/up.png' class='up_down' />"
 				: "<img src='images/down.png' class='up_down' />";
 			
-			$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+			$("#" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
 		});
 	});
 }
@@ -669,13 +669,13 @@ function drawMapWorld() {
 	      	
 	      	$("#tooltip")
 	      		.show()
-	      		.html(country[d.id] + "<br />" + (last_monthly.perc*100).toFixed(2) + "%")
+	      		.html(country[d.id] + "<br />" + (last_monthly.percentage*100).toFixed(2) + "%")
 	      		.css("left", (d3.event.pageX+35) + "px")
 	      		.css("top", (d3.event.pageY-35) + "px");
 	      });
 	      
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_country.json", function(data_country) {
-	    	var min_max = minMaxState(data_country);
+	    	var min_max = minMaxStateOrCountry(data_country);
 	    	//console.log(min_max[0], min_max[1]);
 	    	
 	    	var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#e0161e", "steelblue"]);
@@ -684,19 +684,19 @@ function drawMapWorld() {
 				var last_monthly = data_country[data_country.length-1];
 				
 				$("#w" + i).css("fill", function(d) {
-					return colorScale(last_monthly.perc);
+					return colorScale(last_monthly.percentage);
 				});
 			});
 		});
 	});		
 }
 
-function minMaxState(data) {
+function minMaxStateOrCountry(data) {
 	var min = -1,
    		max = -1;
    		
-   	$.each(data, function(i, data_state) {
-		var last_monthly = data_state[data_state.length-1].perc;
+   	$.each(data, function(i, data) {
+		var last_monthly = data[data.length-1].percentage;
 				
 		//check min/max
 		if(last_monthly < min || min == -1) min = last_monthly;
@@ -748,7 +748,7 @@ function resortStates() {
 			var last_monthly = data_country[data_country.length-1];
 			//console.log(country[i]);
 			tbody += "<tr><td style='width:50%'>" + country[i] + "</td>"
-					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
+					+ "<td style='width:35%'>" + (last_monthly.percentage*100).toFixed(2) + "%</td>"
 					+ "<td style='width:15%'>" + (yoy_growth(data_country, last_monthly)*100).toFixed(2) + "%</td>"
 					+ "</tr>";
 		});
@@ -776,7 +776,7 @@ function populateStatesTable(desktop_or_mobile) {
 			var last_monthly = data_state[data_state.length-1];
 
 			tbody += "<tr><td style='width:50%'>" + state[i] + "</td>" 
-					+ "<td style='width:35%'>" + (last_monthly.perc*100).toFixed(2) + "%</td>"
+					+ "<td style='width:35%'>" + (last_monthly.percentage*100).toFixed(2) + "%</td>"
 					+ "<td style='width:15%'>" + (yoy_growth(data_state, last_monthly)*100).toFixed(2) + "%</td>"
 					//+ "</td><td style='width:150px' id='spark_state_" + i + "'></td>"
 					+ "</tr>";
@@ -809,7 +809,7 @@ function redrawStates() {
 					? "<img src='images/up.png' class='up_down' />"
 					: "<img src='images/down.png' class='up_down' />";
 			
-				$("#" + i + "_box div").html((last_monthly.perc*100).toFixed(0) + "%" + up_or_down);
+				$("#" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
 			});
 	});
 	
@@ -840,6 +840,13 @@ function drawStates() {
 }
 
 function assignEventListeners() {
+	$("#tabzilla").toggle(function() {
+		$("#dnt_status").hide();
+	},
+	function() {
+		$("#dnt_status").delay(500).fadeIn("fast");
+	});
+	
 	$("#page").on("mouseleave", function() {
 		$("#tooltip").fadeOut("fast");
 	});
@@ -1099,8 +1106,8 @@ function drawCharts(json) {
 			custom_units = "",
 			splice_from = 0,
 			show_confidence = false;
-				
-			draw(data, "#trend", format, humanify_numbers, custom_units, splice_from, annotations, show_confidence);
+
+			draw(data.GLOBAL, "#trend", format, humanify_numbers, custom_units, splice_from, annotations, show_confidence);
 	});
 	});
 }

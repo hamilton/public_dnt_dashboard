@@ -757,16 +757,17 @@ tr {
 	font-family:'PT Sans';
 	font-size:13px;
 	height:15px;
-	top:0;
+	margin-top:-26px;
 	margin-left:auto;
 	margin-right:auto;
 	text-align:center;
 	width:500px;
 	border:1px solid #f098ab;
 	background-color:#f7e0e5;
-	border-radius:10px;
+	border-radius:40px;
 	color:#3b3b3b;
-	padding:10px;
+	padding-top:20px;
+	padding-bottom:8px;
 	display:none;
 }
 
@@ -791,4 +792,28 @@ tr {
 	width:150px;
 	z-index:2;
 	position:relative
+}
+
+#dnt_status {
+	position:absolute;
+	z-index:999999;
+	font-family:'PT Sans';
+	font-size:13px;
+	height:15px;
+	top:40px;
+	right:0;
+	text-align:center;
+	margin-right:90px;
+	width:150px;
+	
+	color:#3b3b3b;
+	padding:10px;
+}
+
+#dnt_status .on {
+	color:#42a52b;
+}
+
+#dnt_status .off {
+	color:red;
 }

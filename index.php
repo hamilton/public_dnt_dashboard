@@ -1,3 +1,14 @@
+<?php
+$dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
+//$dnt_val = substr($_SERVER['HTTP_DNT'], 0, 1);
+//$dnt_val = 0 means they want to be tracked, $dntval = 1 means they don't
+
+// Force no-caching
+header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+header("Pragma: no-cache");
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,7 +54,7 @@
 </script>
 	</head>
 	<body>
-		<script type="text/javascript">
+		<!--<script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-38360687-1']);
@@ -55,7 +66,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script>
+</script>-->
 
 		<div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -71,6 +82,12 @@
 		
 		<div id="header">
 			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Different by design &#8211; download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
+			<div id="dnt_status">
+			<?php
+				if($dnt_enabled) echo "<span class='on'>YOUR DNT STATUS IS ON</span>";
+				else echo "<span class='off'>YOUR DNT STATUS IS OFF</span>";
+			?>
+			</div>
 		</div>
 			
 		<div id="page">
@@ -232,7 +249,7 @@ the signal is expressed via HTTP requests.</p>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 				</div>
 				
-				<div id="fb_block" class="fb-like" data-href="https://metrics.mozilla.com/dnt" data-send="false" data-layout="box_count" data-width="150" data-show-faces="false" data-font="arial"></div>
+				<div id="fb_block" class="fb-like" data-href="https://metrics.mozilla.com/dnt-down" data-send="false" data-layout="box_count" data-width="150" data-show-faces="false" data-font="arial"></div>
 				
 				
 				<div id="copyright">

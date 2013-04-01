@@ -25,15 +25,15 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	//    xMax = Object.keys(data).length,
 	var xMin = d3.min(d3.values(data), function(d) { return d.date; }),
 	    xMax = d3.max(d3.values(data), function(d) { return d.date; }),
-	    //yMin = d3.min(d3.values(data), function(d) { return d.perc; }),
+	    //yMin = d3.min(d3.values(data), function(d) { return d.percentage; }),
 	    yMin = 0,
-	    yMax = d3.max(d3.values(data), function(d) { return d.perc; });
+	    yMax = d3.max(d3.values(data), function(d) { return d.percentage; });
 	
 	//todo kruge
 	yMax += 0.03;
 	xMax += 100000000;
 	
-	var mean = d3.mean(d3.values(data), function(d) { return d.perc; });
+	var mean = d3.mean(d3.values(data), function(d) { return d.percentage; });
 	
    	/*var xScale = d3.scale.ordinal()
         .domain(d3.keys(data))
@@ -117,7 +117,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 		    .interpolate("basis")
     		.x(function(d) { return xScale(d.date); })
 		    .y0(function(d) { return yScale(0); })
-		    .y1(function(d) { return yScale(d.perc); });
+		    .y1(function(d) { return yScale(d.percentage); });
 	    
 		svg.selectAll(".area")
     	    .data(d3.values(data))
@@ -151,7 +151,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 		.interpolate("basis")
 		.x(function(d,i) { return xScale(d.value.date); })
 		.y(function(d) {
-			 return yScale(d.value.perc);
+			 return yScale(d.value.percentage);
 		});
 
 	var paths = svg.append("svg:path")	
@@ -198,7 +198,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         		return xScale(d.date);
    			})
    			.attr("cy", function(d) { 
-   				return yScale(d.perc);
+   				return yScale(d.percentage);
    			})
    			.attr("r", 4)
    			.each(function(d, i) {
@@ -257,9 +257,9 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							
 							$("#tooltip")
 	      						.show()
-					      		.html((d.perc*100).toFixed(2) + "%<br /><span style='font-size:13px'>" + formatted_date + "</span>")
+					      		.html((d.percentage*100).toFixed(2) + "%<br /><span style='font-size:13px'>" + formatted_date + "</span>")
 					      		.css("left", (d3.event.pageX-40) + "px")
-					      		.css("top", yScale(d.perc)+110 + "px")
+					      		.css("top", yScale(d.percentage)+110 + "px")
 								
 				});
 			});
@@ -287,8 +287,8 @@ function drawSparkLine(data, container) {
     //prepare our scales and axes
 	var xMin = d3.min(d3.values(data), function(d) { return d.date; }),
 	    xMax = d3.max(d3.values(data), function(d) { return d.date; }),
-	    yMin = d3.min(d3.values(data), function(d) { return d.perc; }),
-	    yMax = d3.max(d3.values(data), function(d) { return d.perc; });
+	    yMin = d3.min(d3.values(data), function(d) { return d.percentage; }),
+	    yMax = d3.max(d3.values(data), function(d) { return d.percentage; });
 	    	
 	//add some padding
 	yMax+= 0.1;
@@ -337,7 +337,7 @@ function drawSparkLine(data, container) {
 		.interpolate("basis")
 		.x(function(d,i) { return xScale(d.value.date); })
 		.y(function(d) {
-			 return yScale(d.value.perc);
+			 return yScale(d.value.percentage);
 		});
 
 	var paths = svg.append("svg:path")
@@ -357,7 +357,7 @@ function drawSparkLine(data, container) {
         		return xScale(d.date);
    			})
    			.attr("cy", function(d) { 
-   				return yScale(d.perc);
+   				return yScale(d.percentage);
    			})
    			.attr("r", 0);
 }
