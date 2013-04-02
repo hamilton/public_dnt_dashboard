@@ -840,6 +840,30 @@ function drawStates() {
 }
 
 function assignEventListeners() {
+	$("#about").on("mouseenter", function() {
+		$("#about_pane").show();
+		
+		return false;
+	});
+	
+	$("#about_pane").on("mouseenter", function() {
+		$("#about_pane").show();
+		
+		return false;
+	});
+	
+	$("#about").on("mouseleave", function() {
+		$("#about_pane").hide();
+		
+		return false;
+	});
+	
+	$("#about_pane").on("mouseleave", function() {
+		$("#about_pane").hide();
+		
+		return false;
+	});
+	
 	$("#tabzilla").toggle(function() {
 		$("#dnt_status").hide();
 	},

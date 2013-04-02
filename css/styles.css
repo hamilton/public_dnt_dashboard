@@ -710,6 +710,7 @@ tr {
 	font-size:13px;
 	line-height:1.3;
 	color:#838383;
+	font-weight:300;
 }
 
 #tooltip {
@@ -782,7 +783,7 @@ tr {
 }
 
 .sans {
-	font-family:'PT Sans';
+	font-family:'Open Sans';
 }
 
 #twitter_block {
@@ -864,3 +865,26 @@ tr {
 #colophon{color:#666;padding:40px 0;font-size:.875em;line-height:1.285;background:#e33258;width:100%;margin:1em 0 0}#colophon .row{width:1020px;margin:0 auto;zoom:1;zoom:1}#colophon .row:after{display:block;visibility:hidden;height:0;clear:both;content:".
 "}#colophon .row:after{display:block;visibility:hidden;height:0;clear:both;content:".
 "}
+
+#about_pane {
+	background-image:url(../images/bubble.png);
+	background-repeat:no-repeat;
+	width:305px;
+	height:142px;
+	color:#fff;
+	/*background-color:#e33258;
+	border-radius:10px;*/
+	padding:18px;
+	position:absolute;
+	right:250px;
+	margin-top:-165px;
+	display:none;
+}
+
+#about_pane div img {
+	padding:0;
+	margin:0;
+	margin-right:10px;
+	border:0;
+	float:right;
+}
