@@ -107,9 +107,9 @@ header("Pragma: no-cache");
 			</div>
 			
 			<div class="copy">
-			<p><strong>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a
+			<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a
 Do Not Track feature that enables users to express a preference not to be
-tracked online.</strong> When the feature is turned on in one of our products, an
+tracked online. When the feature is turned on in one of our products, an
 automated signal is sent to all the sites and services you interact with,
 including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry.
 However, it is supported by all major browsers and a few leading companies have
@@ -117,15 +117,8 @@ started respecting the signal.</p>
 
 <p>These graphs are intended to provide a view into how many Firefox users
 are seeking out and enabling Do Not Track in their desktop and mobile versions
-of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.</p>
+of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.  We update this page once a month.</p>
 
-<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both
-Firefox and Firefox for Android automatically download the latest list of
-insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests
-made by the browser, we can count the number of times we see the signal. No
-other information is logged on our servers. Anyone with a website and access to
-a web server can start counting how many users are sending DNT:1, which is how
-the signal is expressed via HTTP requests.</p>
 			</div>
 			
 			<div style="clear:both"></div>
@@ -227,22 +220,36 @@ the signal is expressed via HTTP requests.</p>
 			</div>
 			<div id="map_legend_world"></div>
 			
+			<div class="copy">
+				<h3>Notes</h3>
+					<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both
+Firefox and Firefox for Android automatically download the latest list of
+insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests
+made by the browser, we can count the number of times we see the signal. No
+other information is logged on our servers. Anyone with a website and access to
+a web server can start counting how many users are sending DNT:1, which is how
+the signal is expressed via HTTP requests.</p>
+					<p>Part of the data in November and December 2012 is missing.  The monthly averages used for those two months are based on the days for which data is available.  The way we determine geographic data is from IP addresses at the time when an HTTP request is sent.  IP addresses are not logged in the aggregate data set used to create the above graphs.</p>
+			</div>
+			
 			<div id="tooltip"></div>
 			
-			<div class="copy hightop centered_copy sans">
-			<span style="font-weight:bold;letter-spacing:2px">FURTHER RESOURCES</span><br />
-			<a href="http://www.w3.org/2011/tracking-protection/">W3C Tracking Protection Working Group</a><br />
-			<a href="http://www.mozilla.org/en-US/dnt/">Mozilla's Do Not Track FAQ</a><br />
-			<a href="http://donottrack.us/">Stanford University's Do Not Track Resource</a><br />
-			<a href="https://blog.mozilla.org/privacy/">Mozilla Privacy Blog</a>
+			<div class="copy hightop">
+			<h3>Further resources</h3>
+			<ul>
+				<li><a href="http://www.w3.org/2011/tracking-protection/">W3C Tracking Protection Working Group</a></li>
+				<li><a href="http://www.mozilla.org/en-US/dnt/">Mozilla's Do Not Track FAQ</a></li>
+				<li><a href="http://donottrack.us/">Stanford University's Do Not Track Resource</a></li>
+				<li><a href="https://blog.mozilla.org/privacy/">Mozilla Privacy Blog</a></li>
+			</ul>
 			</div>
 			
-			<div class="copy hightop tinytext">
-				Note that part of the data in November and December 2012 is missing.  The monthly averages used for those two months are based on the days for which data is available.  The way we determine geographic data is from IP addresses at the time when an HTTP request is sent.  IP addresses are not logged in the aggregate data set used to create the above graphs.
-			</div>
+			<!--<div class="copy tinytext sans">
+				Developed by the Metrics Team at Mozilla.
+			</div>-->
 		</div> <!-- end page -->
 
-		<div id="wide_pane">		
+		<!--<div id="wide_pane">		
 			<div id="metrics_logo_container">
 				<div id="twitter_block">
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://metrics.mozilla.com/dnt-down" data-count="vertical">Tweet</a>
@@ -263,7 +270,37 @@ the signal is expressed via HTTP requests.</p>
 					</a>
 				</div>
 			</div>
-		</div>
+		</div>-->
+		
+		<footer id="colophon">
+      <div class="row">
+
+          <div class="footer-logo">
+              <a href="http://mozilla.org/en-US/"><img src="images/logomoz.png" alt="mozilla"></a>
+          </div>
+
+          <div class="footer-license">
+              <p>
+                Portions of this content are<br />&copy;1998–2013 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.              </p>
+              <p>
+                <a href="/en-US/contribute/page/">Contribute to this page</a>
+              </p>
+          </div>
+          <ul class="footer-nav">
+            <li><a href="/en-US/about/contact.html#map-mountain_view">Contact Us</a></li>
+            <li><a href="/en-US/privacy/">Privacy Policy</a></li>
+            <li><a href="/en-US/about/legal.html">Legal Notices</a></li>
+            <li><a href="/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
+          </ul>
+
+                    <ul class="footer-nav">
+            <li><a href="http://twitter.com/firefox">Twitter</a></li>
+            <li><a href="http://facebook.com/Firefox">Facebook</a></li>
+            <li><a href="https://affiliates.mozilla.org/">Firefox Affiliates</a></li>
+          </ul>
+          
+      </div>
+      </footer>
 		
 		<script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 	</body>
