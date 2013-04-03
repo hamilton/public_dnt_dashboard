@@ -245,7 +245,7 @@ the signal is expressed via HTTP requests.</p>
 			</div>
 			
 			<div id="about_pane" class="sans tinytext">
-				The Metrics team is a multidisciplinary team that uses historical data to inform decision-making.<br />
+				The Metrics team is a multidisciplinary team that uses historical data to drive decision-making.<br />
 				
 				<div style="font-weight:400;letter-spacing:1px;padding-top:12px">DEVELOPED BY</div>
 				<div style="padding-top:2px">Ali Almossawi <a href="https://twitter.com/alialmossawi"><img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
