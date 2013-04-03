@@ -8,30 +8,43 @@ header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
 header("Pragma: no-cache");
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<!-- 
-			Metrics Team, Mozilla, January 2013 
+			Metrics Team, Mozilla, April 2013 
 			#metrics (irc.mozilla.org)
 			Ali Almossawi, Hamilton Ulmer and Anurag Phadke
+			https://metrics.mozilla.com/preview
+			http://mozilla.org/en-US/dnt
 		-->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<title>Do Not Track, Firefox</title>
+		
+		<meta property="og:title" content="The State of Do Not Track in Firefox" /> 
+		<meta property="og:description" content="This visualization shows how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS. We update this page once a month." /> 
+		<meta property="og:image" content="http://mozilla.org/en-US/dnt/images/fx-logo.png" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://mozilla.org/en-US/dnt" />
+		<meta property="og:site_name" content="The State of Do Not Track in Firefox" />
+		
+		<title>Do Not Track in Firefox</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
 		
    		<script type="text/javascript" src="js/d3.v2.min.js"></script>
 
    		<script type="text/javascript" src="js/date.js"></script>	
-		<script type="text/javascript" src="js/x_over_x.js"></script>
-   		<script type="text/javascript" src="js/global.js"></script>
-   		<script type="text/javascript" src="js/charts.js"></script>
+		<script type="text/javascript" src="js/x_over_x.min.js"></script>
+   		<script type="text/javascript" src="js/global.min.js"></script>
+   		<script type="text/javascript" src="js/charts.min.js"></script>
    		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 
-		<link rel="stylesheet" href="css/styles.css" type="text/css" />
+		<link rel="stylesheet" href="css/styles.min.css" type="text/css" />
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" href="css/styles_ie_unsupported.css" type="text/css" />
+		<![endif]-->
+		
    		<link rel="stylesheet" href="css/tabzilla.css" />
    		<!--<link rel="stylesheet" href="css/tablesorter_styles.css" type="text/css" />-->
    		<link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -42,7 +55,7 @@ header("Pragma: no-cache");
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37922069-1']);
+  _gaq.push(['_setAccount', 'UA-39845207-1']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -79,6 +92,10 @@ header("Pragma: no-cache");
 
 		<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 		<img src="images/fxlogo_top.png" id="top_logo" />
+		<div id="unsupported">
+			<h1 class="shadow">THE STATE OF DO NOT TRACK IN FIREFOX</h1>
+			This page requires a version of Internet Explorer greater than IE 9; you seem to be using an older browser.  Kindly upgrade to IE 9 or higher or switch to Firefox and head back :)
+		</div>
 		
 		<div id="header">
 			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Different by design &#8211; download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
@@ -312,5 +329,15 @@ the signal is expressed via HTTP requests.</p>
       </footer>
 		
 		<script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+		
+		<script>
+		var images = [
+			'images/bubble.png'
+		];
+
+		$(images).each(function() {
+			var image = $('<img />').attr('src', this);
+		});
+		</script>
 	</body>
 </html>

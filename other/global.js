@@ -846,6 +846,10 @@ function assignEventListeners() {
 		return false;
 	});
 	
+	$("#about").on("click", function() {		
+		return false;
+	});
+	
 	$("#about_pane").on("mouseenter", function() {
 		$("#about_pane").show();
 		

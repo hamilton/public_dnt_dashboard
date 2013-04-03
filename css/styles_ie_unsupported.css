@@ -1,0 +1,25 @@
+#page {
+	display:none;
+}
+
+#header {
+	display:none;
+}
+
+#colophon, #footer-logo, .row, #footer-license, #footer-nav {
+	display:none;
+}
+
+#unsupported {
+	display:block;
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:0;
+	margin-bottom:30px;
+	text-align:center;
+}
+
+h1 {
+	padding-top:80px;
+}
