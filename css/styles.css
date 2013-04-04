@@ -1,6 +1,5 @@
 html {
 	outline:none;
-	/*font-family:Georgia, "Gill Sans",Lato,"Helvetica Neue",Helvetica,sans-serif;*/
 	font-family: 'PT Serif', Cardo, serif;
 }
 
@@ -14,10 +13,6 @@ body {
 p {
 	font-size:18px;
 	line-height:1.5;
-}
-
-ul {
-	list-style:none;
 }
 
 ul {
@@ -873,19 +868,14 @@ tr {
 	content:"."
 }
 
+/* clean this up */
 #colophon .footer-license{font-size:12px;float:left;width:240px;margin:-10px 10px}
 #colophon .footer-nav{float:left;width:140px;margin:4px 10px}
 #colophon a,#colophon a:link,#colophon a:visited{color:#eaeaea}
 #colophon a:hover,#colophon a:active{color:#cccccc}
-#colophon p {
-	font-size:12px;
-	margin-bottom:10px;
-	color:#fff;
-}
+#colophon p {font-size:12px;margin-bottom:10px;color:#fff;}
 #colophon .footer-nav{font-family:'Open Sans',sans-serif;font-family:'Open Sans',sans-serif}
 #colophon .footer-nav li{list-style-type:none;margin:0 0 2px 0}
 #colophon .footer-logo{float:left;width:220px;margin:0 10px}
-
 #colophon{color:#666;padding:40px 0;font-size:.875em;line-height:1.285;background:#e33258;width:100%;margin:1em 0 0}#colophon .row{width:1020px;margin:0 auto;zoom:1;zoom:1}#colophon .row:after{display:block;visibility:hidden;height:0;clear:both;content:".
-"}#colophon .row:after{display:block;visibility:hidden;height:0;clear:both;content:".
-"}
+"}#colophon .row:after{display:block;visibility:hidden;height:0;clear:both;content:"."}
