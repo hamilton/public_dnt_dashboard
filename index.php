@@ -46,25 +46,20 @@ header("Pragma: no-cache");
 		<![endif]-->
 		
    		<link rel="stylesheet" href="css/tabzilla.css" />
-   		<!--<link rel="stylesheet" href="css/tablesorter_styles.css" type="text/css" />-->
    		<link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
    		<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
 		<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-		
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-39845207-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-39845207-1']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 	</head>
 	<body>
 		<a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
@@ -84,8 +79,7 @@ header("Pragma: no-cache");
 			</div>
 		</div>
 			
-		<div id="page">
-					
+		<div id="page">		
 			<h1 class="shadow">THE STATE OF DO NOT TRACK IN FIREFOX</h1>
 			<div id="full_date"></div>
 			
@@ -101,20 +95,9 @@ header("Pragma: no-cache");
 			</div>
 			
 			<div class="copy">
-			<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a
-Do Not Track feature that enables users to express a preference not to be
-tracked online. When the feature is turned on in one of our products, an
-automated signal is sent to all the sites and services you interact with,
-including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry.
-However, it is supported by all major browsers and a few leading companies have
-started respecting the signal.</p>
-
-<p>These graphs are intended to provide a view into how many Firefox users
-are seeking out and enabling Do Not Track in their desktop and mobile versions
-of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.  We update this page once a month.</p>
-
-			</div>
-			
+				<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a Do Not Track feature that enables users to express a preference not to be tracked online. When the feature is turned on in one of our products, an automated signal is sent to all the sites and services you interact with, including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry. However, it is supported by all major browsers and a few leading companies have started respecting the signal.</p>
+				<p>These graphs are intended to provide a view into how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.  We update this page once a month.</p>
+			</div>		
 			<div style="clear:both"></div>
 			<div id="map">
 				<h2>United States</h2>
@@ -188,11 +171,8 @@ of Firefox; we currently don't have data on adoption in Thunderbird or Firefox O
 					<div></div>
 					<div></div>
 				</div>
-				
-				<!--<img src="images/usmap.png" />-->
 			</div>
 			<div id="map_legend"></div>
-			
 			
 			<div style="clear:both"></div>
 			<div id="map_world">
@@ -201,7 +181,6 @@ of Firefox; we currently don't have data on adoption in Thunderbird or Firefox O
 				<div id="options4">
 					<a href="#" id="desktop4"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile4">MOBILE</a>
 				</div>
-				
 				<div id="options4_country_select">
 					<a href="#" id="the_world" class="region_select"><span class="selected_option">THE WORLD</span></a>
 					 &nbsp;<a href="#" id="africa" class="region_select">AFRICA</a>
@@ -209,21 +188,15 @@ of Firefox; we currently don't have data on adoption in Thunderbird or Firefox O
 					 &nbsp;<a href="#" id="europe" class="region_select">EUROPE</a>
 					 &nbsp;<a href="#" id="north_america" class="region_select">NORTH AMERICA</a>
 					 &nbsp;<a href="#" id="oceania" class="region_select">OCEANIA</a>
-					  &nbsp;<a href="#" id="south_america" class="region_select">SOUTH AMERICA</a>
+					 &nbsp;<a href="#" id="south_america" class="region_select">SOUTH AMERICA</a>
 				</div>
 			</div>
 			<div id="map_legend_world"></div>
 			
 			<div class="copy">
 				<h3>Notes</h3>
-					<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both
-Firefox and Firefox for Android automatically download the latest list of
-insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests
-made by the browser, we can count the number of times we see the signal. No
-other information is logged on our servers. Anyone with a website and access to
-a web server can start counting how many users are sending DNT:1, which is how
-the signal is expressed via HTTP requests.</p>
-					<p>Part of the data in November and December 2012 is missing.  The monthly averages used for those two months are based on the days for which data is available.  The way we determine geographic data is from IP addresses at the time when an HTTP request is sent.  IP addresses are not logged in the aggregate data set used to create the above graphs.</p>
+				<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both Firefox and Firefox for Android automatically download the latest list of insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests made by the browser, we can count the number of times we see the signal. No other information is logged on our servers. Anyone with a website and access to a web server can start counting how many users are sending DNT:1, which is how the signal is expressed via HTTP requests.</p>
+				<p>Part of the data in November and December 2012 is missing.  The monthly averages used for those two months are based on the days for which data is available.  The way we determine geographic data is from IP addresses at the time when an HTTP request is sent.  IP addresses are not logged in the aggregate data set used to create the above graphs.</p>
 			</div>
 			
 			<div id="tooltip"></div>
@@ -251,59 +224,31 @@ the signal is expressed via HTTP requests.</p>
 				Developed by the <span style="font-weight:400"><a href="#" id="about">Metrics Team at Mozilla</a></span>
 			</div>
 		</div> <!-- end page -->
-
-		<!--<div id="wide_pane">		
-			<div id="metrics_logo_container">
-				<div id="twitter_block">
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://metrics.mozilla.com/dnt-down" data-count="vertical">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-				</div>
-				
-				<div id="fb_block" class="fb-like" data-href="https://metrics.mozilla.com/dnt-down" data-send="false" data-layout="box_count" data-width="150" data-show-faces="false" data-font="arial"></div>
-				
-				
-				<div id="copyright">
-					Ali Almossawi, Anurag Phadke and Hamilton Ulmer<br />
-					April 2013 &middot; Countries' shape data are from <a href="https://bitbucket.org/john2x/d3test/src/2ce4dd511244/d3/examples/data?at=default">here</a> &middot; Shared under Creative Commons <a href="http://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC</a>
-				</div>
-				
-				<div style="float:right;z-index:3">
-					<a href="https://metrics.mozilla.com/preview">
-						<img src="images/logo.png" id="metrics" />
-					</a>
-				</div>
-			</div>
-		</div>-->
 		
 		<footer id="colophon">
-      <div class="row">
+      		<div class="row">
+      			<div class="footer-logo">
+					<a href="http://mozilla.org/en-US/"><img src="images/logomoz.png" alt="mozilla"></a>
+				</div>
 
-          <div class="footer-logo">
-              <a href="http://mozilla.org/en-US/"><img src="images/logomoz.png" alt="mozilla"></a>
-          </div>
+				<div class="footer-license">
+					<p>Portions of this content are<br />&copy;1998–2013 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
+					<p><a href="/en-US/contribute/page/">Contribute to this page</a></p>
+				</div>
+				<ul class="footer-nav">
+					<li><a href="/en-US/about/contact.html#map-mountain_view">Contact Us</a></li>
+					<li><a href="/en-US/privacy/">Privacy Policy</a></li>
+					<li><a href="/en-US/about/legal.html">Legal Notices</a></li>
+					<li><a href="/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
+				</ul>
 
-          <div class="footer-license">
-              <p>
-                Portions of this content are<br />&copy;1998–2013 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.              </p>
-              <p>
-                <a href="/en-US/contribute/page/">Contribute to this page</a>
-              </p>
-          </div>
-          <ul class="footer-nav">
-            <li><a href="/en-US/about/contact.html#map-mountain_view">Contact Us</a></li>
-            <li><a href="/en-US/privacy/">Privacy Policy</a></li>
-            <li><a href="/en-US/about/legal.html">Legal Notices</a></li>
-            <li><a href="/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
-          </ul>
-
-                    <ul class="footer-nav">
-            <li><a href="http://twitter.com/firefox">Twitter</a></li>
-            <li><a href="http://facebook.com/Firefox">Facebook</a></li>
-            <li><a href="https://affiliates.mozilla.org/">Firefox Affiliates</a></li>
-          </ul>
-          
-      </div>
-      </footer>
+        	    <ul class="footer-nav">
+            		<li><a href="http://twitter.com/firefox">Twitter</a></li>
+	            	<li><a href="http://facebook.com/Firefox">Facebook</a></li>
+	    	        <li><a href="https://affiliates.mozilla.org/">Firefox Affiliates</a></li>
+				</ul>
+			</div>
+		</footer>
 		
 		<script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
 		
