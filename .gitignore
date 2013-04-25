@@ -6,3 +6,15 @@ data/deprecated/fennec_dnt_perc_daily.json
 js/global 10.08.45 AM.js
 
 js/charts 10.08.45 AM.js
+
+data/fennec_dnt_perc_monthly.json
+
+data/fennec_dnt_perc_monthly_by_state.json
+
+data/fennec_dnt_perc_monthly_by_country.json
+
+data/ff_dnt_perc_monthly.json
+
+data/ff_dnt_perc_monthly_by_country.json
+
+data/ff_dnt_perc_monthly_by_state.json
