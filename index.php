@@ -3,9 +3,6 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 //$dnt_val = substr($_SERVER['HTTP_DNT'], 0, 1);
 //$dnt_val = 0 means they want to be tracked, $dntval = 1 means they don't
 
-// Force no-caching
-header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
-header("Pragma: no-cache");
 ?>
 <!DOCTYPE html>
 <html>
