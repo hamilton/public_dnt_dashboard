@@ -31,7 +31,6 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
    		<script type="text/javascript" src="js/global.min.js"></script>
    		<script type="text/javascript" src="js/charts.min.js"></script>
    		<script type="text/javascript" src="js/jquery.uniform.min.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 
 		<link rel="stylesheet" href="css/styles.min.css" type="text/css" />
 		<!--[if lt IE 9]>
