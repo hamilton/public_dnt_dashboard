@@ -18,3 +18,9 @@ data/ff_dnt_perc_monthly.json
 data/ff_dnt_perc_monthly_by_country.json
 
 data/ff_dnt_perc_monthly_by_state.json
+
+js/DEPREC_charts.js
+
+js/DEPREC_global.js
+
+js/DEPREC_x_over_x.js
