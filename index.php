@@ -214,7 +214,7 @@ header("Pragma: no-cache");
 			<div id="about_pane" class="sans tinytext">
 				The Metrics team is a multidisciplinary team that uses historical data to drive decision-making.<br />
 				
-				<div style="font-weight:400;letter-spacing:1px;padding-top:12px">DEVELOPED BY</div>
+				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"><!--DEVELOPED BY--></div>
 				<div style="padding-top:2px">Ali Almossawi <a href="https://twitter.com/alialmossawi"><img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
 				<div style="padding-top:2px">Anurag Phadke <a href="https://twitter.com/anuragphadke"><img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
 				<div style="padding-top:2px">Hamilton Ulmer <a href="https://twitter.com/hamiltonulmer"><img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
