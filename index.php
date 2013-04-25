@@ -12,11 +12,8 @@ header("Pragma: no-cache");
 <html>
 	<head>
 		<!-- 
-			Metrics Team, Mozilla, April 2013 
-			#metrics (irc.mozilla.org)
-			Ali Almossawi, Hamilton Ulmer and Anurag Phadke
-			https://metrics.mozilla.com/preview
-			http://mozilla.org/en-US/dnt
+			Metrics, Mozilla, April 2013
+			Ali Almossawi, Anurag Phadke, Hamilton Ulmer
 		-->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		
@@ -51,14 +48,17 @@ header("Pragma: no-cache");
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
 		<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
 		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-39845207-1']);
-			_gaq.push(['_trackPageview']);
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-37922069-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
 		</script>
 	</head>
 	<body>
@@ -70,7 +70,7 @@ header("Pragma: no-cache");
 		</div>
 		
 		<div id="header">
-			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Different by design &#8211; download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
+			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
 			<div id="dnt_status">
 			<?php
 				if($dnt_enabled) echo "<span class='on'>YOUR DNT STATUS IS ON</span>";
@@ -220,8 +220,8 @@ header("Pragma: no-cache");
 				<div style="padding-top:2px">Hamilton Ulmer <a href="https://twitter.com/hamiltonulmer"><img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
 			</div>
 			
-			<div class="copy tinytext sans" style="text-align:right">
-				Developed by the <span style="font-weight:400"><a href="#" id="about">Metrics Team at Mozilla</a></span>
+			<div class="copy tinytext sans about_pane_right_fix">
+				Developed by the <span style="font-weight:400"><span id="about">Metrics Team at Mozilla</span></span>
 			</div>
 		</div> <!-- end page -->
 		
@@ -233,13 +233,13 @@ header("Pragma: no-cache");
 
 				<div class="footer-license">
 					<p>Portions of this content are<br />&copy;1998–2013 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
-					<p><a href="/en-US/contribute/page/">Contribute to this page</a></p>
+					<p><a href="http://mozilla.org/en-US/contribute/page/">Contribute to this page</a></p>
 				</div>
 				<ul class="footer-nav">
-					<li><a href="/en-US/about/contact.html#map-mountain_view">Contact Us</a></li>
-					<li><a href="/en-US/privacy/">Privacy Policy</a></li>
-					<li><a href="/en-US/about/legal.html">Legal Notices</a></li>
-					<li><a href="/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
+					<li><a href="http://mozilla.org/en-US/about/contact.html#map-mountain_view">Contact Us</a></li>
+					<li><a href="http://mozilla.org/en-US/privacy/">Privacy Policy</a></li>
+					<li><a href="http://mozilla.org/en-US/about/legal.html">Legal Notices</a></li>
+					<li><a href="http://mozilla.org/en-US/legal/fraud-report/index.html">Report Trademark Abuse</a></li>
 				</ul>
 
         	    <ul class="footer-nav">
