@@ -380,9 +380,6 @@ $(document).ready(function () {
 	d3.json("lang/en_US.json", function(data) {
 		LANG = data;
 		
-		//other initializations
-		$("input, textarea, select").uniform();
-		
 		assignEventListeners();
 		drawCharts("ff_dnt_perc_monthly.json");
 		
