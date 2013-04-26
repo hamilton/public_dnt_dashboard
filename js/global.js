@@ -483,8 +483,6 @@ function drawMap() {
 	addLegend("#map_legend");
 
 	d3.json("data/us-states.json", function(json) {
-		//console.log(json);
-		
 		var svg_map = d3.select("#map").append("svg")
 	    .attr("width", 960)
     	.attr("height", 600);
@@ -498,14 +496,6 @@ function drawMap() {
     	  .data(json.features)
 	    .enter().append("path")
     	  .attr("d", path);
-
-	  // A white overlay to hide interior black strokes.
-	  /*svg_map.append("g")
-    	  .attr("class", "white")
-	    .selectAll("path")
-    	  .data(json.features)
-	    .enter().append("path")
-    	  .attr("d", path);*/
 
 	  svg_map.append("g")
     	  .attr("class", "grey")
@@ -537,8 +527,7 @@ function drawMap() {
 	      		.html(state[d.id] + "<br />" + (last_monthly.percentage*100).toFixed(2) + "%")
 	      		.css("left", (d3.event.pageX+35) + "px")
 	      		.css("top", (d3.event.pageY-35) + "px");
-	      });;
-	    
+	      });  
 	    
 	    d3.json("data/" + desktop_or_mobile + "_dnt_perc_monthly_by_state.json", function(data_state) {
 	    	var min_max = minMaxStateOrCountry(data_state);
@@ -599,9 +588,7 @@ function drawMapWorld() {
 	d3.json("data/world-countries.json", function(json) {
 		var w = 980,
 			h = 540;
-		
-		//console.log(json);
-		
+				
 		var svg_map = d3.select("#map_world").append("svg")
 	    .attr("width", w)
     	.attr("height", h);
@@ -618,14 +605,6 @@ function drawMapWorld() {
             .attr('d', path)
             .attr("width", w)
             .attr("height", h);
-
-	  // A white overlay to hide interior black strokes.
-	  /*svg_map.append("g")
-    	  .attr("class", "white")
-	    .selectAll("path")
-    	  .data(json.features)
-	    .enter().append("path")
-    	  .attr("d", path);*/
 
 	  svg_map.append("g")
     	  .attr("class", "grey")
@@ -729,34 +708,6 @@ function drawStates() {
 }
 
 function assignEventListeners() {
-	$("#about").on("mouseenter", function() {
-		$("#about_pane").show();
-		
-		return false;
-	});
-	
-	$("#about").on("click", function() {		
-		return false;
-	});
-	
-	$("#about_pane").on("mouseenter", function() {
-		$("#about_pane").show();
-		
-		return false;
-	});
-	
-	$("#about").on("mouseleave", function() {
-		$("#about_pane").hide();
-		
-		return false;
-	});
-	
-	$("#about_pane").on("mouseleave", function() {
-		$("#about_pane").hide();
-		
-		return false;
-	});
-	
 	$("#tabzilla").toggle(function() {
 		$("#dnt_status").hide();
 	},
