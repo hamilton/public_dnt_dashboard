@@ -153,11 +153,11 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 					<div id="WV_box" style="border:0">W. Virginia<div></div></div>
 					<div id="WI_box" style="border:0">Wisconsin<div></div></div>
 					<div id="WY_box" style="border:0">Wyoming<div></div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
+					<div style="border:0"></div>
+					<div style="border:0"></div>
+					<div style="border:0"></div>
+					<div style="border:0"></div>
+					<div style="border:0"></div>
 				</div>
 			</div>
 			<div id="map_legend"></div>

@@ -574,7 +574,7 @@ function redrawMapWorld() {
 				? "<img src='images/up.png' class='up_down' />"
 				: "<img src='images/down.png' class='up_down' />";
 			
-			$("#" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
+			$("#w" + i + "_box div").html((last_monthly.percentage*100).toFixed(0) + "%" + up_or_down);
 		});
 	});
 }
