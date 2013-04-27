@@ -203,9 +203,9 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 				The Metrics team is a multidisciplinary team that uses historical data to drive decision-making.<br />
 				
 				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"><!--DEVELOPED BY--></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi">Ali Almossawi <img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke">Anurag Phadke <img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/hamiltonulmer">Hamilton Ulmer <img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke" target="_blank">Anurag Phadke <img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/hamiltonulmer" target="_blank">Hamilton Ulmer <img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
 			</div>
 			
 			<div class="copy tinytext sans about_pane_right_fix">
