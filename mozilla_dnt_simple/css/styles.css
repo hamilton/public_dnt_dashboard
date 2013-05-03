@@ -110,16 +110,16 @@ line {
     border-radius: 0;
     height: 250px;
     padding: 10px;
+    width:460px;
     background-color: #fff;
     border: 1px solid #ccc;
 }
 #options {
     position: absolute;
-    margin-left: 15px;
     width: 125px;
     height: 22px;
     z-index: 9999;
-    margin-left: 368px;
+    margin-left: 348px;
     margin-top: -4px;
     border-radius: 5px;
     font-family: 'Open Sans';
@@ -144,7 +144,7 @@ line {
     color: #3b3b3b;
 }
 #trend svg {
-    margin-left: 15px;
+    margin-left: 10px;
 }
 #chart {
     width: 960px;
@@ -171,12 +171,14 @@ line {
 }
 #tooltip {
     font-family: 'PT Sans';
+    font-size:13px;
     position: absolute;
     border-radius: 4px;
     opacity: .9;
     background-color: #3b3b3b;
     color: white;
     padding: 5px;
+    line-height:1;
     display: none;
     z-index: 999999;
     cursor: default;

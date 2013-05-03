@@ -1,5 +1,5 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
-	var w = 480,
+	var w = 460,
 		h = 240,
 		xPadding = 18,
 		yPadding = 30,
@@ -191,12 +191,12 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							d3.selectAll(".tooltip_date").remove();
 							
 							var formatted_date = Date.parse(d.date_raw).toString('MMM yyyy');
-							
+							console.log(d3.event);
 							$("#tooltip")
 	      						.show()
-					      		.html((d.percentage*100).toFixed(2) + "%<br /><span style='font-size:13px'>" + formatted_date + "</span>")
+					      		.html((d.percentage*100).toFixed(2) + "%<br /><span style='font-size:11px'>" + formatted_date + "</span>")
 					      		.css("left", (d3.event.pageX-40) + "px")
-					      		.css("top", yScale(d.percentage)+56 + "px")
+					      		.css("top", (yScale(d.percentage)+$('#trend').offset().top-30) + "px")
 								
 				});
 			});
