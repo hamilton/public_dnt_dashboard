@@ -3,6 +3,10 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 //$dnt_val = substr($_SERVER['HTTP_DNT'], 0, 1);
 //$dnt_val = 0 means they want to be tracked, $dntval = 1 means they don't
 
+// Force no-caching
+header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+header("Pragma: no-cache");
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +63,7 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 		
 		<div id="header">
 			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
-			<div id="dnt_status_down" style="display:none">
+			<div id="dnt_status">
 			<?php
 				if($dnt_enabled) echo "<span class='on'>YOUR DNT STATUS IS ON</span>";
 				else echo "<span class='off'>YOUR DNT STATUS IS OFF</span>";
