@@ -1,6 +1,6 @@
 function draw(data, container, format, humanify_numbers, custom_units, splice_from, annotations, show_confidence) {
-	var w = 960,
-		h = 340,
+	var w = 480,
+		h = 240,
 		xPadding = 18,
 		yPadding = 30,
 		x_axis_format = "%b";
@@ -54,6 +54,8 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         .append("svg")
         .attr("width", w)
         .attr("height", h);
+        
+        			
 	    	    
     //draw extended ticks (horizontal)
     var ticks = svg.selectAll('.ticky')
@@ -194,7 +196,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	      						.show()
 					      		.html((d.percentage*100).toFixed(2) + "%<br /><span style='font-size:13px'>" + formatted_date + "</span>")
 					      		.css("left", (d3.event.pageX-40) + "px")
-					      		.css("top", yScale(d.percentage)+16 + "px")
+					      		.css("top", yScale(d.percentage)+56 + "px")
 								
 				});
 			});
