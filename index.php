@@ -59,7 +59,7 @@ $dnt_enabled = array_key_exists('HTTP_DNT', $_SERVER);
 		
 		<div id="header">
 			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
-			<div id="dnt_status">
+			<div id="dnt_status_down" style="display:none">
 			<?php
 				if($dnt_enabled) echo "<span class='on'>YOUR DNT STATUS IS ON</span>";
 				else echo "<span class='off'>YOUR DNT STATUS IS OFF</span>";
