@@ -14,9 +14,9 @@ header("Pragma: no-cache");
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<meta property="og:title" content="The State of Do Not Track in Firefox" /> 
 		<meta property="og:description" content="This visualization shows how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS. We update this page once a month." /> 
-		<meta property="og:image" content="images/fx-logo.png" />
+		<meta property="og:image" content="https://dnt-dashboard.mozilla.org/images/fx-logo.png" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://metrics.mozilla.com/dnt" />
+		<meta property="og:url" content="https://dnt-dashboard.mozilla.org/" />
 		<meta property="og:site_name" content="The State of Do Not Track in Firefox" />
 		
 		<title>Do Not Track in Firefox</title>
