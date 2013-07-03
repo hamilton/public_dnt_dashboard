@@ -81,8 +81,8 @@ header("Pragma: no-cache");
 				</div>
 				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-10px;margin-top:20px" />
 				<div class="x_label_year" style="margin-left:40px">2011</div>
-				<div class="x_label_year" style="margin-left:344px">2012</div>
-				<div class="x_label_year" style="margin-left:863px">2013</div>
+				<div class="x_label_year" style="margin-left:317px">2012</div>
+				<div class="x_label_year" style="margin-left:792px">2013</div>
 				<div class="chart_content"></div>
 			</div>
 			
