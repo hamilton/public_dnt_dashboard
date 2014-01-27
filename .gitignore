@@ -28,3 +28,5 @@ js/DEPREC_x_over_x.js
 js/DEPREC_jquery.tablesorter.js
 
 js/DEPREC_jquery.tablesorter.min.js
+
+*.json

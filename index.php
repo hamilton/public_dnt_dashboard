@@ -80,9 +80,10 @@ header("Pragma: no-cache");
 					<a href="#" id="desktop"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile">MOBILE</a>
 				</div>
 				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-10px;margin-top:20px" />
-				<div class="x_label_year" style="margin-left:40px">2011</div>
-				<div class="x_label_year" style="margin-left:307px">2012</div>
-				<div class="x_label_year" style="margin-left:760px">2013</div>
+				<div class="x_label_year" style="margin-left:69px">2011</div>
+				<div class="x_label_year" style="margin-left:245px">2012</div>
+				<div class="x_label_year" style="margin-left:596px">2013</div>
+				<div class="x_label_year" style="margin-left:947px">2014</div>
 				<div class="chart_content"></div>
 			</div>
 			
