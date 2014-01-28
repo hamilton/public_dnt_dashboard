@@ -226,7 +226,7 @@ header("Pragma: no-cache");
 				</div>
 
 				<div class="footer-license">
-					<p>Portions of this content are<br />&copy;1998–2013 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
+					<p>Portions of this content are<br />&copy;1998–2014 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
 					<p><a href="http://mozilla.org/en-US/contribute/page/">Contribute to this page</a></p>
 				</div>
 				<ul class="footer-nav">
