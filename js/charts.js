@@ -229,6 +229,17 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 							+ "-" + ('0' + (date.getMonth()+1)).slice(-2)
 							+ "-" + ('0' + date.getDate()).slice(-2);
 
+					var should_we_skip_month = Date.parse(d.date_raw).toString('MMM yyyy');
+					if(should_we_skip_month == "Jul 2013"
+							|| should_we_skip_month == "Aug 2013"
+							|| should_we_skip_month == "Sep 2013"
+							|| should_we_skip_month == "Oct 2013"
+							|| should_we_skip_month == "Nov 2013"
+							|| should_we_skip_month == "Dec 2013"
+						) {
+						return true;
+					}
+
    					if("undefined" != typeof annotations[ze_date]) {
 						//add a vertical line at that point
 						d3.select(which_metric + " svg")
