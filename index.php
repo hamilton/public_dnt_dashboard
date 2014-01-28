@@ -90,6 +90,7 @@ header("Pragma: no-cache");
 			<div class="copy">
 				<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a Do Not Track feature that enables users to express a preference not to be tracked online. When the feature is turned on in one of our products, an automated signal is sent to all the sites and services you interact with, including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry. However, it is supported by all major browsers and a few leading companies have started respecting the signal.</p>
 				<p>These graphs are intended to provide a view into how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.  We update this page once a month.</p>
+				<p>* In July 2013, a change in hardware resulted in an unforeseen inability to collect header information. A patch was released to fix this error in early January 2014. For that reason, we do not have DNT data between July 2013 and December 2013.</p>
 			</div>		
 			<div style="clear:both"></div>
 			<div id="map">

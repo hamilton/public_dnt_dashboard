@@ -68,6 +68,26 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
         .attr("width", w)
         .attr("height", h);
 	    	    
+	svg.append('svg:line')
+    		.attr('y1', 250)
+    		.attr('y2', 250)
+    		.attr('x1', 795)
+    		.attr('x2', 815)
+    		.style("stroke", "black");
+    		
+    svg.append('svg:line')
+    		.attr('y1', 250)
+    		.attr('y2', 250)
+    		.attr('x1', 890)
+    		.attr('x2', 910)
+    		.style("stroke", "black");
+    		
+    svg.append('svg:text')
+    		.text('NO DATA* ')
+			.attr('dx', 826)
+			.attr('dy', 254)
+			.style("font-size", "11");
+	    	    
     //draw extended ticks (horizontal)
     var ticks = svg.selectAll('.ticky')
     	.data(yScale.ticks(7))
@@ -114,7 +134,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	*/
 
 	var area = d3.svg.area()
-		    .interpolate("basis")
+		    //.interpolate("basis")
     		.x(function(d) { return xScale(d.date); })
 		    .y0(function(d) { return yScale(0); })
 		    .y1(function(d) { return yScale(d.percentage); });
@@ -149,7 +169,7 @@ function draw(data, container, format, humanify_numbers, custom_units, splice_fr
 	    	    
 	//draw the line		
 	var line = d3.svg.line()
-		.interpolate("basis")
+		//.interpolate("basis")
 		.x(function(d,i) { return xScale(d.value.date); })
 		.y(function(d) {
 			 return yScale(d.value.percentage);
