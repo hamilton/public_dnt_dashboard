@@ -698,6 +698,10 @@ function drawStates() {
 }
 
 function assignEventListeners() {
+    $("#about").on("click", function() {
+        return false;
+    });
+    
     $("#about").on("mouseenter", function() {
         $("#about_pane").show();
     });
