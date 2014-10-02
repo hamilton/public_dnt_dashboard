@@ -1,7 +1,8 @@
 "use strict";
 
-var LANG,
-	desktop_or_mobile = "ff",
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+var desktop_or_mobile = "ff",
 	desktop_or_mobile2 = "ff",
 	desktop_or_mobile3 = "ff",
 	desktop_or_mobile4 = "ff",
@@ -376,21 +377,15 @@ $(document).ready(function () {
 		$("#download_firefox").show();
 	}
 
-	//provide lang literals globally
-	d3.json("lang/en_US.json", function(data) {
-		LANG = data;
+	assignEventListeners();
+	drawCharts("ff_dnt_perc_monthly.json");
 		
-		assignEventListeners();
-		drawCharts("ff_dnt_perc_monthly.json");
+	getCountryAndStateData();
 		
-		getCountryAndStateData();
-		
-		setTimeout(function() {
-			drawMap();
-			drawMapWorld();
-		}, 1000);
-			
-	});
+	setTimeout(function() {
+		drawMap();
+		drawMapWorld();
+	}, 0);
 });
 
 function getCountryAndStateData(desktop_or_mobile) {
@@ -421,14 +416,9 @@ function sort_data(data) {
 			return 0;
 		});
 	});
-
-	//console.log(data);
 }
 
 function addLegend(container) {
-	//var legend = "<div class='legend high'></div><div class='legend_text'>HIGHEST ADOPTION</div>"
-	//		+ "<div class='legend low' style='margin-left:20px'></div><div class='legend_text'>LOWEST ADOPTION</div>";
-	
 	var legend = "<div class='legend'><div class='legend_text'>HIGHEST ADOPTION</div>"
 			+ "<img src='images/gradient_key.png' style='float:left' />"
 			+ "<div class='legend_text'>LOWEST ADOPTION</div></div>";
@@ -708,6 +698,23 @@ function drawStates() {
 }
 
 function assignEventListeners() {
+    $("#about").on("mouseenter", function() {
+        $("#about_pane").show();
+    });
+    
+    $("#about").on("mouseout", function() {
+        $("#about_pane").hide();
+    });
+    
+    $("#about_pane").on("mouseenter", function() {
+        $("#about_pane").show();
+    });
+    
+    $("#about_pane").on("mouseleave", function() {
+        $("#about_pane").hide();
+    });
+    
+    
 	$("#tabzilla").toggle(function() {
 		$("#dnt_status").hide();
 	},
@@ -941,18 +948,62 @@ function shift_selected4_region_select(option) {
 }
 
 function drawCharts(json) {
-	d3.json("data/annotations.json", function(annotations) {
 	d3.json("data/" + json, function(data) {
-		var format = "%",
-			humanify_numbers = false,
-			custom_units = "",
-			splice_from = 0,
-			show_confidence = false;
+	    data = data.GLOBAL;
+	    
+        var fff = d3.time.format('%Y-%m-%d');
+        for(var i=0;i<data.length;i++) {
+            var d = data[i];
+            d['date'] = fff.parse(d['date']);
+        }
+        	
+    	var markers = [{
+            'date': new Date('2013-10-01T00:00:00.000Z'),
+            'label': 'No Data*'
+        }];
 
-		setTimeout(function() {
-			draw(data.GLOBAL, "#trend", format, humanify_numbers, custom_units, splice_from, annotations, show_confidence);
-		},400);
-	});
+        //add a chart with annotations
+        moz_chart({
+            title: "",
+            description: "",
+            data: data,
+            width: 960,
+            height: 320,
+            xax_count: 10,
+            markers: markers,
+            xax_format: function(d) {
+                var df = d3.time.format('%b');
+                return df(d);
+            },
+            rollover_callback: function(d, i) {
+                var content = 'No Data';
+                
+                if(d.percentage > 0) {
+                    content = monthNames[d.date.getMonth()] 
+                        + ' ' + d.date.getFullYear()
+                        + '  ' 
+                        + (d.percentage*100).toFixed(2) + '%';
+                }
+
+                $('.chart_content svg .active_datapoint')
+                    .attr('x', 40)
+                    .attr('y', 20)
+                    .attr('text-anchor', 'start')
+                    .html(content);
+            },
+            left: 90,
+            format: 'perc',
+            right: 0,
+            interpolate: 'linear',
+            //markers: markers,
+            target: '.chart_content',
+            x_accessor: 'date',
+            y_accessor: 'percentage',
+            y_label: 'installations that have turned on DNT'
+        })
+        
+        $('.markers text')
+            .attr('y', 150)
 	});
 }
 
@@ -979,4 +1030,32 @@ function getHumanSize(size) {
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function yoy_growth(series, date_obj){	
+	var target_date = new Date(date_obj.date);
+	target_date.setDate(target_date.getDate() - 365);
+	var yoy = series.sort(function(a,b){
+		var distancea = Math.abs(target_date - new Date(a.date));
+    	var distanceb = Math.abs(target_date - new Date(b.date));
+    	return distancea - distanceb;
+	})[0];
+	
+
+	if(yoy.perc == 0) return 0;
+	return (date_obj.perc - yoy.perc) / yoy.perc;
+}
+
+function mom_growth(series, date_obj){	
+	var target_date = new Date(date_obj.date);
+	target_date.setDate(target_date.getDate() - 31);
+	var mom = series.sort(function(a,b){
+		var distancea = Math.abs(target_date - new Date(a.date));
+    	var distanceb = Math.abs(target_date - new Date(b.date));
+    	return distancea - distanceb;
+	})[0];
+	
+
+	if(mom.perc == 0) return 0;
+	return (date_obj.perc - mom.perc) / mom.perc;
 }

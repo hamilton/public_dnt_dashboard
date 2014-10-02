@@ -13,7 +13,7 @@ header("Pragma: no-cache");
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<meta property="og:title" content="The State of Do Not Track in Firefox" /> 
-		<meta property="og:description" content="This visualization shows how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS. We update this page once a month." /> 
+		<meta property="og:description" content="This visualization shows how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS." /> 
 		<meta property="og:image" content="https://dnt-dashboard.mozilla.org/images/fx-logo.png" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://dnt-dashboard.mozilla.org/" />
@@ -23,10 +23,13 @@ header("Pragma: no-cache");
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
    		<script type="text/javascript" src="js/d3.v2.min.js"></script>
-   		<script type="text/javascript" src="js/date.js"></script>	
-		<script type="text/javascript" src="js/x_over_x.min.js"></script>
-   		<script type="text/javascript" src="js/global.min.js"></script>
-   		<script type="text/javascript" src="js/charts.min.js"></script>
+   		<script type="text/javascript" src="js/date.js"></script>
+   		<script type="text/javascript" src="js/global.js"></script>
+   		
+        <link href="css/metrics-graphics.css" rel="stylesheet" type="text/css">
+        
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src='js/metrics-graphics.js'></script>
 
 		<link rel="stylesheet" href="css/styles.min.css" type="text/css" />
 		<!--[if lt IE 9]>
@@ -62,7 +65,7 @@ header("Pragma: no-cache");
 		</div>
 		
 		<div id="header">
-			<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>
+			<!--<div id="download_firefox"><a href="http://www.mozilla.org/en-US/firefox/new/">Download Mozilla Firefox!</a> &nbsp; <a href="#" id="dismiss">Dismiss</a></div>-->
 			<div id="dnt_status">
 			<?php
 				if($dnt_enabled) echo "<span class='on'>YOUR DNT STATUS IS ON</span>";
@@ -79,18 +82,13 @@ header("Pragma: no-cache");
 				<div id="options">
 					<a href="#" id="desktop"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile">MOBILE</a>
 				</div>
-				<img src="images/y_axis_label.png" style="position:absolute;margin-left:-10px;margin-top:20px" />
-				<div class="x_label_year" style="margin-left:69px">2011</div>
-				<div class="x_label_year" style="margin-left:245px">2012</div>
-				<div class="x_label_year" style="margin-left:596px">2013</div>
-				<div class="x_label_year" style="margin-left:947px">2014</div>
 				<div class="chart_content"></div>
 			</div>
 			
 			<div class="copy">
 				<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a Do Not Track feature that enables users to express a preference not to be tracked online. When the feature is turned on in one of our products, an automated signal is sent to all the sites and services you interact with, including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry. However, it is supported by all major browsers and a few leading companies have started respecting the signal.</p>
-				<p>These graphs are intended to provide a view into how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.  We update this page once a month.</p>
-				<p>* In July 2013, a change in hardware resulted in an unforeseen inability to collect header information. A patch was released to fix this error in early January 2014. For that reason, we do not have DNT data between July 2013 and December 2013.</p>
+				<p>These graphs are intended to provide a view into how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.</p>
+				<p class="asterisk-note">* In July 2013, a change in hardware resulted in an unforeseen inability to collect header information. A patch was released to fix this error in early January 2014. For that reason, we do not have DNT data between July 2013 and December 2013.</p>
 			</div>		
 			<div style="clear:both"></div>
 			<div id="map">
@@ -208,14 +206,14 @@ header("Pragma: no-cache");
 			<div id="about_pane" class="sans tinytext">
 				The Metrics team is a multidisciplinary team that uses historical data to drive decision-making.<br />
 				
-				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"><!--DEVELOPED BY--></div>
+				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke" target="_blank">Anurag Phadke <img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/hamiltonulmer" target="_blank">Hamilton Ulmer <img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
 			</div>
 			
 			<div class="copy tinytext sans about_pane_right_fix">
-				Developed by the <span style="font-weight:400"><span id="about">Metrics Team at Mozilla</span></span>
+				Developed by the <span style="font-weight:400"><span id="about"><a href="#">Metrics Team at Mozilla</a></span> using <a href="http://metricsgraphicsjs.org">MetricsGraphics.js</a></span>
 			</div>
 		</div> <!-- end page -->
 		
