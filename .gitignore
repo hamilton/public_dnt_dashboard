@@ -1,32 +1,4 @@
 
 .DS_Store
-d3/*
 data/deprecated
-data/deprecated/fennec_dnt_perc_daily.json
-js/global 10.08.45 AM.js
-
-js/charts 10.08.45 AM.js
-
-data/fennec_dnt_perc_monthly.json
-
-data/fennec_dnt_perc_monthly_by_state.json
-
-data/fennec_dnt_perc_monthly_by_country.json
-
-data/ff_dnt_perc_monthly.json
-
-data/ff_dnt_perc_monthly_by_country.json
-
-data/ff_dnt_perc_monthly_by_state.json
-
-js/DEPREC_charts.js
-
-js/DEPREC_global.js
-
-js/DEPREC_x_over_x.js
-
-js/DEPREC_jquery.tablesorter.js
-
-js/DEPREC_jquery.tablesorter.min.js
-
-*.json
+data/pre-jan2014
