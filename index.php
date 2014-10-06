@@ -93,6 +93,7 @@ header("Pragma: no-cache");
 			<div style="clear:both"></div>
 			<div id="map">
 				<h2>United States</h2>
+				<div class="as-of"> (as of January 2014)</div>
 				<div id="options3">
 					<a href="#" id="desktop3"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile3">MOBILE</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -170,6 +171,7 @@ header("Pragma: no-cache");
 			<div id="map_world">
 				<img id="map_world_top_gradient" src="images/gradient_world_top.png">
 				<h2>The World</h2>
+				<div class="as-of"> (as of September 2014)</div>
 				<div id="options4">
 					<a href="#" id="desktop4"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile4">MOBILE</a>
 				</div>
@@ -204,8 +206,6 @@ header("Pragma: no-cache");
 			</div>
 			
 			<div id="about_pane" class="sans tinytext">
-				The Metrics team is a multidisciplinary team that uses historical data to drive decision-making.<br />
-				
 				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke" target="_blank">Anurag Phadke <img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
