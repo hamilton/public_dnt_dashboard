@@ -445,7 +445,7 @@ function redrawMap() {
 			
 	d3.json("data/" + desktop_or_mobile3 + "_dnt_perc_monthly_by_state.json", function(data_state) {
 		var min_max = minMaxStateOrCountry(data_state);
-	    //console.log(min_max[0], min_max[1]);
+	    console.log(min_max);
 	    	
 	    var colorScale = d3.scale.linear().domain([min_max[0],min_max[1]]).range(["#d9e016", "steelblue"]);
 			
@@ -737,6 +737,8 @@ function assignEventListeners() {
 	});
 	
 	$("#show_map").on("click", function() {
+	    $("#map .as-of").delay(1200).fadeIn();
+	
 		$("#tooltip").fadeOut();
 		if(map_or_states == "map")
 			return false;
@@ -749,6 +751,8 @@ function assignEventListeners() {
 	});
 	
 	$("#show_states").on("click", function() {
+	    $("#map .as-of").hide();
+	    
 		$("#tooltip").fadeOut();
 		if(map_or_states == "states")
 			return false;

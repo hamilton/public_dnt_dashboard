@@ -93,7 +93,7 @@ header("Pragma: no-cache");
 			<div style="clear:both"></div>
 			<div id="map">
 				<h2>United States</h2>
-				<div class="as-of"> (as of January 2014)</div>
+				<div class="as-of"> (as of September 2014)</div>
 				<div id="options3">
 					<a href="#" id="desktop3"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile3">MOBILE</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
