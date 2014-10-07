@@ -4,7 +4,7 @@
     margin-top:30px;
     font-size:12px;
     font-style:italic;
-    z-index: 999999;
+    z-index: 9999999;
 }
 
 .copy p.asterisk-note {
@@ -854,7 +854,7 @@ tr {
     display: none;
 }
 
-#about_pane div img {
+#about_pane div i {
     padding: 0;
     margin: 0;
     margin-right: 10px;

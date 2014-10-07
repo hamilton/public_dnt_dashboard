@@ -24,6 +24,7 @@ header("Pragma: no-cache");
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
    		<script type="text/javascript" src="js/d3.v2.min.js"></script>
    		<script type="text/javascript" src="js/date.js"></script>
+   		<script type="text/javascript" src="js/global_vars.js"></script>
    		<script type="text/javascript" src="js/global.js"></script>
    		
         <link href="css/metrics-graphics.css" rel="stylesheet" type="text/css">
@@ -31,10 +32,11 @@ header("Pragma: no-cache");
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src='js/metrics-graphics.js'></script>
 
-		<link rel="stylesheet" href="css/styles.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" href="css/styles_ie_unsupported.css" type="text/css" />
 		<![endif]-->
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
    		<link rel="stylesheet" href="css/tabzilla.css" />
    		
    		<link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -93,7 +95,7 @@ header("Pragma: no-cache");
 			<div style="clear:both"></div>
 			<div id="map">
 				<h2>United States</h2>
-				<div class="as-of"> (as of September 2014)</div>
+				<div class="as-of"> as of September 2014</div>
 				<div id="options3">
 					<a href="#" id="desktop3"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile3">MOBILE</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -171,7 +173,7 @@ header("Pragma: no-cache");
 			<div id="map_world">
 				<img id="map_world_top_gradient" src="images/gradient_world_top.png">
 				<h2>The World</h2>
-				<div class="as-of"> (as of September 2014)</div>
+				<div class="as-of"> as of September 2014</div>
 				<div id="options4">
 					<a href="#" id="desktop4"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile4">MOBILE</a>
 				</div>
@@ -207,9 +209,9 @@ header("Pragma: no-cache");
 			
 			<div id="about_pane" class="sans tinytext">
 				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <img src="images/twitter.png" alt="Ali on Twitter" title="Ali on Twitter" /></a></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke" target="_blank">Anurag Phadke <img src="images/twitter.png" alt="Anurag on Twitter" title="Anurag on Twitter" /></a></div>
-				<div style="padding-top:2px"><a href="https://twitter.com/hamiltonulmer" target="_blank">Hamilton Ulmer <img src="images/twitter.png" alt="Hamilton on Twitter" title="Hamilton on Twitter" /></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <i class="fa fa-twitter"></i></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/anuragphadke" target="_blank">Anurag Phadke <i class="fa fa-twitter"></i></a></div>
+				<div style="padding-top:2px"><a href="https://twitter.com/hamiltonulmer" target="_blank">Hamilton Ulmer <i class="fa fa-twitter"></i></a></div>
 			</div>
 			
 			<div class="copy tinytext sans about_pane_right_fix">
