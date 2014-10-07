@@ -1,9 +1,17 @@
+.c {
+    clear: both;
+}
+
+.no-border {
+    border: 0;
+}
+
 .as-of {
     color: #757577;
-    position:absolute;
-    margin-top:30px;
-    font-size:12px;
-    font-style:italic;
+    position: absolute;
+    margin-top: 30px;
+    font-size: 12px;
+    font-style: italic;
     z-index: 9999999;
 }
 
@@ -55,7 +63,7 @@ svg text {
 
 html {
     outline: 0;
-    font-family: 'PT Serif',Cardo,serif;
+    font-family: 'PT Serif', Cardo, serif;
 }
 
 body {
@@ -552,7 +560,11 @@ img.label {
     padding-bottom: 2px;
 }
 
-.selected_option a,.selected_option a:link,.selected_option a:hover,.selected_option a:visited,.selected_option a:active {
+.selected_option a,
+.selected_option a:link,
+.selected_option a:hover,
+.selected_option a:visited,
+.selected_option a:active {
     color: #3b3b3b;
 }
 
@@ -761,7 +773,10 @@ tr {
     font-weight: bold;
 }
 
-#download_firefox a,#download_firefox a:link,#download_firefox a:active,#download_firefox a:visited {
+#download_firefox a,
+#download_firefox a:link,
+#download_firefox a:active,
+#download_firefox a:visited {
     text-decoration: underline;
 }
 
@@ -900,7 +915,9 @@ tr {
     padding-right: 20px;
 }
 
-#colophon a,#colophon a:link,#colophon a:visited {
+#colophon a,
+#colophon a:link,
+#colophon a:visited {
     color: #eaeaea;
 }
 
@@ -915,8 +932,8 @@ tr {
 }
 
 #colophon .footer-nav {
-    font-family: 'Open Sans',sans-serif;
-    font-family: 'Open Sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #colophon .footer-nav li {
@@ -943,7 +960,6 @@ tr {
 #colophon .row {
     width: 1020px;
     margin: 0 auto;
-    zoom: 1;
     zoom: 1;
 }
 

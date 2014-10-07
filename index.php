@@ -18,7 +18,7 @@ header("Pragma: no-cache");
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://dnt-dashboard.mozilla.org/" />
 		<meta property="og:site_name" content="The State of Do Not Track in Firefox" />
-		
+
 		<title>Do Not Track in Firefox</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js" type="text/javascript"></script>
@@ -36,12 +36,12 @@ header("Pragma: no-cache");
 		<![endif]-->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
    		<link rel="stylesheet" href="css/tabzilla.css" />
-   		
+
    		<link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
    		<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
 		<link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-		
+
 		<script type="text/javascript">
 
 		  var _gaq = _gaq || [];
@@ -73,24 +73,24 @@ header("Pragma: no-cache");
 			?>
 			</div>
 		</div>
-			
+
 		<div id="page">		
 			<h1 class="shadow">THE STATE OF DO NOT TRACK IN FIREFOX</h1>
 			<div id="full_date"></div>
-			
+
 			<div id="trend">
 				<div id="options">
 					<a href="#" id="desktop"><span class="selected_option">DESKTOP</span></a></span> &nbsp;<a href="#" id="mobile">MOBILE</a>
 				</div>
 				<div class="chart_content"></div>
 			</div>
-			
+
 			<div class="copy">
 				<p>Mozilla Firefox, Firefox for Android, Firefox OS and Thunderbird all include a Do Not Track feature that enables users to express a preference not to be tracked online. When the feature is turned on in one of our products, an automated signal is sent to all the sites and services you interact with, including websites, widgets, advertisers and applications.  Do Not Track is still in an early stage of development across the industry. However, it is supported by all major browsers and a few leading companies have started respecting the signal.</p>
 				<p>These graphs are intended to provide a view into how many Firefox users are seeking out and enabling Do Not Track in their desktop and mobile versions of Firefox; we currently don't have data on adoption in Thunderbird or Firefox OS.</p>
 				<p class="asterisk-note">* In July 2013, a change in hardware resulted in an unforeseen inability to collect header information. A patch was released to fix this error in early January 2014. For that reason, we do not have DNT data between July 2013 and December 2013.</p>
 			</div>		
-			<div style="clear:both"></div>
+			<div class="c"></div>
 			<div id="map">
 				<h2>United States</h2>
 				<div class="as-of"> as of September 2014</div>
@@ -99,7 +99,7 @@ header("Pragma: no-cache");
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;<a href="#" id="show_map"><span class="selected_option">MAP</span></a>&nbsp; <a href="#" id="show_states">STATES</a>
 				</div>
-				
+
 				<div id="map_data">
 					<div id="AL_box" class="firstrow">Alabama<div></div></div>
 					<div id="AK_box" class="firstrow">Alaska<div></div></div>
@@ -109,7 +109,7 @@ header("Pragma: no-cache");
 					<div id="CO_box" class="firstrow">Colorado<div></div></div>
 					<div id="CT_box" class="firstrow">Connecticut<div></div></div>
 					<div id="DE_box" class="firstrow">Delaware<div></div></div>
-					
+
 					<div id="DC_box">D.C.<div></div></div>
 					<div id="IA_box">Florida<div></div></div>
 					<div id="GA_box">Georgia<div></div></div>
@@ -118,7 +118,7 @@ header("Pragma: no-cache");
 					<div id="IL_box">Illinois<div></div></div>
 					<div id="IN_box">Indiana<div></div></div>
 					<div id="IA_box">Iowa<div></div></div>
-					
+
 					<div id="KS_box">Kansas<div></div></div>
 					<div id="KY_box">Kentucky<div></div></div>
 					<div id="LA_box">Louisiana<div></div></div>
@@ -127,7 +127,7 @@ header("Pragma: no-cache");
 					<div id="MA_box">Massachusetts<div></div></div>
 					<div id="MI_box">Michigan<div></div></div>
 					<div id="MN_box">Minnesota<div></div></div>
-					
+
 					<div id="MS_box">Mississippi<div></div></div>
 					<div id="MO_box">Missouri<div></div></div>
 					<div id="MT_box">Montana<div></div></div>
@@ -136,7 +136,7 @@ header("Pragma: no-cache");
 					<div id="NH_box">New Hampshire<div></div></div>
 					<div id="NJ_box">New Jersey<div></div></div>
 					<div id="NM_box">New Mexico<div></div></div>
-					
+
 					<div id="NY_box">New York<div></div></div>
 					<div id="NC_box">N. Carolina<div></div></div>
 					<div id="ND_box">N. Dakota<div></div></div>
@@ -145,7 +145,7 @@ header("Pragma: no-cache");
 					<div id="OR_box">Oregon<div></div></div>
 					<div id="PA_box">Pennsylvania<div></div></div>
 					<div id="RI_box">Rhode Island<div></div></div>
-					
+
 					<div id="SC_box">S. Carolina<div></div></div>
 					<div id="SD_box">S. Dakota<div></div></div>
 					<div id="TN_box">Tennessee<div></div></div>
@@ -154,20 +154,20 @@ header("Pragma: no-cache");
 					<div id="VT_box">Vermont<div></div></div>
 					<div id="VA_box">Virginia<div></div></div>
 					<div id="WA_box">Washington<div></div></div>
-					
+
 					<div id="WV_box" style="border:0">W. Virginia<div></div></div>
 					<div id="WI_box" style="border:0">Wisconsin<div></div></div>
 					<div id="WY_box" style="border:0">Wyoming<div></div></div>
-					<div style="border:0"></div>
-					<div style="border:0"></div>
-					<div style="border:0"></div>
-					<div style="border:0"></div>
-					<div style="border:0"></div>
+					<div class="no-border"></div>
+					<div class="no-border"></div>
+					<div class="no-border"></div>
+					<div class="no-border"></div>
+					<div class="no-border"></div>
 				</div>
 			</div>
 			<div id="map_legend"></div>
-			
-			<div style="clear:both"></div>
+
+			<div class="c"></div>
 			<div id="map_world">
 				<img id="map_world_top_gradient" src="images/gradient_world_top.png">
 				<h2>The World</h2>
@@ -192,9 +192,9 @@ header("Pragma: no-cache");
 				<p>No Firefox user was <i>tracked</i> to generate this data. Every 24 hours, both Firefox and Firefox for Android automatically download the latest list of insecure add-ons and/or extensions to disable as part of our <a href="https://wiki.mozilla.org/Blocklisting">blocklist service</a>. As a Do Not Track signal is included in all requests made by the browser, we can count the number of times we see the signal. No other information is logged on our servers. Anyone with a website and access to a web server can start counting how many users are sending DNT:1, which is how the signal is expressed via HTTP requests.</p>
 				<p>Part of the data in November and December 2012 is missing.  The monthly averages used for those two months are based on the days for which data is available.  The way we determine geographic data is from IP addresses at the time when an HTTP request is sent.  IP addresses are not logged in the aggregate data set used to create the above graphs.</p>
 			</div>
-			
+
 			<div id="tooltip"></div>
-			
+
 			<div class="copy hightop">
 			<h3>Further resources</h3>
 			<ul>
@@ -204,7 +204,7 @@ header("Pragma: no-cache");
 				<li><a href="https://blog.mozilla.org/privacy/">Mozilla Privacy Blog</a></li>
 			</ul>
 			</div>
-			
+
 			<div id="about_pane" class="sans tinytext">
 				<div style="font-weight:400;letter-spacing:1px;padding-top:12px"></div>
 				<div style="padding-top:2px"><a href="https://twitter.com/alialmossawi" target="_blank">Ali Almossawi <i class="fa fa-twitter"></i></a></div>
@@ -215,14 +215,13 @@ header("Pragma: no-cache");
 			<div class="copy tinytext sans about_pane_right_fix">
 				Developed by the <span style="font-weight:400"><span id="about"><a href="#">Metrics Team at Mozilla</a></span> using <a href="http://metricsgraphicsjs.org">MetricsGraphics.js</a></span>
 			</div>
-		</div> <!-- end page -->
-		
+		</div>
+
 		<footer id="colophon">
       		<div class="row">
       			<div class="footer-logo">
 					<a href="http://mozilla.org/en-US/"><img src="images/logomoz.png" alt="mozilla"></a>
 				</div>
-
 				<div class="footer-license">
 					<p>Portions of this content are<br />&copy;1998–2014 by individual mozilla.org contributors. Content available under a <a href="/foundation/licensing/website-content.html">Creative Commons license</a>.</p>
 					<p><a href="http://mozilla.org/en-US/contribute/page/">Contribute to this page</a></p>
@@ -241,9 +240,9 @@ header("Pragma: no-cache");
 				</ul>
 			</div>
 		</footer>
-		
+
 		<script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
-		
+
 		<script>
 		var images = [
 			'images/bubble.png'
