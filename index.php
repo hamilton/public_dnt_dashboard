@@ -26,13 +26,11 @@ header("Pragma: no-cache");
    		<script type="text/javascript" src="js/date.js"></script>
    		<script type="text/javascript" src="js/global_vars.js"></script>
    		<script type="text/javascript" src="js/global.js"></script>
-   		
-        <link href="css/metrics-graphics.css" rel="stylesheet" type="text/css">
-        
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+   		<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src='js/metrics-graphics.js'></script>
 
-		<link rel="stylesheet" href="css/styles.css" type="text/css" />
+		<link href="css/metrics-graphics.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" type="text/css" />
 		<!--[if lt IE 9]>
 			<link rel="stylesheet" href="css/styles_ie_unsupported.css" type="text/css" />
 		<![endif]-->
